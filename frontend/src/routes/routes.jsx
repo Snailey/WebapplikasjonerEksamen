@@ -9,6 +9,9 @@ const Routes = () => (
         <Switch>
             <Route exact path="/"><Home /></Route>
         </Switch>
+        <Switch>
+            <Route exact path="/offices"><Offices /></Route>
+        </Switch>
         </Layout>
     </Router>
 )

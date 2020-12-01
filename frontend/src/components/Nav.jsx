@@ -32,7 +32,7 @@ const Nav = () => (
                 </NavLink>
             </li>
             <li>
-                <NavLink exact to="/" activeClassName="active">
+                <NavLink exact to="/offices" activeClassName="active">
                     Kontorer
                 </NavLink>
             </li>
