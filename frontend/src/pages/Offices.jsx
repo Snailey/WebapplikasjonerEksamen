@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }from 'react';
 import { Heading } from '@chakra-ui/core';
 import styled from 'styled-components';
 import { BsFillGridFill } from 'react-icons/bs';
@@ -104,37 +104,58 @@ const data = [
 ]
 
 
-const  Offices = () => 
-(
-    <>
-      <StyledWelcome>
+function  Offices() { 
+const [view, setView] = useState(false);
+
+const updateView = (data) => {
+    setView(data)
+  }
+ 
+
+return( 
+<>
+    <StyledWelcome>
         <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">Våre Kontorer</Heading>
-      </StyledWelcome>
+    </StyledWelcome>
 
     <div className="office-btns">
-        <button>Filter</button>
-        <button><BsFillGridFill/></button>
-        <button><GiHamburgerMenu/></button>
+        <button className="office-filter-btn">Filter</button>
+        <button className="office-grid-btn" onClick={() => updateView(true)}><GiHamburgerMenu/></button>
+        <button className="office-grid-btn" onClick={() => updateView(false)}><BsFillGridFill/></button>
     </div>
-     
-      {data.map((city) => 
-        <div className="office-city">
+    <div>
+    {view || (
+        data.map((city) => 
+            <div className="office-city">
             <h1>{city.city} ({city.offices.length} kontorer) </h1>
             <div className="office-container">
-            {city.offices.map((office) => 
+                {city.offices.map((office) => 
                 <div className="office">
                     <p><b>{office.name}</b><br/>
                     {office.Address}<br/>
-                    {office.phone}<br/>
+                    {office.phone}<br/>                            
                     {office.email}</p>
                 </div>
-             )
-            }
-        </div>
-        </div>
-      )
-    }
-    </>
-);
+                )}
+            </div>
+        </div>    
+        ))}
+        {!view || (
+        data.map((city) => 
+            <div className="office-city">
+            <h1>{city.city} ({city.offices.length} kontorer) </h1>
+            <div>
+                {city.offices.map((office, index) => 
+                <div>
+                    <p><b>{index} {office.name}</b> {office.Address} {office.phone} {office.email}</p>
+                </div>
+                )}
+            </div>
+        </div>    
+        ))}
+    </div>
+</>
+)
+}
 
 export default Offices;
