@@ -52,7 +52,12 @@
 }
 .office{
   border: solid 1px black;
-  width: 15rem;
-  margin: 2rem;
+  width: 20rem;
+  margin-top: 2rem;
+  margin-left: 3rem;
+  padding: 1rem;
+}
 
+.office p{
+  font-size: 20px;
 }

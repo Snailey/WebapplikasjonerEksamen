@@ -1,15 +1,17 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/core';
 import styled from 'styled-components';
+import { BsFillGridFill } from 'react-icons/bs';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 const StyledWelcome = styled.section`
     display:block; 
     width=100%;
     background-color: #f0f5f5;
     padding: 6em;
-    font: 
 `;
 
+//test data
 const data = [
     {
         city:"Fredrikstad",
@@ -106,9 +108,14 @@ const  Offices = () =>
 (
     <>
       <StyledWelcome>
-        <Heading>Våre Kontorer</Heading>
+        <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">Våre Kontorer</Heading>
       </StyledWelcome>
 
+    <div className="office-btns">
+        <button>Filter</button>
+        <button><BsFillGridFill/></button>
+        <button><GiHamburgerMenu/></button>
+    </div>
      
       {data.map((city) => 
         <div className="office-city">
@@ -116,7 +123,7 @@ const  Offices = () =>
             <div className="office-container">
             {city.offices.map((office) => 
                 <div className="office">
-                    <p><bold>{office.name}</bold><br/>
+                    <p><b>{office.name}</b><br/>
                     {office.Address}<br/>
                     {office.phone}<br/>
                     {office.email}</p>
