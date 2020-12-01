@@ -36,3 +36,53 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Kontorer */
+.office-city{
+  text-align: left;
+  margin-left: 2rem;
+}
+
+.office-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+.office{
+  border: solid 1px black;
+  width: 20rem;
+  margin-top: 2rem;
+  margin-left: 3rem;
+  padding: 1rem;
+}
+
+.office p{
+  font-size: 20px;
+}
+
+.office-btns{
+  display:inline-block; 
+  float: right;
+}
+
+.office-filter-btn{
+  background-color:#f0f5f5; 
+  border: none;
+  padding: 25px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.office-grid-btn{
+  background-color: #ffffff; 
+  border: none;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+}

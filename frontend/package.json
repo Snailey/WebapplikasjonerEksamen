@@ -14,7 +14,10 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.1.0",
+<<<<<<< HEAD
     "react-router-dom": "^5.2.0",
+=======
+>>>>>>> 2825f6438256614fa9586d2d005295fb28777193
     "react-scripts": "^4.0.1",
     "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4"
