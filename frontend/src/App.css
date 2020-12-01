@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Kontorer */
+.office-city{
+  text-align: left;
+  margin-left: 2rem;
+}
+
+.office-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+.office{
+  border: solid 1px black;
+  width: 15rem;
+  margin: 2rem;
+
+}
