@@ -40,6 +40,7 @@
 
 /* Kontorer */
 .office-city{
+  margin-top: 5rem;
   text-align: left;
   margin-left: 2rem;
 }
@@ -50,12 +51,25 @@
   flex-wrap: wrap;
   justify-content: left;
 }
-.office{
+.office-grid{
   border: solid 1px black;
   width: 20rem;
   margin-top: 2rem;
   margin-left: 3rem;
   padding: 1rem;
+}
+
+.office-list{
+  display: flex;
+  align-items: center;
+}
+
+.office-list a{
+  margin-left: 1rem;
+}
+
+.office-list p{
+  margin-left: 1rem;
 }
 
 .office p{
@@ -70,7 +84,7 @@
 .office-filter-btn{
   background-color:#f0f5f5; 
   border: none;
-  padding: 25px 50px;
+  padding: 25px 100px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -85,4 +99,13 @@
   text-decoration: none;
   display: inline-block;
   font-size: 30px;
+}
+
+.office-list-number{
+  text-align: center;
+  vertical-align: middle;
+  height: 2rem;
+  width: 2rem;
+  background-color: #000000;
+  color: #ffffff;
 }
