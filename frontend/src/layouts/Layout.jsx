@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from '../components/Nav';
 import styled from 'styled-components';
+import Footer from '../components/Footer';
 
 const AppContainer = styled.div`
 padding: 0;
@@ -15,6 +16,7 @@ const Layout = ({children}) =>
     <AppContainer>
     {children}
     </AppContainer>
+    <Footer />
     </>
 )
 
