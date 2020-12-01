@@ -21,7 +21,9 @@ const Home = () =>
         <Box bg="#f0f5f5" d="inline-block" ml="3em" mr="1em" p="6" marginY="3em"><Heading fontSize="3em" >Kontorer</Heading></Box>
     </Link>
     <Box bg="#f0f5f5"  mr="3em" d="inline-block" marginY="3em" w="50%"p="6"><Heading fontSize="3em">Kontakt</Heading></Box>
-    <Box  bg="#f0f5f5" w="auto" ml="7em" mr="7em" p="6"><Heading fontSize="3em">Se våre fagartikler om oppussing av bad</Heading></Box>
+    <Link to={'/articles'}>
+        <Box  bg="#f0f5f5" d="inline-block" w="auto" ml="7em" mr="7em" p="6"><Heading fontSize="3em">Se våre fagartikler om oppussing av bad</Heading></Box>
+    </Link>
     </>
 );
 

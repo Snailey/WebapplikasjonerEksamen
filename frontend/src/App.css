@@ -109,3 +109,62 @@
   background-color: #000000;
   color: #ffffff;
 }
+
+
+/* ARTICLES */
+.article_body{
+  width: 1000px;
+  margin: auto;
+}
+.article-btns{
+  display:inline-block;
+  display: flex;
+}
+.article-search-btns{
+  margin-left:auto; margin-right:0;
+}
+.article-newarticle-btn{
+  background-color:#0a8181; 
+  color: #ffffff;
+  border: none;
+  width: 15rem;
+  height: 5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 5rem;
+}
+.article-search-btn{
+  background-color:#f0f5f5; 
+  border: none;
+  width: 15rem;
+  height: 5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 2rem;
+  margin-top: 5rem;
+}
+.articles{
+
+}
+.article{
+  display:inline-block;
+  display: flex;
+}
+.article_image{
+  margin-right: 2rem;
+  margin-top: 2rem;
+}
+.article_header{
+  display:inline-block;
+  display: flex;
+}
+.article_title{
+
+}
+.article_category{
+  margin-left:auto; margin-right:0;
+}
