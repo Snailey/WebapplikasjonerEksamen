@@ -106,7 +106,7 @@ const data = [
 
 const filterData = [
     {
-      value: "all",
+      value: " ",
       label: "Alle"
     },
     {
@@ -130,7 +130,7 @@ const filterData = [
 
 function  Offices() { 
 const [view, setView] = useState(false);
-const [search, setSearch] = useState("Fredrikstad");
+const [search, setSearch] = useState(" ");
 
 const updateView = (data) => {
     setView(data)
