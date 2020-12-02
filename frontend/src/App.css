@@ -66,6 +66,12 @@
   margin-left: 3rem;
   padding: 1rem;
 }
+.office-grid-noboarder{
+  width: 10rem;
+  margin-top: 2rem;
+  margin-left: 3rem;
+  padding: 1rem;
+}
 
 .office-list{
   display: flex;

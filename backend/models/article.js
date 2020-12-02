@@ -13,13 +13,29 @@ const ArticleSchema = new Schema(
       ref: 'User',
       required: [true, 'Det må finnes en frofatter av artikkelen'],
     },
-    content: {
+    ingress: {
       type: String,
-      required: [true, 'Artikkelen må ha innhold'],
+      required: [true, 'Artikkelen må ha inngress'],
+    },
+    content: [
+      {
+        subtitle: {
+          type: String,
+        },
+        content: {
+          type: String,
+        },
+      }
+    ],
+    image: {
+      type: String,
     },
     category: {
       type: String,
       required: [true, 'Må ha en kategori'],
+    },
+    publishdate: {
+      type: Date, // '2002-12-09'
     },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }

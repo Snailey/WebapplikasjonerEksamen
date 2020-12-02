@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Select from 'react-select';
 import { BsFillGridFill } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { Link } from 'react-router-dom';
 
 const StyledWelcome = styled.section`
     display:block; 
@@ -18,48 +19,56 @@ const data = [
         city:"Fredrikstad",
         offices: [
         {
+            id: 1,
             name:"Rørlegger 1",
             Address:"Rørleggerveien 1",
             phone:"69 99 00 00",
             email:"fredrikstad1@epost.no"
         },
         {
+            id: 2,
             name:"Rørlegger 1",
             Address:"Rørleggerveien 1",
             phone:"69 99 00 00",
             email:"fredrikstad1@epost.no"
         },
         {
+            id: 3,
             name:"Rørlegger 1",
             Address:"Rørleggerveien 1",
             phone:"69 99 00 00",
             email:"fredrikstad1@epost.no"
         },
         {
+            id: 4,
             name:"Rørlegger 1",
             Address:"Rørleggerveien 1",
             phone:"69 99 00 00",
             email:"fredrikstad1@epost.no"
         },
         {
+            id: 5,
             name:"Rørlegger 1",
             Address:"Rørleggerveien 1",
             phone:"69 99 00 00",
             email:"fredrikstad1@epost.no"
         },
         {
+            id: 6,
             name:"Rørlegger 1",
             Address:"Rørleggerveien 1",
             phone:"69 99 00 00",
             email:"fredrikstad1@epost.no"
         },
         {
+            id: 7,
             name:"Rørlegger 1",
             Address:"Rørleggerveien 1",
             phone:"69 99 00 00",
             email:"fredrikstad1@epost.no"
         },
         {
+            id: 8,
             name:"Rørlegger 1",
             Address:"Rørleggerveien 1",
             phone:"69 99 00 00",
@@ -71,30 +80,35 @@ const data = [
     city:"Sarpsborg",
         offices: [
         {
+            id: 11,
             name:"Rørlegger 1",
             Address:"Rørleggerveien 1",
             phone:"69 99 00 00",
             email:"sarpsborg1@epost.no"
         },
         {
+            id: 12,
             name:"Rørlegger 1",
             Address:"Rørleggerveien 1",
             phone:"69 99 00 00",
             email:"sarpsborg1@epost.no"
         },
         {
+            id: 13,
             name:"Rørlegger 1",
             Address:"Rørleggerveien 1",
             phone:"69 99 00 00",
             email:"sarpsborg1@epost.no"
         },
         {
+            id: 14,
             name:"Rørlegger 1",
             Address:"Rørleggerveien 1",
             phone:"69 99 00 00",
             email:"sarpsborg1@epost.no"
         },
         {
+            id: 15,
             name:"Rørlegger 1",
             Address:"Rørleggerveien 1",
             phone:"69 99 00 00",
@@ -110,19 +124,19 @@ const filterData = [
       label: "Alle"
     },
     {
-      value: "fredrikstad",
+      value: "Fredrikstad",
       label: "Fredrikstad"
     },
     {
-      value: "sarpsborg",
+      value: "Sarpsborg",
       label: "Sarpsborg"
     },
     {
-      value: "moss",
+      value: "Moss",
       label: "Moss"
     },
     {
-      value: "oslo",
+      value: "Oslo",
       label: "Oslo"
     },
   ];
@@ -163,35 +177,39 @@ return(
     {view || (
         data.map((city) => 
             <div className="office-city">
-            <h1>{city.city} ({city.offices.length} kontorer) </h1>
-            <div className="office-container">
-                {city.offices.map((office) => 
-                <div className="office-grid">
-                    <p><b>{office.name}</b><br/>
-                    {office.Address}<br/>
-                    {office.phone}<br/></p>
-                    <a href={office.email}>{office.email}</a>
+                <h1>{city.city} ({city.offices.length} kontorer) </h1>
+                <div className="office-container">
+                    {city.offices.map((office) => 
+                    <Link to={"/offices/" + office.id}>
+                        <div className="office-grid">
+                            <p><b>{office.name}</b><br/>
+                            {office.Address}<br/>
+                            {office.phone}<br/></p>
+                            <a href={office.email}>{office.email}</a>
+                        </div>
+                    </Link>
+                    )}
                 </div>
-                )}
-            </div>
-        </div>    
+            </div>   
         ))}
         {!view || (
         data.map((city) => 
-            <div className="office-city">
+        <div className="office-city">
             <h1>{city.city} ({city.offices.length} kontorer) </h1>
             <div>
                 {city.offices.map((office, index) => 
                 <div className="office-list">
-                    <div className="office-list-number">{index}</div>
-                    <p><b>{office.name}</b></p>
-                    <p>{office.Address}</p>   
-                    <p>{office.phone}</p>
-                    <a href={office.email}>{office.email}</a>
+                    <Link to={"/offices/" + city.id}>
+                        <div className="office-list-number">{index}</div>
+                        <p><b>{office.name}</b></p>
+                        <p>{office.Address}</p>   
+                        <p>{office.phone}</p>
+                        <a href={office.email}>{office.email}</a>
+                    </Link>
+                    </div>
+                    )}
                 </div>
-                )}
-            </div>
-        </div>    
+            </div>    
         ))}
     </div>
 </>

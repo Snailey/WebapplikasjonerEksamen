@@ -4,7 +4,8 @@ import Layout from '../layouts/Layout';
 import Article from '../pages/Article';
 import Articles from '../pages/Articles';
 import Home from '../pages/Home';
-import Offices from './../pages/Offices';
+import Offices from '../pages/Offices';
+import Office from '../pages/Office';
 
 const Routes = () => (
     <Router>
@@ -14,6 +15,9 @@ const Routes = () => (
         </Switch>
         <Switch>
             <Route exact path="/offices"><Offices /></Route>
+        </Switch>
+        <Switch>
+            <Route path="/offices/:id"><Office /></Route>
         </Switch>
         <Switch>
             <Route exact path="/articles"><Articles /></Route>
