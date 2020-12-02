@@ -1,17 +1,13 @@
 import React, { useState }from 'react';
 import { Heading } from '@chakra-ui/core';
 import styled from 'styled-components';
-import Select from 'react-select';
 import { BsFillGridFill } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
+import { OfficeFilterButton,OfficeButtonsContainer, OfficeCity, 
+            OfficeContainer, OfficeListNumber, CityHeader, 
+            OfficeViewButton, StyledWelcome, FilterButtonContainer  } from '../styles/StyledComponents';
 
-const StyledWelcome = styled.section`
-    display:block; 
-    width=100%;
-    background-color: #f0f5f5;
-    padding: 6em;
-`;
 
 //test data
 const data = [
@@ -143,11 +139,13 @@ const filterData = [
 
 
 function  Offices() { 
-const [view, setView] = useState(false);
 const [search, setSearch] = useState("");
-
+const [displayType, setDisplayType] = useState('grid');
 const updateView = (data) => {
-    setView(data)
+    if(data)
+      setDisplayType('list');
+    else
+        setDisplayType('grid')
   }
 
   const handleChange = e => {
@@ -161,57 +159,38 @@ return(
     <StyledWelcome>
         <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">Våre Kontorer</Heading>
     </StyledWelcome>
-
-    <div className="office-btns">
-        
-        <Select className="office-filter-btn"
+    <OfficeButtonsContainer>
+      <FilterButtonContainer>
+        <OfficeFilterButton
                 placeholder="Filter"
                 value={filterData.find(obj => obj.value === search)} 
                 options={filterData} 
                 onChange={handleChange}
                 />
-            
-        <button className="office-grid-btn" onClick={() => updateView(true)}><GiHamburgerMenu/></button>
-        <button className="office-grid-btn" onClick={() => updateView(false)}><BsFillGridFill/></button>
-    </div>
+        </FilterButtonContainer>    
+        <OfficeViewButton onClick={() => updateView(true)}><GiHamburgerMenu/></OfficeViewButton>
+        <OfficeViewButton onClick={() => updateView(false)}><BsFillGridFill/></OfficeViewButton>
+    </OfficeButtonsContainer>
     <div>
-    {view || (
+    {
         data.filter((city) => city.city.includes(search)).map((city) => 
-            <div className="office-city">
-                <h1>{city.city} ({city.offices.length} kontorer) </h1>
-                <div className="office-container">
-                    {city.offices.map((office) => 
-                    <Link to={"/offices/" + office.id}>
-                        <div className="office-grid">
-                            <p><b>{office.name}</b><br/>
-                            {office.Address}<br/>
-                            {office.phone}<br/></p>
-                            <a href={office.email}>{office.email}</a>
-                        </div>
-                    </Link>
+        <>
+        <CityHeader>{city.city} ({city.offices.length} kontorer) </CityHeader>
+            <OfficeCity displayType={displayType}>
+                    {city.offices.map((office, index) => 
+                    <OfficeContainer displayType={displayType}>
+                      <>
+                            {displayType==='list' && <OfficeListNumber>{index}</OfficeListNumber>}
+                            <p><Link to={"/offices/" + office.id}><b>{office.name}</b></Link></p>
+                            <p>{office.Address}</p>
+                            <p>{office.phone}</p>
+                            <a href={`mailto:${office.email}`}>{office.email}</a>
+                        </>
+                    </OfficeContainer>
                     )}
-                </div>
-            </div>   
-        ))}
-        {!view || (
-        data.map((city) => 
-        <div className="office-city">
-            <h1>{city.city} ({city.offices.length} kontorer) </h1>
-            <div>
-                {city.offices.map((office, index) => 
-                <div className="office-list">
-                    <Link to={"/offices/" + city.id}>
-                        <div className="office-list-number">{index}</div>
-                        <p><b>{office.name}</b></p>
-                        <p>{office.Address}</p>   
-                        <p>{office.phone}</p>
-                        <a href={office.email}>{office.email}</a>
-                    </Link>
-                    </div>
-                    )}
-                </div>
-            </div>    
-        ))}
+            </OfficeCity>   
+            </>
+        )}
     </div>
 </>
 )
