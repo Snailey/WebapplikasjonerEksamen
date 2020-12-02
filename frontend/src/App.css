@@ -37,8 +37,16 @@
   }
 }
 
+/* FOOTER */
+.footer{
+  display: flex;
+  justify-content: center; 
+}
+.footer p{
+  margin: 1rem;
+}
 
-/* Kontorer */
+/* OFFICES */
 .office-city{
   margin-top: 5rem;
   text-align: left;
@@ -127,7 +135,7 @@
   background-color:#0a8181; 
   color: #ffffff;
   border: none;
-  width: 15rem;
+  width: 10rem;
   height: 5rem;
   text-align: center;
   text-decoration: none;
@@ -138,7 +146,7 @@
 .article-search-btn{
   background-color:#f0f5f5; 
   border: none;
-  width: 15rem;
+  width: 10rem;
   height: 5rem;
   text-align: center;
   text-decoration: none;
@@ -167,4 +175,36 @@
 }
 .article_category{
   margin-left:auto; margin-right:0;
+}
+.article_header{
+  display:inline-block;
+  display: flex;
+}
+.article_date{
+  margin-left:auto; margin-right:0;
+}
+.article_delete_btn{
+  background-color: #fa0707; 
+  color: #ffffff;
+  border: none;
+  width: 10rem;
+  height: 5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+}
+.article_edit_btn{
+  background-color: #2e9c23; 
+  color: #ffffff;
+  border: none;
+  width: 10rem;
+  height: 5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 2rem;
 }
