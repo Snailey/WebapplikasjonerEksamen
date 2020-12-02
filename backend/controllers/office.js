@@ -17,10 +17,6 @@ export const list = catchAsyncErrors(async (req, res, next) => {
 
 // find office by id
 export const findById = catchAsyncErrors(async (req, res, next) => {
-  const office = await officeService.getEventById(req.params.id);
+  const office = await officeService.getOfficeById(req.params.id);
   res.status(201).json({ success: true, data: office });
 });
-
-// get list of offices in city
-
-// get list of employees belonging to office by id

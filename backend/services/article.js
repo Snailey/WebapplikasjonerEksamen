@@ -17,7 +17,9 @@ export const listPublicArticles = async () => Article.find({ public: true });
 // PUT
 // edit article
 export const updateArticle = async (id, data) =>
-  Article.findByIdAndUpdate(id, data);
+  Article.findByIdAndUpdate(id, data, {
+    new: true,
+  });
 
 // DELETE
 // delete article
