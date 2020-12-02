@@ -87,7 +87,7 @@ function  Article() {
     return( 
     <>
         <StyledWelcome>
-            <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">ArtikkelTittel</Heading>
+            <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">{data.title}</Heading>
         </StyledWelcome>
         <div className="article_body">
             <div className="article_header">
