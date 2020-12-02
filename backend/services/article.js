@@ -12,9 +12,13 @@ export const getArticleById = async (id) => Article.findById(id);
 export const listArticles = async () => Article.find();
 
 // get list of all public articles
+export const listPublicArticles = async () => Article.find({ public: true });
 
 // PUT
-// edit article by id
+// edit article
+export const updateArticle = async (id, data) =>
+  Article.findByIdAndUpdate(id, data);
 
 // DELETE
-// delete article by id
+// delete article
+export const removeArticle = async (id) => Article.findByIdAndRemove(id);
