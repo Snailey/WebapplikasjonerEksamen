@@ -27,13 +27,6 @@ const UserSchema = new Schema(
       },
       default: 'user',
     },
-    office: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Office',
-    },
-    position: {
-      type: String,
-    },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );

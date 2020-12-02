@@ -37,6 +37,10 @@ const ArticleSchema = new Schema(
     publishdate: {
       type: Date, // '2002-12-09'
     },
+    public: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );

@@ -8,6 +8,8 @@ import office from './routes/office.js';
 
 const app = express();
 
+app.use(express.json());
+
 connectDB();
 
 app.use(
