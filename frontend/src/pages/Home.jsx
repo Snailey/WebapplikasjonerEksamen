@@ -2,13 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box,Heading } from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-const StyledWelcome = styled.section`
-    display:block; 
-    width=100%;
-    background-color: #f0f5f5;
-    padding: 6em;
-`;
+import { StyledWelcome } from './../styles/StyledComponents';
 
 
 const Home = () => 

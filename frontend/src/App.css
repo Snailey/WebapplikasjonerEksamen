@@ -73,19 +73,6 @@
   padding: 1rem;
 }
 
-.office-list{
-  display: flex;
-  align-items: center;
-}
-
-.office-list a{
-  margin-left: 1rem;
-}
-
-.office-list p{
-  margin-left: 1rem;
-}
-
 .office p{
   font-size: 20px;
 }
