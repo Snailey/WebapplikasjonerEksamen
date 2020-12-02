@@ -25,6 +25,25 @@ const OfficeSchema = new Schema(
       type: Number,
       required: [true, 'Fyll ut telefonnr til kontoret'],
     },
+    description: {
+      type: String,
+      required: [true, 'Fyll ut beskrivelsen til kontoret'],
+    },
+    employees: [
+      {
+        name: {
+          type: String,
+          required: [true, 'Fyll ut ansattes navn'],
+        },
+        position: {
+          type: String,
+          required: [true, 'Fyll ut ansattes stilling'],
+        },
+        image: {
+          type: String,
+        },
+      },
+    ],
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
