@@ -17,13 +17,13 @@ export const findById = catchAsyncErrors(async (req, res, next) => {
 
 // get list of all articles
 export const list = catchAsyncErrors(async (req, res, next) => {
-  const articles = await articleService.listArticles(req.query);
+  const articles = await articleService.listArticles();
   res.status(200).json({ success: true, data: articles });
 });
 
 // get list of all public articles
 export const listPublic = catchAsyncErrors(async (req, res, next) => {
-  const articles = await articleService.listArticles(req.query);
+  const articles = await articleService.listPublicArticles();
   res.status(200).json({ success: true, data: articles });
 });
 
@@ -32,7 +32,7 @@ export const listPublic = catchAsyncErrors(async (req, res, next) => {
 export const update = catchAsyncErrors(async (req, res, next) => {
   let article = await articleService.getArticleById(req.params.id);
   if (!article) {
-    res.status(404).json("Finner ikke Artikkelen")
+    res.status(404).json('Finner ikke Artikkelen');
   }
   article = await articleService.updateArticle(req.params.id, req.body);
   res.status(200).json(article);
@@ -43,7 +43,7 @@ export const update = catchAsyncErrors(async (req, res, next) => {
 export const remove = catchAsyncErrors(async (req, res, next) => {
   let article = await articleService.getArticleById(req.params.id);
   if (!article) {
-    res.status(404).json("Finner ikke Artikkelen")
+    res.status(404).json('Finner ikke Artikkelen');
   }
   article = await articleService.removeArticle(req.params.id);
   res.status(204).json(article);
