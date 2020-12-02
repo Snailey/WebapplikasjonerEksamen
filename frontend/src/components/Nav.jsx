@@ -12,12 +12,16 @@ const NavList = styled.ul`
     padding: 0;
     overflow: hidden;
 
-    & > li{
+    & > li {
         float: right;
         display: block;
         padding: 15px;
         font-size: 18pt;
         border-right: 1px solid black;
+        text-decoration: none;
+    }
+    & > li > a{
+        color: black;
         text-decoration: none;
     }
 `;
