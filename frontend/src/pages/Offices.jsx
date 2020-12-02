@@ -120,7 +120,7 @@ const data = [
 
 const filterData = [
     {
-      value: " ",
+      value: "",
       label: "Alle"
     },
     {
@@ -144,7 +144,7 @@ const filterData = [
 
 function  Offices() { 
 const [view, setView] = useState(false);
-const [search, setSearch] = useState(" ");
+const [search, setSearch] = useState("");
 
 const updateView = (data) => {
     setView(data)
@@ -152,6 +152,7 @@ const updateView = (data) => {
 
   const handleChange = e => {
     setSearch(e.value);
+    console.log(search);
   }
  
 
@@ -175,7 +176,7 @@ return(
     </div>
     <div>
     {view || (
-        data.map((city) => 
+        data.filter((city) => city.city.includes(search)).map((city) => 
             <div className="office-city">
                 <h1>{city.city} ({city.offices.length} kontorer) </h1>
                 <div className="office-container">
