@@ -6,6 +6,7 @@ import Articles from '../pages/Articles';
 import Home from '../pages/Home';
 import Offices from '../pages/Offices';
 import Office from '../pages/Office';
+import Contact from '../pages/Contact';
 
 const Routes = () => (
     <Router>
@@ -23,7 +24,7 @@ const Routes = () => (
             <Route exact path="/articles"><Articles /></Route>
         </Switch>
         <Switch>
-            <Route path="/articles/:id"><Article /></Route>
+            <Route path="/contact"><Contact /></Route>
         </Switch>
         </Layout>
     </Router>

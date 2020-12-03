@@ -31,6 +31,11 @@ const Nav = () => (
         <NavList>
             <li>Logg inn</li>
             <li>
+                <NavLink exact to="/contact" activeClassName="active">
+                    Kontakt oss
+                </NavLink>
+            </li>
+            <li>
                 <NavLink exact to="/articles" activeClassName="active">
                     Fagartikler
                 </NavLink>
