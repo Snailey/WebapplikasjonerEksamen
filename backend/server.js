@@ -9,6 +9,7 @@ import article from './routes/article.js';
 import user from './routes/user.js';
 import office from './routes/office.js';
 import auth from './routes/auth.js';
+import message from './routes/message.js';
 
 const app = express();
 
@@ -29,7 +30,9 @@ app.use(cookieParser());
 app.use(`${process.env.BASEURL}/articles`, article);
 app.use(`${process.env.BASEURL}/users`, user);
 app.use(`${process.env.BASEURL}/offices`, office);
+app.use(`${process.env.BASEURL}/message`, message);
 app.use(`${process.env.BASEURL}/`, auth);
+
 
 app.listen(
   process.env.PORT,
