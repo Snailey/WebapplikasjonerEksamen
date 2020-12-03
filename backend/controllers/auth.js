@@ -12,19 +12,14 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   if (!email || !password) {
     res.status(400).json('Fyll ut epost og passord');
   }
-
   const user = await userService.getUserByEmail({ email }, true);
-
   if (!user) {
-    return next(new ErrorHandler('Fyll ut epost og passord', 400));
+    res.status(400).json('Finner ikke epost, prøv en annen');
   }
-
   const isPasswordMatched = await user.comparePassword(password);
-
   if (!isPasswordMatched) {
     res.status(400).json('Passord er feil');
   }
-
   sendToken(user, res);
 });
 
@@ -33,11 +28,7 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
     expires: new Date(Date.now()),
     httpOnly: true,
   });
-
-  res.status(200).json({
-    success: true,
-    data: 'Logget ut',
-  });
+  res.status(200).json({ success: true, data: 'Logget ut' });
 });
 
 export const currentUser = catchAsyncErrors(async (req, res, next) => {

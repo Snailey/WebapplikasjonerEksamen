@@ -37,6 +37,10 @@ const ArticleSchema = new Schema(
     publishdate: {
       type: Date, // '2002-12-09'
     },
+    published: {
+      type: Boolean,
+      defult: false,
+    },
     public: {
       type: Boolean,
       default: false,

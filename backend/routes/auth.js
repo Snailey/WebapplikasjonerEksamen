@@ -1,3 +1,4 @@
+// hentet fra forelesnings eksempelet
 import express from 'express';
 import { authController } from '../controllers/index.js';
 import { isAuthenticated } from '../middleware/auth.js';

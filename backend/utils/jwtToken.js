@@ -1,3 +1,4 @@
+// hentet fra forelesnings eksempelet
 export const sendToken = (user, res) => {
   const token = user.getJwtToken();
 
@@ -15,9 +16,6 @@ export const sendToken = (user, res) => {
     .json({
       success: true,
       token,
-      user: {
-        email: user.email,
-        role: user.role,
-      },
+      user: { email: user.email, role: user.role },
     });
 };

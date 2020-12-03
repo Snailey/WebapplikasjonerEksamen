@@ -1,3 +1,4 @@
+// hentet fra forelesningseksempelet
 import Axios from 'axios';
 
 const http = Axios.create({

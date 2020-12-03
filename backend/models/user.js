@@ -35,6 +35,7 @@ const UserSchema = new Schema(
 
 UserSchema.pre('save', async function (next) {
   this.password = await argon2.hash(this.password);
+  next();
 });
 
 UserSchema.methods.getJwtToken = function () {

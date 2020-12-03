@@ -1,4 +1,4 @@
-// hentet fra forelesnings eksempelet
+// hentet fra forelesningseksempelet
 
 export default (func) => (req, res, next) => {
   Promise.resolve(func(req, res, next)).catch(next);

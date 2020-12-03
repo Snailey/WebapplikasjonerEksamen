@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Heading } from '@chakra-ui/core';
-import create from '../utils/message';
+import create from '../utils/messageService.js';
 import {
   FormGroup,
   Label,
@@ -17,9 +17,7 @@ function Contact() {
     setMessage(e.currentTarget.value);
   };
 
-  const handleSubmit = (e) => {
-    create(message);
-  };
+  const handleSubmit = (e) => {};
 
   return (
     <>

@@ -33,7 +33,6 @@ app.use(`${process.env.BASEURL}/offices`, office);
 app.use(`${process.env.BASEURL}/message`, message);
 app.use(`${process.env.BASEURL}/`, auth);
 
-
 app.listen(
   process.env.PORT,
   console.log(`Server running on port ${process.env.PORT}`)
