@@ -9,27 +9,39 @@ import Office from '../pages/Office';
 import Contact from '../pages/Contact';
 
 const Routes = () => (
-    <Router>
-        <Layout>
-        <Switch>
-            <Route exact path="/"><Home /></Route>
-        </Switch>
-        <Switch>
-            <Route exact path="/offices"><Offices /></Route>
-        </Switch>
-        <Switch>
-            <Route path="/offices/:id"><Office /></Route>
-        </Switch>
-        <Switch>
-            <Route exact path="/articles"><Articles /></Route>
-        </Switch>
-        <Switch>
-            <Route exact path="/articles/:id"><Article /></Route>
-        </Switch>
-        <Switch>
-            <Route path="/contact"><Contact /></Route>
-        </Switch>
-        </Layout>
-    </Router>
-)
-export default Routes
+  <Router>
+    <Layout>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route exact path="/offices">
+          <Offices />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route path="/offices/:id">
+          <Office />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route exact path="/articles">
+          <Articles />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route exact path="/articles/:id">
+          <Article />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route path="/contact">
+          <Contact />
+        </Route>
+      </Switch>
+    </Layout>
+  </Router>
+);
+export default Routes;

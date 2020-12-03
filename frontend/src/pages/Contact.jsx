@@ -1,37 +1,57 @@
-import React, { useState }from 'react';
+import React, { useState } from 'react';
 import { Heading } from '@chakra-ui/core';
-import { FormGroup, Label, Input, Message, Button, StyledWelcome } from '../styles/StyledComponents';
+import create from '../utils/message';
+import {
+  FormGroup,
+  Label,
+  Input,
+  Message,
+  Button,
+  StyledWelcome,
+} from '../styles/StyledComponents';
 
-function  Contact() { 
+function Contact() {
+  const [message, setMessage] = useState('');
 
-    const [message, setMessage] = useState('');
+  const MessageHandleChange = (e) => {
+    setMessage(e.currentTarget.value);
+  };
 
-    const MessageHandleChange = (e) => {
-        setMessage(e.currentTarget.value)
-    }
+  const handleSubmit = (e) => {
+    create(message);
+  };
 
-    const handleSubmit = (e) => {
-
-    }
-
-    return( 
+  return (
     <>
-        <StyledWelcome>
-            <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">Kontakt oss</Heading>
-        </StyledWelcome>
-        
-        <form id="contact-form" onSubmit={handleSubmit} method="POST">
-            <FormGroup>
-                <Label htmlFor="label">Navn</Label>
-                <Input type="text" className="form-control" value='BrukerNavn fra GlobalState' />
-                <Label>Melding</Label>
-                <textarea className="form-control" placeholder="Skriv en melding" cols="40" rows="10" value={message} onChange={MessageHandleChange} />
-                <Message>ErrorMsg: Skriv en melding før du sender meldingen</Message>       
-                <Button type="submit">Send melding</Button>
-            </FormGroup>
-        </form>
-    </>    
-    )
-}    
-    
+      <StyledWelcome>
+        <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">
+          Kontakt oss
+        </Heading>
+      </StyledWelcome>
+
+      <form id="contact-form" onSubmit={handleSubmit} method="POST">
+        <FormGroup>
+          <Label htmlFor="label">Navn</Label>
+          <Input
+            type="text"
+            className="form-control"
+            value="BrukerNavn fra GlobalState"
+          />
+          <Label>Melding</Label>
+          <textarea
+            className="form-control"
+            placeholder="Skriv en melding"
+            cols="40"
+            rows="10"
+            value={message}
+            onChange={MessageHandleChange}
+          />
+          <Message>ErrorMsg: Skriv en melding før du sender meldingen</Message>
+          <Button type="submit">Send melding</Button>
+        </FormGroup>
+      </form>
+    </>
+  );
+}
+
 export default Contact;

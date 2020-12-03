@@ -1,23 +1,20 @@
 import React from 'react';
-import Nav from '../components/Nav';
 import styled from 'styled-components';
+import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 
 const AppContainer = styled.div`
-padding: 0;
-margin: 0;
-width: 100%;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 `;
 
-const Layout = ({children}) => 
-(
-    <>
+const Layout = ({ children }) => (
+  <>
     <Nav />
-    <AppContainer>
-    {children}
-    </AppContainer>
+    <AppContainer>{children}</AppContainer>
     <Footer />
-    </>
-)
+  </>
+);
 
 export default Layout;
