@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Layout from '../layouts/Layout';
 import Articles from '../pages/Articles';
+import Article from '../pages/Article';
 import Home from '../pages/Home';
 import Offices from '../pages/Offices';
 import Office from '../pages/Office';
@@ -21,6 +22,9 @@ const Routes = () => (
         </Switch>
         <Switch>
             <Route exact path="/articles"><Articles /></Route>
+        </Switch>
+        <Switch>
+            <Route exact path="/articles/:id"><Article /></Route>
         </Switch>
         <Switch>
             <Route path="/contact"><Contact /></Route>

@@ -1,6 +1,6 @@
 import React, { useState }from 'react';
 import { Heading } from '@chakra-ui/core';
-import { StyledWelcome, ArticleBodyContainer, ArticleHeader } from '../styles/StyledComponents';
+import { StyledWelcome, ArticleDateContainer, ArticleBodyContainer, ArticleHeader, ArticleDeleteBtn, ArticleEditBtn } from '../styles/StyledComponents';
 
 
 const data = {
@@ -85,7 +85,9 @@ function  Article() {
         <ArticleBodyContainer>
             <ArticleHeader>
                 <p>Av {data.author}</p>
-                <p className="article_date">{data.date}</p>
+                <ArticleDateContainer>
+                    <p className="article_date">{data.date}</p>
+                </ArticleDateContainer>
             </ArticleHeader>
             <p>{data.ingress}</p>
             {data.content.map((content) => 
@@ -95,8 +97,8 @@ function  Article() {
             </>
             )}
             <p><b>{data.category}</b></p>
-            <button className="article_delete_btn">SLETT</button>
-            <button className="article_edit_btn">REDIGER</button>
+            <ArticleDeleteBtn>SLETT</ArticleDeleteBtn>
+            <ArticleEditBtn>REDIGER</ArticleEditBtn>
            
         </ArticleBodyContainer>
     </>    

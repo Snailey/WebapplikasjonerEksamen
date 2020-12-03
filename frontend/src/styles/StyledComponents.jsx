@@ -174,10 +174,42 @@ export const ArticleHeader = styled.section`
   display: flex;
   margin-top: .5rem;
 `
+export const ArticleDateContainer = styled.section`
+  margin-left:auto; 
+  margin-right:0;
+`  
 
 export const ArticleCategory = styled.section`
   margin-left:auto; margin-right:0;
 `
+
+export const ArticleDeleteBtn = styled.button`
+  background-color:#e01621; 
+  color: #ffffff;
+  border: none;
+  width: 10rem;
+  height: 5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+  margin-right: 2rem;
+`
+
+export const ArticleEditBtn = styled.button`
+  background-color:#4d8135; 
+  color: #ffffff;
+  border: none;
+  width: 10rem;
+  height: 5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+`
+
 // FORM
 export const FormContainer = styled.div`
   width: 500px;
