@@ -6,10 +6,8 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 import { OfficeFilterButton,OfficeButtonsContainer, OfficeCity, 
             OfficeContainer, OfficeListNumber, CityHeader, 
-            OfficeViewButton, StyledWelcome, FilterButtonContainer  } from '../styles/StyledComponents';
+            OfficeViewButton, StyledWelcome, FilterButtonContainer, OfficeBodyContainer } from '../styles/StyledComponents';
 
-
-//test data
 const data = [
     {
         city:"Fredrikstad",
@@ -238,7 +236,7 @@ return(
         <OfficeViewButton onClick={() => updateView(true)}><GiHamburgerMenu/></OfficeViewButton>
         <OfficeViewButton onClick={() => updateView(false)}><BsFillGridFill/></OfficeViewButton>
     </OfficeButtonsContainer>
-    <div>
+    <OfficeBodyContainer>
     {
         data.filter((city) => city.city.includes(search)).map((city) => 
         <>
@@ -258,7 +256,7 @@ return(
             </OfficeCity>   
             </>
         )}
-    </div>
+    </OfficeBodyContainer>
 </>
 )
 }

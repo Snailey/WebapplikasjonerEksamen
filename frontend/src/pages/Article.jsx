@@ -1,14 +1,7 @@
 import React, { useState }from 'react';
-import { Link } from 'react-router-dom';
 import { Heading } from '@chakra-ui/core';
-import styled from 'styled-components';
+import { StyledWelcome, ArticleBodyContainer, ArticleHeader } from '../styles/StyledComponents';
 
-const StyledWelcome = styled.section`
-    display:block; 
-    width=100%;
-    background-color: #f0f5f5;
-    padding: 6em;
-`;
 
 const data = {
         id: 2,
@@ -89,24 +82,23 @@ function  Article() {
         <StyledWelcome>
             <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">{data.title}</Heading>
         </StyledWelcome>
-        <div className="article_body">
-            <div className="article_header">
+        <ArticleBodyContainer>
+            <ArticleHeader>
                 <p>Av {data.author}</p>
                 <p className="article_date">{data.date}</p>
-            </div>
+            </ArticleHeader>
             <p>{data.ingress}</p>
             {data.content.map((content) => 
-            <div>
+            <>
                 <h2>{content.subtitle}</h2>
                 <p>{content.content}</p>
-            </div>
+            </>
             )}
             <p><b>{data.category}</b></p>
-            <div>
-                <button className="article_delete_btn">SLETT</button>
-                <button className="article_edit_btn">REDIGER</button>
-            </div>
-        </div>
+            <button className="article_delete_btn">SLETT</button>
+            <button className="article_edit_btn">REDIGER</button>
+           
+        </ArticleBodyContainer>
     </>    
     )
 }    

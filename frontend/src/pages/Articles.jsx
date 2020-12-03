@@ -1,14 +1,7 @@
-import React, { useState }from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Heading } from '@chakra-ui/core';
-import styled from 'styled-components';
-
-const StyledWelcome = styled.section`
-    display:block; 
-    width=100%;
-    background-color: #f0f5f5;
-    padding: 6em;
-`;
+import { StyledWelcome, ArticleCategory, ArticleHeader, ArticleImageContainer, ArticleBodyContainer, ArticleBtnContainer, ArticleContainer, ArticleSearchBtn, ArticleSearchBtnContainer, ArticleNewBtn, } from '../styles/StyledComponents';
 
 const data = [
     {
@@ -19,7 +12,7 @@ const data = [
                     "kvalitet og bruker kun de beste rørleggerne i alt vi foretar oss. Vi hjelper deg med å planlegge " +
                     "drømmebadet ditt fra A til Å! Med hjertet for faget yter vi kvalitet i alle ledd for at du skal være i " +
                     "trygge hender",
-        imgage: "https://www.gamereactor.no/media/65/_1976583.jpg"
+        image: "https://www.gamereactor.no/media/65/_1976583.jpg"
     },
     {
         id: 2,
@@ -29,7 +22,7 @@ const data = [
                     "kvalitet og bruker kun de beste rørleggerne i alt vi foretar oss. Vi hjelper deg med å planlegge " +
                     "drømmebadet ditt fra A til Å! Med hjertet for faget yter vi kvalitet i alle ledd for at du skal være i " +
                     "trygge hender",
-        imgage: "https://www.gamereactor.no/media/65/_1976583.jpg"
+        image: "https://www.gamereactor.no/media/65/_1976583.jpg"
     },
     {
         id: 3,
@@ -39,7 +32,7 @@ const data = [
                     "kvalitet og bruker kun de beste rørleggerne i alt vi foretar oss. Vi hjelper deg med å planlegge " +
                     "drømmebadet ditt fra A til Å! Med hjertet for faget yter vi kvalitet i alle ledd for at du skal være i " +
                     "trygge hender",
-        imgage: "https://www.gamereactor.no/media/65/_1976583.jpg"
+        image: "https://www.gamereactor.no/media/65/_1976583.jpg"
     },
     {
         id: 4,
@@ -49,7 +42,7 @@ const data = [
                     "kvalitet og bruker kun de beste rørleggerne i alt vi foretar oss. Vi hjelper deg med å planlegge " +
                     "drømmebadet ditt fra A til Å! Med hjertet for faget yter vi kvalitet i alle ledd for at du skal være i " +
                     "trygge hender",
-        imgage: "https://www.gamereactor.no/media/65/_1976583.jpg"
+        image: "https://www.gamereactor.no/media/65/_1976583.jpg"
     },
     {
         id: 5,
@@ -59,7 +52,7 @@ const data = [
                     "kvalitet og bruker kun de beste rørleggerne i alt vi foretar oss. Vi hjelper deg med å planlegge " +
                     "drømmebadet ditt fra A til Å! Med hjertet for faget yter vi kvalitet i alle ledd for at du skal være i " +
                     "trygge hender",
-        imgage: "https://www.gamereactor.no/media/65/_1976583.jpg"
+        image: "https://www.gamereactor.no/media/65/_1976583.jpg"
     },
 ]
 
@@ -71,31 +64,33 @@ function  Articles() {
         <StyledWelcome>
             <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">Fagartikler</Heading>
         </StyledWelcome>
-        <div className="article_body">
-            <div className="article-btns">
-                <button className="article-newarticle-btn">NY ARTIKKEL</button>
-                <div className="article-search-btns">
-                    <button className="article-search-btn">SØK</button>
-                    <button className="article-search-btn">FILTER</button>
-                </div>
-            </div>
-            <div className="articles">
+        <ArticleBodyContainer>
+            <ArticleBtnContainer>
+                <ArticleNewBtn>NY ARTIKKEL</ArticleNewBtn>
+                <ArticleSearchBtnContainer>
+                    <ArticleSearchBtn>SØK</ArticleSearchBtn>
+                    <ArticleSearchBtn>FILTER</ArticleSearchBtn>
+                </ArticleSearchBtnContainer>
+            </ArticleBtnContainer>
                 {data.map((article) => 
                 <Link to={"/articles/" + article.id}>
-                <div className="article">
-                    <img className="article_image" src={article.imgage} alt="Bilde av Rørlegger" width="128" height="128"></img>
+                <ArticleContainer>
+                    <ArticleImageContainer>
+                        <img src={article.image} alt="Bilde av Rørlegger" width="128" height="128"></img>
+                    </ArticleImageContainer>
                     <div>
-                        <div className="article_header">
-                            <h1 className="article_title">{article.title}</h1>
-                            <p className="article_category"><b>{article.category}</b></p>
-                        </div>
+                        <ArticleHeader>
+                            <h1>{article.title}</h1>
+                            <ArticleCategory>
+                                <p><b>{article.category}</b></p>
+                            </ArticleCategory>
+                        </ArticleHeader>
                         <p>{article.content}</p>
                     </div>
-                </div>
+                </ArticleContainer>
                 </Link>
                 )}
-            </div>
-        </div>
+        </ArticleBodyContainer>
     </>    
     )
 }    

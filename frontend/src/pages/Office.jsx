@@ -1,14 +1,6 @@
-import React, { useState }from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import { Heading } from '@chakra-ui/core';
-import styled from 'styled-components';
-
-const StyledWelcome = styled.section`
-    display:block; 
-    width=100%;
-    background-color: #f0f5f5;
-    padding: 6em;
-`;
+import { StyledWelcome, OfficeGridNoBorder, EmployeeContainer, OfficeBodyContainer } from '../styles/StyledComponents';
 
 const data = {
     name:"Rørlegger 1",
@@ -101,21 +93,21 @@ function  Office() {
         <StyledWelcome>
             <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">Kontor Rørlegger Nummer</Heading>
         </StyledWelcome>
-        <div>
+        <OfficeBodyContainer>
             <h1>Velkommen til {data.name}</h1>
             <p>{data.description}</p>
             <br />
             <h1>Våre ansatte</h1>
-            <div className="office-container">
+            <EmployeeContainer>
                 {data.employees.map((employee) =>
-                <div className="office-grid-noboarder">
+                <OfficeGridNoBorder>
                     <img src={employee.image} alt="Bilde av Rørlegger" width="128" height="128"></img>
                     <p>{employee.name}</p>
                     <p>{employee.position}</p>
-                </div>
+                </OfficeGridNoBorder>
                 )}
-            </div>
-        </div>
+            </EmployeeContainer>
+        </OfficeBodyContainer>
         <StyledWelcome>
                 <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">Kontakt oss på {data.phone}</Heading>
         </StyledWelcome>

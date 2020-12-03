@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Select from 'react-select';
 
-
+// HEDDER
 export const StyledWelcome = styled.section`
     display:block; 
     width=100%;
@@ -10,6 +10,7 @@ export const StyledWelcome = styled.section`
     padding: 6em;
 `;
 
+// FOOTER
 export const StyledFooter = styled.footer`
     display: flex;
     justify-content: center;
@@ -18,6 +19,7 @@ export const StyledFooter = styled.footer`
         margin: 1rem;
     }
 `
+// OFFICES
 export const OfficeCity = styled.ul`
 ${props => (props.displayType === 'grid' ? `
     display: grid;
@@ -100,104 +102,79 @@ export const OfficeFilterButton = styled(Select)`
 `
 
 export const FilterButtonContainer = styled.section`
-    background-color:#f0f5f5; 
-    padding: 2.3rem;
-    display: inline-block;
+  background-color:#f0f5f5; 
+  padding: 2.3rem;
+  display: inline-block;
 
 `
-/* 
-// OFFICE 
+export const EmployeeContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+`
 
-  .office p{
-    font-size: 20px;
-  }
-  // ARTICLES 
-  .article_body{
-    width: 1000px;
-    margin: auto;
-  }
-  .article-btns{
-    display:inline-block;
-    display: flex;
-  }
-  .article-search-btns{
-    margin-left:auto; margin-right:0;
-  }
-  .article-newarticle-btn{
-    background-color:#0a8181; 
-    color: #ffffff;
-    border: none;
-    width: 10rem;
-    height: 5rem;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-top: 5rem;
-  }
-  .article-search-btn{
-    background-color:#f0f5f5; 
-    border: none;
-    width: 10rem;
-    height: 5rem;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-left: 2rem;
-    margin-top: 5rem;
-  }
-  .articles{
-  
-  }
-  .article{
-    display:inline-block;
-    display: flex;
-  }
-  .article_image{
-    margin-right: 2rem;
-    margin-top: 2rem;
-  }
-  .article_header{
-    display:inline-block;
-    display: flex;
-  }
-  .article_title{
-  
-  }
-  .article_category{
-    margin-left:auto; margin-right:0;
-  }
-  .article_header{
-    display:inline-block;
-    display: flex;
-  }
-  .article_date{
-    margin-left:auto; margin-right:0;
-  }
-  .article_delete_btn{
-    background-color: #fa0707; 
-    color: #ffffff;
-    border: none;
-    width: 10rem;
-    height: 5rem;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-top: 3rem;
-    margin-bottom: 5rem;
-  }
-  .article_edit_btn{
-    background-color: #2e9c23; 
-    color: #ffffff;
-    border: none;
-    width: 10rem;
-    height: 5rem;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-left: 2rem;
-  }
-  */
+export const OfficeBodyContainer = styled.section`
+  padding-left: 2rem; 
+`
+
+//ARTICLE
+export const ArticleBodyContainer = styled.section`
+  width: 1000px;
+  margin: auto; 
+`
+
+export const ArticleBtnContainer = styled.section`
+  display:inline-block;
+  display: flex;
+`
+
+export const ArticleSearchBtnContainer = styled.section`
+  margin-left:auto; margin-right:0;
+`
+
+export const ArticleSearchBtn = styled.button`
+  background-color:#f0f5f5; 
+  border: none;
+  width: 10rem;
+  height: 5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 2rem;
+  margin-top: 5rem;
+`
+
+export const ArticleNewBtn = styled.button`
+  background-color:#0a8181; 
+  color: #ffffff;
+  border: none;
+  width: 10rem;
+  height: 5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 5rem;
+`
+
+export const ArticleContainer = styled.section`
+  display:inline-block;
+  display: flex;
+`
+
+export const ArticleImageContainer = styled.section`
+  margin-right: 2rem;
+  margin-top: 2rem;
+`
+
+export const ArticleHeader = styled.section`
+  display:inline-block;
+  display: flex;
+  margin-top: .5rem;
+`
+
+export const ArticleCategory = styled.section`
+  margin-left:auto; margin-right:0;
+`
