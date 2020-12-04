@@ -1,6 +1,6 @@
 import express from 'express';
 import { articleController } from '../controllers/index.js';
-import { isAtenticated, isAuthorized } from '../middleware/auth.js';
+import { isAuthenticated, isAuthorized } from '../middleware/auth.js';
 
 const router = express.Router();
 

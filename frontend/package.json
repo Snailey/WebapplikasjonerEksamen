@@ -21,13 +21,12 @@
     "web-vitals": "^0.2.4"
   },
   "devDependencies": {
-    "husky": "^4.3.0",
-    "lint-staged": "^10.5.2",
     "@babel/core": "^7.12.3",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "@babel/register": "7.12.1",
+    "babel-loader": "^8.1.0",
     "axios": "0.21.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-styled-components": "^1.11.1",
@@ -43,6 +42,8 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "html-webpack-plugin": "^4.5.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.2",
     "node-sass": "^4.14.1",
     "prettier": "^2.1.2",
     "sass-loader": "^10.0.3",
@@ -53,6 +54,7 @@
     "webpack-merge": "^5.2.0"
   },
   "scripts": {
+    "dev": "webpack serve --config webpack.development.config.js --mode development",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

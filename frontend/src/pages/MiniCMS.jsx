@@ -3,6 +3,7 @@ import {
   Label,
   Input,
   FormContainer,
+  TextArea,
 } from '../styles/StyledComponents';
 
 const MiniCMS = () => (
@@ -17,7 +18,7 @@ const MiniCMS = () => (
         <Label>Ingress</Label>
         <Input placeholder="Skriv ingressen her" />
         <Label>Innhold</Label>
-        <textarea></textarea>
+        <TextArea />
       </form>
     </FormContainer>
   </>
