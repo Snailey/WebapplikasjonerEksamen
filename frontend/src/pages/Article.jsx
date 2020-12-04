@@ -1,5 +1,4 @@
 import React from 'react';
-import { Heading } from '@chakra-ui/core';
 import {
   StyledWelcome,
   ArticleDateContainer,
@@ -89,9 +88,7 @@ function Article() {
   return (
     <>
       <StyledWelcome>
-        <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">
-          {data.title}
-        </Heading>
+        <p>{data.title}</p>
       </StyledWelcome>
       <ArticleBodyContainer>
         <ArticleHeader>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Heading } from '@chakra-ui/core';
 import { BsFillGridFill } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
@@ -226,9 +225,7 @@ function Offices() {
   return (
     <>
       <StyledWelcome>
-        <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">
-          Våre Kontorer
-        </Heading>
+        <p>Våre Kontorer</p>
       </StyledWelcome>
       <OfficeButtonsContainer>
         <FilterButtonContainer>

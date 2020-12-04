@@ -94,9 +94,7 @@ function Office() {
   return (
     <>
       <StyledWelcome>
-        <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">
-          Kontor Rørlegger Nummer
-        </Heading>
+        <p>Kontor Rørlegger Nummer</p>
       </StyledWelcome>
       <OfficeBodyContainer>
         <h1>Velkommen til {data.name}</h1>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Heading } from '@chakra-ui/core';
 import create from '../utils/messageService.js';
 
 import {
@@ -36,9 +35,7 @@ function Contact() {
   return (
     <>
       <StyledWelcome>
-        <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">
-          Skriv en melding til LG Rørleggerservice AS
-        </Heading>
+        <p>Skriv en melding til LG Rørleggerservice AS</p>
       </StyledWelcome>
       <form onSubmit={submitHandler}>
         <FormContainer>

@@ -1,32 +1,36 @@
 import React from 'react';
-import { Box, Heading } from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
-import { StyledWelcome } from '../styles/StyledComponents';
+import {
+  StyledWelcome,
+  MainGrid,
+  Article,
+  Office,
+  Contact,
+  MainText,
+} from '../styles/StyledComponents';
 
 const Home = () => (
   <>
     <StyledWelcome>
-      <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">
-        Velkommen til LG Rørleggerservice AS
-      </Heading>
+      <p>Velkommen til LG Rørleggerservice AS</p>
     </StyledWelcome>
-    <Link to="/offices/">
-      <Box bg="#f0f5f5" d="inline-block" ml="3em" mr="1em" p="6" marginY="3em">
-        <Heading fontSize="3em">Kontorer</Heading>
-      </Box>
-    </Link>
-    <Link to="/contact/">
-      <Box bg="#f0f5f5" mr="3em" d="inline-block" marginY="3em" w="50%" p="6">
-        <Heading fontSize="3em">Kontakt</Heading>
-      </Box>
-    </Link>
-    <Link to="/articles">
-      <Box bg="#f0f5f5" d="inline-block" w="auto" ml="7em" mr="7em" p="6">
-        <Heading fontSize="3em">
-          Se våre fagartikler om oppussing av bad
-        </Heading>
-      </Box>
-    </Link>
+    <MainGrid>
+      <Link to="/offices/" style={{ textDecoration: 'none', color: '#000000' }}>
+        <Office>
+          <MainText>Kontorer</MainText>
+        </Office>
+      </Link>
+      <Link to="/contact/" style={{ textDecoration: 'none', color: '#000000' }}>
+        <Contact>
+          <MainText>Kontakt</MainText>
+        </Contact>
+      </Link>
+      <Link to="/articles" style={{ textDecoration: 'none', color: '#000000' }}>
+        <Article>
+          <MainText>Se våre fagartikler om oppussing av bad</MainText>
+        </Article>
+      </Link>
+    </MainGrid>
   </>
 );
 

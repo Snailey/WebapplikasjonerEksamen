@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Select from 'react-select';
+
 // NAV
 export const StyledBurger = styled.div`
   width: 2rem;
@@ -81,10 +82,18 @@ export const Ul = styled.ul`
 
 // HEDDER
 export const StyledWelcome = styled.section`
-    display:block; 
-    width=100%;
-    background-color: #f0f5f5;
-    padding: 6em;
+  display: block;
+  width: 100%;
+  background-color: #f0f5f5;
+  padding: 6em;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+
+  p {
+    font-size: 4rem;
+    font-weight: bold;
+  }
 `;
 
 // FOOTER
@@ -96,6 +105,55 @@ export const StyledFooter = styled.footer`
     margin: 1rem;
   }
 `;
+
+// HOME
+export const MainGrid = styled.div`
+  height: 100vh;
+  grid-gap: 15px;
+  display: grid;
+  grid-template-areas:
+    'office contact'
+    'article article';
+  grid-template-rows: 2fr 2fr;
+  grid-template-columns: 1fr 2fr;
+`;
+export const Office = styled.div`
+  grid-area: office;
+  background-color: #f0f5f5;
+  width: 100%;
+  height: 100%;
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const Contact = styled.div`
+  grid-area: contact;
+  background-color: #f0f5f5;
+  width: 100%;
+  height: 100%;
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const Article = styled.div`
+  grid-area: article;
+  background-color: #f0f5f5;
+  width: 100%;
+  height: 100%;
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const MainText = styled.p`
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 0;
+`;
+
 // OFFICES
 export const OfficeCity = styled.ul`
   ${(props) =>
@@ -181,7 +239,6 @@ export const OfficeFilterButton = styled(Select)`
 `;
 
 export const FilterButtonContainer = styled.section`
-  background-color: #f0f5f5;
   padding: 2.3rem;
   display: inline-block;
 `;

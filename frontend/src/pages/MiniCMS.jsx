@@ -9,7 +9,7 @@ import {
 const MiniCMS = () => (
   <>
     <StyledWelcome>
-      <h1>Ny Artikkel</h1>
+      <p>Ny Artikkel</p>
     </StyledWelcome>
     <FormContainer>
       <form>

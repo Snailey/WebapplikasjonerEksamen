@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Heading } from '@chakra-ui/core';
 import {
   StyledWelcome,
   ArticleCategory,
@@ -76,9 +75,7 @@ function Articles() {
   return (
     <>
       <StyledWelcome>
-        <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">
-          Fagartikler
-        </Heading>
+        <p>Fagartikler</p>
       </StyledWelcome>
       <ArticleBodyContainer>
         <ArticleBtnContainer>
