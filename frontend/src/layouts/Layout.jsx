@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import Nav from '../components/Nav';
+// import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import Navbar from '../components/NavBar/Navbar';
 
 const AppContainer = styled.div`
   padding: 0;
@@ -12,7 +13,7 @@ const AppContainer = styled.div`
 
 const Layout = ({ children }) => (
   <>
-    <Nav />
+    <Navbar />
     <AppContainer>{children}</AppContainer>
     <Footer />
   </>
