@@ -1,54 +1,79 @@
 import React, { useState } from 'react';
+// import { useHistory } from 'react-router-dom';
 import { Heading } from '@chakra-ui/core';
+// import axios from 'axios';
 import create from '../utils/messageService.js';
+
 import {
+  StyledWelcome,
+  Button,
+  FormContainer,
   FormGroup,
   Label,
   Input,
-  Message,
-  Button,
-  StyledWelcome,
+  TextArea,
+  CenterH2,
+  //  Message,
 } from '../styles/StyledComponents';
 
 function Contact() {
-  const [message, setMessage] = useState('');
+  // const [error, setError] = useState('');
+  // const [message, setMessage] = useState('');
+  const [details, setDetails] = useState({ name: '', message: '' });
 
-  const MessageHandleChange = (e) => {
-    setMessage(e.currentTarget.value);
-  };
+  // const history = useHistory();
+  // setError('');
 
-  const handleSubmit = () => {
-    create(message);
+  const submitHandler = async () => {
+    // console.log(details);
+    await create(details);
+
+    /*
+    axios
+      .post(`https://localhost:5000/appi/vi/message`, { ...details })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      });
+      */
+
+    // history.push('/');
   };
 
   return (
     <>
       <StyledWelcome>
         <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">
-          Kontakt oss
+          Skriv en melding til LG Rørleggerservice AS
         </Heading>
       </StyledWelcome>
-
-      <form id="contact-form" onSubmit={handleSubmit} method="POST">
-        <FormGroup>
-          <Label htmlFor="label">Navn</Label>
-          <Input
-            type="text"
-            className="form-control"
-            value="BrukerNavn fra GlobalState"
-          />
-          <Label>Melding</Label>
-          <textarea
-            className="form-control"
-            placeholder="Skriv en melding"
-            cols="40"
-            rows="10"
-            value={message}
-            onChange={MessageHandleChange}
-          />
-          <Message>ErrorMsg: Skriv en melding før du sender meldingen</Message>
-          <Button type="submit">Send melding</Button>
-        </FormGroup>
+      <form onSubmit={submitHandler}>
+        <FormContainer>
+          <CenterH2>Send en melding til LG Rørlegger</CenterH2>
+          <FormGroup>
+            <Label htmlFor="name">Navn</Label>
+            <Input
+              type="text"
+              name="name"
+              id="name"
+              onChange={(e) => setDetails({ ...details, name: e.target.value })}
+              value={details.name}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="message">Melding</Label>
+            <TextArea
+              type="text"
+              name="message"
+              id="message"
+              onChange={(e) =>
+                setDetails({ ...details, message: e.target.value })
+              }
+              value={details.message}
+            />
+          </FormGroup>
+          <Button type="submit">Send Melding</Button>
+        </FormContainer>
       </form>
     </>
   );

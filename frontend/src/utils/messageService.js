@@ -1,10 +1,9 @@
 import http from './http';
 
-const API_URL = '/message';
-
 const create = async (data) => {
+  console.log(data);
   try {
-    return await http.post(API_URL, data);
+    return await http.post(`/message`, { ...data });
   } catch (err) {
     return err.response;
   }

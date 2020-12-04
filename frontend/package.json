@@ -27,6 +27,7 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "@babel/register": "7.12.1",
+    "babel-loader": "^8.1.0",
     "axios": "0.21.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-styled-components": "^1.11.1",
@@ -54,6 +55,7 @@
     "webpack-merge": "^5.2.0"
   },
   "scripts": {
+    "dev": "webpack serve --config webpack.development.config.js --mode development",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

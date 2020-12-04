@@ -7,7 +7,7 @@ const Home = () => (
   <>
     <StyledWelcome>
       <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">
-        Velkommen til FG Rørleggerservice AS
+        Velkommen til LG Rørleggerservice AS
       </Heading>
     </StyledWelcome>
     <Link to="/offices/">

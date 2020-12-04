@@ -239,6 +239,7 @@ export const Input = styled.input`
   border: 1px solid black;
   border-radius: 3px;
   width: 300px;
+  height: 2rem;
   margin-bottom: 0.5em;
 `;
 
@@ -262,4 +263,17 @@ export const StyledExpandingTextArea = styled.textarea`
   width: 90%;
   rows: ${(props) => props.rows || '10'};
   line-height: ${(props) => props.lineheight || '20'}px;
+`;
+export const TextArea = styled.textarea`
+  color: black;
+  border: 1px solid black;
+  border-radius: 3px;
+  width: 300px;
+  height: 500px;
+  margin-bottom: 0.5em;
+`;
+
+export const CenterH2 = styled.h2`
+  margin: auto;
+  text-align: 'center';
 `;
