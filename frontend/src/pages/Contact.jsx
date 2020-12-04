@@ -19,15 +19,15 @@ import {
 function Contact() {
   // const [error, setError] = useState('');
   // const [message, setMessage] = useState('');
-  const [details, setDetails] = useState({ name: '', message: '' });
+  const [details, setDetails] = useState({ author: '', message: '' });
 
   // const history = useHistory();
   // setError('');
 
-  const submitHandler = async () => {
+  const submitHandler = async (e) => {
     // console.log(details);
-    await create(details);
 
+    console.log(await create(details));
     /*
     axios
       .post(`https://localhost:5000/appi/vi/message`, { ...details })
@@ -38,6 +38,7 @@ function Contact() {
       */
 
     // history.push('/');
+    e.preventDefault();
   };
 
   return (

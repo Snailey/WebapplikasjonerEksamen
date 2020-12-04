@@ -4,7 +4,6 @@ import {
   Label,
   Input,
   FormContainer,
-  TextArea,
 } from '../styles/StyledComponents';
 
 const MiniCMS = () => (
