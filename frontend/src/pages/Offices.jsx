@@ -213,8 +213,8 @@ function Offices() {
   const [search, setSearch] = useState('');
   const [displayType, setDisplayType] = useState('grid');
 
-  const updateView = (data) => {
-    if (data) setDisplayType('list');
+  const updateView = (isList) => {
+    if (isList) setDisplayType('list');
     else setDisplayType('grid');
   };
 

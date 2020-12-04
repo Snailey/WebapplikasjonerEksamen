@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import Select from 'react-select';
 
@@ -214,7 +213,7 @@ export const ArticleEditBtn = styled.button`
 `;
 
 // FORM
-export const FormContainer = styled.div`
+export const FormContainer = styled.section`
   width: 500px;
   margin: auto;
   display: flex;
@@ -222,7 +221,7 @@ export const FormContainer = styled.div`
   justify-content: center;
 `;
 
-export const FormGroup = styled.div`
+export const FormGroup = styled.section`
   color: black;
   display: block;
   width: 300px;

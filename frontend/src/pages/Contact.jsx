@@ -17,7 +17,9 @@ function Contact() {
     setMessage(e.currentTarget.value);
   };
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = () => {
+    create(message);
+  };
 
   return (
     <>

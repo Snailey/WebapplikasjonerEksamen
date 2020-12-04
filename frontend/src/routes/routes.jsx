@@ -7,6 +7,7 @@ import Home from '../pages/Home';
 import Offices from '../pages/Offices';
 import Office from '../pages/Office';
 import Contact from '../pages/Contact';
+import MiniCMS from '../pages/MiniCMS';
 
 const Routes = () => (
   <Router>
@@ -39,6 +40,11 @@ const Routes = () => (
       <Switch>
         <Route path="/contact">
           <Contact />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route path="/newArticle">
+          <MiniCMS />
         </Route>
       </Switch>
     </Layout>
