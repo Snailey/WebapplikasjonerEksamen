@@ -7,6 +7,7 @@ import {
   Office,
   Contact,
   MainText,
+  MainColumn,
 } from '../styles/StyledComponents';
 
 const Home = () => (
@@ -15,16 +16,24 @@ const Home = () => (
       <p>Velkommen til LG Rørleggerservice AS</p>
     </StyledWelcome>
     <MainGrid>
-      <Link to="/offices/" style={{ textDecoration: 'none', color: '#000000' }}>
-        <Office>
-          <MainText>Kontorer</MainText>
-        </Office>
-      </Link>
-      <Link to="/contact/" style={{ textDecoration: 'none', color: '#000000' }}>
-        <Contact>
-          <MainText>Kontakt</MainText>
-        </Contact>
-      </Link>
+      <MainColumn>
+        <Link
+          to="/offices/"
+          style={{ textDecoration: 'none', color: '#000000' }}
+        >
+          <Office>
+            <MainText>Kontorer</MainText>
+          </Office>
+        </Link>
+        <Link
+          to="/contact/"
+          style={{ textDecoration: 'none', color: '#000000' }}
+        >
+          <Contact>
+            <MainText>Kontakt</MainText>
+          </Contact>
+        </Link>
+      </MainColumn>
       <Link to="/articles" style={{ textDecoration: 'none', color: '#000000' }}>
         <Article>
           <MainText>Se våre fagartikler om oppussing av bad</MainText>

@@ -108,21 +108,25 @@ export const StyledFooter = styled.footer`
 
 // HOME
 export const MainGrid = styled.div`
-  height: 100vh;
-  grid-gap: 15px;
+  width: 100%;
+  padding: 5rem 5rem;
+`;
+
+export const MainColumn = styled.div`
+  grid-gap: 5rem;
   display: grid;
   grid-template-areas:
     'office contact'
     'article article';
-  grid-template-rows: 2fr 2fr;
+  grid-template-rows: 500px;
   grid-template-columns: 1fr 2fr;
 `;
+
 export const Office = styled.div`
   grid-area: office;
   background-color: #f0f5f5;
   width: 100%;
   height: 100%;
-  margin: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,7 +136,6 @@ export const Contact = styled.div`
   background-color: #f0f5f5;
   width: 100%;
   height: 100%;
-  margin: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,8 +144,8 @@ export const Article = styled.div`
   grid-area: article;
   background-color: #f0f5f5;
   width: 100%;
-  height: 100%;
-  margin: 1rem;
+  height: 500px;
+
   display: flex;
   align-items: center;
   justify-content: center;
