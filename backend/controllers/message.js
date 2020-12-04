@@ -7,6 +7,3 @@ export const create = catchAsyncErrors(async (req, res, next) => {
   const message = await messageService.createMessage(req.body);
   res.status(201).json(message);
 });
-
-// req.params.name,
-// req.params.message

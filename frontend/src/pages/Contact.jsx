@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Heading } from '@chakra-ui/core';
-// import axios from 'axios';
 import create from '../utils/messageService.js';
 
 import {
@@ -21,23 +20,16 @@ function Contact() {
   // const [message, setMessage] = useState('');
   const [details, setDetails] = useState({ author: '', message: '' });
 
-  // const history = useHistory();
+  const history = useHistory();
   // setError('');
 
   const submitHandler = async (e) => {
     // console.log(details);
 
     console.log(await create(details));
-    /*
-    axios
-      .post(`https://localhost:5000/appi/vi/message`, { ...details })
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-      });
-      */
+    await create(details);
 
-    // history.push('/');
+    history.push('/');
     e.preventDefault();
   };
 
