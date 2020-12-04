@@ -258,3 +258,8 @@ export const Button = styled.button`
   width: 300px;
   margin: auto;
 `;
+export const StyledExpandingTextArea = styled.textarea`
+  width: 90%;
+  rows: ${(props) => props.rows || '10'};
+  line-height: ${(props) => props.lineheight || '20'}px;
+`;
