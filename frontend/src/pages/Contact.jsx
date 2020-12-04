@@ -57,7 +57,9 @@ function Contact() {
               type="text"
               name="name"
               id="name"
-              onChange={(e) => setDetails({ ...details, name: e.target.value })}
+              onChange={(e) =>
+                setDetails({ ...details, author: e.target.value })
+              }
               value={details.name}
             />
           </FormGroup>
