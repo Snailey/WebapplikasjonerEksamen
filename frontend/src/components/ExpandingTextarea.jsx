@@ -21,7 +21,6 @@ const ExpandingTextArea = ({minRows = 5,maxRows=20}) => {
       setRows(minRows);
    if(f>minRows && f < maxRows ){
     setRows(f);
-    console.log('fuck');
     }
   }; 
   return (
