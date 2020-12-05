@@ -7,10 +7,10 @@ const router = express.Router();
 router.post('/', logController.create);
 
 // GET
-router.get('/', logController.list);
-router.get('/:url', logController.findByUrl);
+router.get('/list/', logController.list);
+router.get('/', logController.findByUrl);
 
 // PUT
-router.put('/:id', logController.update);
+router.put('/', logController.update);
 
 export default router;

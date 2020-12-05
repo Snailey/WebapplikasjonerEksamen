@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   StyledWelcome,
@@ -9,51 +9,65 @@ import {
   MainText,
   MainColumn,
 } from '../styles/StyledComponents';
+import create from '../utils/logService';
 
-// let startTime;
+const Home = () => {
+  const getUrl = () => window.location.href;
 
-const Home = () => (
-  /*
-  // LOG TiME SPENT ON PAGE
+  const sendLog = async (time) => {
+    console.log(window.location.href);
+    const timeSinceLoad = (new Date().getTime() - time.getTime()) / 1000;
+    console.log(timeSinceLoad);
+    const data = {
+      time: timeSinceLoad,
+      url: getUrl(),
+    };
+    await create(data);
+  };
+
   useEffect(() => {
-    useEffect(() => startTime = new Date(),[])
+    const time = new Date();
+    console.log(time);
     return () => {
-      const timeSinceLoad = (new Date().getTime() - startTime.getTime()) / 1000
-      create(timeSinceLoad)
-    }
-  }, []);
-  */
+      sendLog(time);
+    };
+  });
 
-  <>
-    <StyledWelcome>
-      <p>Velkommen til LG Rørleggerservice AS</p>
-    </StyledWelcome>
-    <MainGrid>
-      <MainColumn>
+  return (
+    <>
+      <StyledWelcome>
+        <p>Velkommen til LG Rørleggerservice AS</p>
+      </StyledWelcome>
+      <MainGrid>
+        <MainColumn>
+          <Link
+            to="/offices/"
+            style={{ textDecoration: 'none', color: '#000000' }}
+          >
+            <Office>
+              <MainText>Kontorer</MainText>
+            </Office>
+          </Link>
+          <Link
+            to="/contact/"
+            style={{ textDecoration: 'none', color: '#000000' }}
+          >
+            <Contact>
+              <MainText>Kontakt</MainText>
+            </Contact>
+          </Link>
+        </MainColumn>
         <Link
-          to="/offices/"
+          to="/articles"
           style={{ textDecoration: 'none', color: '#000000' }}
         >
-          <Office>
-            <MainText>Kontorer</MainText>
-          </Office>
+          <Article>
+            <MainText>Se våre fagartikler om oppussing av bad</MainText>
+          </Article>
         </Link>
-        <Link
-          to="/contact/"
-          style={{ textDecoration: 'none', color: '#000000' }}
-        >
-          <Contact>
-            <MainText>Kontakt</MainText>
-          </Contact>
-        </Link>
-      </MainColumn>
-      <Link to="/articles" style={{ textDecoration: 'none', color: '#000000' }}>
-        <Article>
-          <MainText>Se våre fagartikler om oppussing av bad</MainText>
-        </Article>
-      </Link>
-    </MainGrid>
-  </>
-);
+      </MainGrid>
+    </>
+  );
+};
 
 export default Home;
