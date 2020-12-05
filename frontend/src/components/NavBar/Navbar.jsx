@@ -1,10 +1,10 @@
 import React from 'react';
-import { Nav } from '../../styles/StyledComponents';
+import { Nav, MainText } from '../../styles/StyledComponents';
 import Burger from './Burger';
 
 const Navbar = () => (
   <Nav>
-    <div className="logo">LG Rørleggerservice AS</div>
+    <MainText>LG Rørleggerservice AS</MainText>
     <Burger />
   </Nav>
 );

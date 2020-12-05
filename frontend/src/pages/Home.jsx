@@ -10,7 +10,20 @@ import {
   MainColumn,
 } from '../styles/StyledComponents';
 
+// let startTime;
+
 const Home = () => (
+  /*
+  // LOG TiME SPENT ON PAGE
+  useEffect(() => {
+    useEffect(() => startTime = new Date(),[])
+    return () => {
+      const timeSinceLoad = (new Date().getTime() - startTime.getTime()) / 1000
+      create(timeSinceLoad)
+    }
+  }, []);
+  */
+
   <>
     <StyledWelcome>
       <p>Velkommen til LG Rørleggerservice AS</p>

@@ -163,7 +163,7 @@ export const OfficeCity = styled.ul`
     props.displayType === 'grid'
       ? `
     display: grid;
-    grid-template-columns: repeat(4, 20%);
+    grid-template-columns: repeat(4, 1fr);
     list-style-type:none;
 `
       : `
@@ -182,6 +182,8 @@ export const OfficeContainer = styled.li`
      padding: 3rem;
      border: 1px solid black;
      margin: 1.5rem;
+     min-width: 15rem;
+     max-width: 15rem;
      `
       : `display: table-row;
       
@@ -191,6 +193,7 @@ export const OfficeContainer = styled.li`
     } 
      `};
 `;
+
 export const OfficeGrid = styled.section`
   border: solid 1px black;
   width: 20rem;
@@ -258,7 +261,7 @@ export const OfficeBodyContainer = styled.section`
 
 // ARTICLE
 export const ArticleBodyContainer = styled.section`
-  width: 1000px;
+  max-width: 1000px;
   margin: auto;
 `;
 

@@ -10,6 +10,7 @@ import user from './routes/user.js';
 import office from './routes/office.js';
 import auth from './routes/auth.js';
 import message from './routes/message.js';
+import log from './routes/log.js';
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use(`${process.env.BASEURL}/articles`, article);
 app.use(`${process.env.BASEURL}/users`, user);
 app.use(`${process.env.BASEURL}/offices`, office);
 app.use(`${process.env.BASEURL}/message`, message);
+app.use(`${process.env.BASEURL}/log`, log);
 app.use(`${process.env.BASEURL}/`, auth);
 
 app.listen(

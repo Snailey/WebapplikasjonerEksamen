@@ -1,5 +1,4 @@
 import React from 'react';
-import { Heading } from '@chakra-ui/core';
 import {
   StyledWelcome,
   OfficeGridNoBorder,
@@ -94,7 +93,7 @@ function Office() {
   return (
     <>
       <StyledWelcome>
-        <p>Kontor Rørlegger Nummer</p>
+        <p>Kontor Rørlegger {data.id}</p>
       </StyledWelcome>
       <OfficeBodyContainer>
         <h1>Velkommen til {data.name}</h1>
@@ -117,9 +116,7 @@ function Office() {
         </EmployeeContainer>
       </OfficeBodyContainer>
       <StyledWelcome>
-        <Heading fontSize="5em" fontFamily="''Heebo', sans-serif">
-          Kontakt oss på {data.phone}
-        </Heading>
+        <p>Kontakt oss på {data.phone}</p>
       </StyledWelcome>
     </>
   );

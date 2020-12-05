@@ -256,7 +256,7 @@ function Offices() {
                   <OfficeContainer displayType={displayType}>
                     <>
                       {displayType === 'list' && (
-                        <OfficeListNumber>{index}</OfficeListNumber>
+                        <OfficeListNumber>{index + 1}</OfficeListNumber>
                       )}
                       <p>
                         <Link to={`/offices/${office.id}`}>
