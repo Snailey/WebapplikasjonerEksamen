@@ -14,22 +14,20 @@ import create from '../utils/logService';
 const Home = () => {
   const getUrl = () => window.location.href;
 
-  const sendLog = async (time) => {
-    console.log(window.location.href);
+  const sendLog = async (time, url) => {
     const timeSinceLoad = (new Date().getTime() - time.getTime()) / 1000;
-    console.log(timeSinceLoad);
     const data = {
       time: timeSinceLoad,
-      url: getUrl(),
+      url,
     };
     await create(data);
   };
 
   useEffect(() => {
     const time = new Date();
-    console.log(time);
+    const url = getUrl();
     return () => {
-      sendLog(time);
+      sendLog(time, url);
     };
   });
 

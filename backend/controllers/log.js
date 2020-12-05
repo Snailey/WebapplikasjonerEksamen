@@ -7,6 +7,7 @@ export const create = catchAsyncErrors(async (req, res, next) => {
   const { url, time } = req.body;
   const check = await logService.getLogByUrl(url);
   if (check) {
+    // if log for the url exist, it gets updated instead
     const views = check.views + 1;
     const newTime = check.time + time;
     const updatedLog = await logService.updateLog(check.id, {

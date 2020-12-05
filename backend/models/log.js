@@ -15,6 +15,20 @@ const LogSchema = new Schema(
     time: {
       type: Number,
     },
+    user: [
+      {
+        user: {
+          type: mongoose.Schema.ObjectId,
+          ref: 'User',
+        },
+        views: {
+          type: Number,
+        },
+        time: {
+          type: Number,
+        },
+      },
+    ],
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
