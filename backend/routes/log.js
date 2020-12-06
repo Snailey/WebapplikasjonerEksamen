@@ -9,6 +9,7 @@ router.post('/', logController.create);
 // GET
 router.get('/list/', logController.list);
 router.get('/', logController.findByUrl);
+router.get('/:id', logController.findById);
 
 // PUT
 router.put('/', logController.update);

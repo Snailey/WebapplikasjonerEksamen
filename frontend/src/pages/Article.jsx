@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   StyledWelcome,
   ArticleDateContainer,
@@ -7,6 +7,7 @@ import {
   ArticleDeleteBtn,
   ArticleEditBtn,
 } from '../styles/StyledComponents';
+import { create } from '../utils/logService';
 
 const data = {
   id: 2,
@@ -85,6 +86,24 @@ const data = {
 };
 
 function Article() {
+  const sendLog = async (time, url) => {
+    const timeSinceLoad = (new Date().getTime() - time.getTime()) / 1000;
+    const logData = {
+      time: timeSinceLoad,
+      url,
+    };
+    await create(logData);
+  };
+
+  useEffect(() => {
+    const time = new Date();
+    const url = window.location.href;
+    return () => {
+      if (time && url) {
+        sendLog(time, url);
+      }
+    };
+  });
   return (
     <>
       <StyledWelcome>

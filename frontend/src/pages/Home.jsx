@@ -9,11 +9,9 @@ import {
   MainText,
   MainColumn,
 } from '../styles/StyledComponents';
-import create from '../utils/logService';
+import { create } from '../utils/logService';
 
 const Home = () => {
-  const getUrl = () => window.location.href;
-
   const sendLog = async (time, url) => {
     const timeSinceLoad = (new Date().getTime() - time.getTime()) / 1000;
     const data = {
@@ -25,12 +23,13 @@ const Home = () => {
 
   useEffect(() => {
     const time = new Date();
-    const url = getUrl();
+    const url = window.location.href;
     return () => {
-      sendLog(time, url);
+      if (time && url) {
+        sendLog(time, url);
+      }
     };
   });
-
   return (
     <>
       <StyledWelcome>

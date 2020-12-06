@@ -8,6 +8,9 @@ export const createLog = async (data) => Log.create(data);
 // get log by url
 export const getLogByUrl = async (url) => Log.findOne({ url });
 
+// get log by id
+export const getLogById = async (id) => Log.findById(id);
+
 // get list of all logs
 export const listLogs = async () => Log.find();
 

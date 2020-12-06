@@ -1,6 +1,6 @@
 import http from './http';
 
-const create = async (data) => {
+export const create = async (data) => {
   console.log(data);
   try {
     return await http.post(`/log`, { ...data });
@@ -9,4 +9,20 @@ const create = async (data) => {
   }
 };
 
-export default create;
+export const list = async () => {
+  try {
+    return await http.get(`/log/list`);
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export const get = async (id) => {
+  try {
+    return await http.get(`/log/${id}`);
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export default { create, get, list };

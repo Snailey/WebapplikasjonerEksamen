@@ -15,7 +15,7 @@ const LogSchema = new Schema(
     time: {
       type: Number,
     },
-    user: [
+    users: [
       {
         user: {
           type: mongoose.Schema.ObjectId,

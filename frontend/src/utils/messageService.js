@@ -9,4 +9,12 @@ const create = async (data) => {
   }
 };
 
-export default create;
+export const list = async () => {
+  try {
+    return await http.get(`/message`);
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export default { create, list };

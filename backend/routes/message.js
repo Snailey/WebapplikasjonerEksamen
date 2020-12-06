@@ -6,4 +6,7 @@ const router = express.Router();
 // POST
 router.post('/', messageController.create);
 
+// GET
+router.get('/', messageController.list);
+
 export default router;
