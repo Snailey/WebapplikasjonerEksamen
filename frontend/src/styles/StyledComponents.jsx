@@ -145,7 +145,6 @@ export const Article = styled.div`
   background-color: #f0f5f5;
   width: 100%;
   height: 500px;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -194,13 +193,6 @@ export const OfficeContainer = styled.li`
      `};
 `;
 
-export const OfficeGrid = styled.section`
-  border: solid 1px black;
-  width: 20rem;
-  margin-top: 2rem;
-  margin-left: 3rem;
-  padding: 1rem;
-`;
 export const OfficeGridNoBorder = styled.section`
   width: 10rem;
   margin-top: 2rem;
@@ -270,7 +262,7 @@ export const ArticleBtnContainer = styled.section`
   display: flex;
 `;
 
-export const ArticleSearchBtnContainer = styled.section`
+export const ArticleBoxContainer = styled.section`
   margin-left: auto;
   margin-right: 0;
 `;
@@ -304,26 +296,12 @@ export const ArticleNewBtn = styled.button`
 export const ArticleContainer = styled.section`
   display: inline-block;
   display: flex;
+  margin-top: 0.5rem;
 `;
 
 export const ArticleImageContainer = styled.section`
   margin-right: 2rem;
   margin-top: 2rem;
-`;
-
-export const ArticleHeader = styled.section`
-  display: inline-block;
-  display: flex;
-  margin-top: 0.5rem;
-`;
-export const ArticleDateContainer = styled.section`
-  margin-left: auto;
-  margin-right: 0;
-`;
-
-export const ArticleCategory = styled.section`
-  margin-left: auto;
-  margin-right: 0;
 `;
 
 export const ArticleDeleteBtn = styled.button`
@@ -382,12 +360,6 @@ export const Input = styled.input`
   width: 300px;
   height: 2rem;
   margin-bottom: 0.5em;
-`;
-
-export const Message = styled.label`
-  margin-bottom: 0.5em;
-  color: red;
-  display: block;
 `;
 
 export const Button = styled.button`

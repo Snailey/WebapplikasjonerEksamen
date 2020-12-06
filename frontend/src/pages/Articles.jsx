@@ -2,15 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   StyledWelcome,
-  ArticleCategory,
-  ArticleHeader,
   ArticleImageContainer,
   ArticleBodyContainer,
   ArticleBtnContainer,
   ArticleContainer,
   ArticleSearchBtn,
-  ArticleSearchBtnContainer,
   ArticleNewBtn,
+  ArticleBoxContainer,
 } from '../styles/StyledComponents';
 
 const data = [
@@ -80,10 +78,10 @@ function Articles() {
       <ArticleBodyContainer>
         <ArticleBtnContainer>
           <ArticleNewBtn>NY ARTIKKEL</ArticleNewBtn>
-          <ArticleSearchBtnContainer>
+          <ArticleBoxContainer>
             <ArticleSearchBtn>SØK</ArticleSearchBtn>
             <ArticleSearchBtn>FILTER</ArticleSearchBtn>
-          </ArticleSearchBtnContainer>
+          </ArticleBoxContainer>
         </ArticleBtnContainer>
         {data.map((article) => (
           <Link to={`/articles/${article.id}`}>
@@ -97,14 +95,14 @@ function Articles() {
                 />
               </ArticleImageContainer>
               <div>
-                <ArticleHeader>
+                <ArticleContainer>
                   <h1>{article.title}</h1>
-                  <ArticleCategory>
+                  <ArticleBoxContainer>
                     <p>
                       <b>{article.category}</b>
                     </p>
-                  </ArticleCategory>
-                </ArticleHeader>
+                  </ArticleBoxContainer>
+                </ArticleContainer>
                 <p>{article.content}</p>
               </div>
             </ArticleContainer>

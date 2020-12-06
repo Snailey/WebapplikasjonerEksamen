@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import {
   StyledWelcome,
-  ArticleDateContainer,
   ArticleBodyContainer,
-  ArticleHeader,
   ArticleDeleteBtn,
   ArticleEditBtn,
+  ArticleBoxContainer,
+  ArticleContainer,
 } from '../styles/StyledComponents';
 import { create } from '../utils/logService';
 
@@ -110,12 +110,12 @@ function Article() {
         <p>{data.title}</p>
       </StyledWelcome>
       <ArticleBodyContainer>
-        <ArticleHeader>
+        <ArticleContainer>
           <p>Av {data.author}</p>
-          <ArticleDateContainer>
+          <ArticleBoxContainer>
             <p className="article_date">{data.date}</p>
-          </ArticleDateContainer>
-        </ArticleHeader>
+          </ArticleBoxContainer>
+        </ArticleContainer>
         <p>{data.ingress}</p>
         {data.content.map((content) => (
           <>

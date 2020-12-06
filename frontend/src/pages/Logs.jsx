@@ -63,8 +63,10 @@ const Logs = () => {
       <CSVLink
         header={headers}
         data={newData}
+        // data={urls.map((x) => ({ url: x.url, views: x.views, time: x.time }))}
         filename="logdata.csv"
-        enclosingCharacter={`'`}
+        enclosingCharacter={` `}
+        replace={(' ', '"')}
       >
         Download CSV-file
       </CSVLink>
@@ -77,6 +79,8 @@ export default Logs;
 <CSVLink data={urls} enclosingCharacter={`'`}>
         Download CSV-file
       </CSVLink>
+
+      urls.map((x) => ({ url: x.url, views: x.views, time: x.time }))
 */
 
 /*
