@@ -11,7 +11,7 @@ export const create = async (data) => {
 
 export const list = async () => {
   try {
-    return await http.get(`/log/list`);
+    return await http.get(`/log/csv`); // list
   } catch (err) {
     return err.response;
   }

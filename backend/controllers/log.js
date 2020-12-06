@@ -53,6 +53,12 @@ export const list = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({ success: true, data: logs });
 });
 
+// get list of all logs  to CSV
+export const listCSV = catchAsyncErrors(async (req, res, next) => {
+  const logs = await logService.listCSV();
+  res.status(200).json({ success: true, data: logs });
+});
+
 // PUT
 // edit log by url
 export const update = catchAsyncErrors(async (req, res, next) => {

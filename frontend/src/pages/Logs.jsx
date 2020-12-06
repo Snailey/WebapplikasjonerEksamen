@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { CSVLink } from 'react-csv';
 import { list } from '../utils/logService';
 
 const Logs = () => {
@@ -17,6 +18,36 @@ const Logs = () => {
     fetchData();
   });
 
+  const headers = [
+    // { label: 'ID', key: '_id' },
+    { label: 'URL', key: 'url' },
+    { label: 'Views', key: 'views' },
+    { label: 'Time', key: 'time' },
+    // { label: 'ID', key: 'id' },
+  ];
+
+  /*
+  const newData = [
+    ['URL', 'VIEWS', 'TIME'],
+    urls && urls.map((url) => [url.url, url.views, url.time]),
+  ];
+  */
+
+  // console.log(...newData);
+
+  const newData = JSON.stringify(urls);
+  // console.log(newData);
+  // const newData = { ...urls };
+  // console.log(moreNewData);
+
+  /*
+  const csvReport = {
+    data: newData,
+    headers,
+    filename: 'LoggRapport.csv',
+  };
+  */
+
   return (
     <>
       <h1>LOGG FOR LG RØRLEGGER SERVICE A/S</h1>
@@ -29,17 +60,53 @@ const Logs = () => {
             </Link>
           </div>
         ))}
+      <CSVLink
+        header={headers}
+        data={newData}
+        filename="logdata.csv"
+        enclosingCharacter={`'`}
+      >
+        Download CSV-file
+      </CSVLink>
     </>
   );
 };
 export default Logs;
 
 /*
-
-
-
-
-  
-
-  
+<CSVLink data={urls} enclosingCharacter={`'`}>
+        Download CSV-file
+      </CSVLink>
 */
+
+/*
+const exportCsv = () => {
+    const csvRow = [];
+    const A = [['_id', 'url', 'time', 'views', 'id']];
+    const re = urls;
+
+    for (let i = 0; i < re.length; i + 1) {
+      A.push([i, re[i]._id, re[i].url, re[i].time, re[i].views, re[i].id]);
+    }
+    for (let i = 0; i < A.length; i + 1) {
+      csvRow.push(A[i].join(','));
+    }
+    const csvString = csvRow.join('%AO');
+    const a = document.createElementNS('a');
+    a.href = `data.attachment/csv${csvString}`;
+    a.target = '_Blank';
+    a.download = 'data.csv';
+    document.body.appendChild(a);
+    a.click();
+  };
+
+  <button
+        type="button"
+        onClick={() => {
+          exportCsv();
+        }}
+      >
+        Export CSV
+      </button>
+
+  */

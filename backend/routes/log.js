@@ -7,6 +7,7 @@ const router = express.Router();
 router.post('/', logController.create);
 
 // GET
+router.get('/csv/', logController.listCSV);
 router.get('/list/', logController.list);
 router.get('/', logController.findByUrl);
 router.get('/:id', logController.findById);
