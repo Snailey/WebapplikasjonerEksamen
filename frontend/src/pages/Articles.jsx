@@ -115,7 +115,9 @@ function Articles() {
       </StyledWelcome>
       <ArticleBodyContainer>
         <ArticleBtnContainer>
-          <ArticleNewBtn>NY ARTIKKEL</ArticleNewBtn>
+          <Link to="/newArticle">
+            <ArticleNewBtn>NY ARTIKKEL</ArticleNewBtn>
+          </Link>
           <ArticleBoxContainer>
             <ArticleSearchBtn>SØK</ArticleSearchBtn>
             <textarea
@@ -136,7 +138,11 @@ function Articles() {
         </ArticleBtnContainer>
         {data
           .filter((category) => category.category.includes(filter))
-          .filter((title) => title.title.includes(search))
+          .filter(
+            (title) =>
+              title.title.toLowerCase().includes(search.toLowerCase()) ||
+              title.content.toLowerCase().includes(search.toLowerCase())
+          )
           .map((article) => (
             <Link to={`/articles/${article.id}`}>
               <ArticleContainer>
