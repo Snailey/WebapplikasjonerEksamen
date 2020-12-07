@@ -17,7 +17,11 @@ import {
 function Contact() {
   // const [error, setError] = useState('');
   // const [message, setMessage] = useState('');
-  const [details, setDetails] = useState({ author: '', message: '' });
+  const [details, setDetails] = useState({
+    author: 'Fyll ut navn',
+    email: 'Fyll ut Epost',
+    message: 'Skriv en melding',
+  });
 
   const history = useHistory();
   // setError('');
@@ -49,7 +53,21 @@ function Contact() {
               onChange={(e) =>
                 setDetails({ ...details, author: e.target.value })
               }
-              value={details.name}
+              value={details.author}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="name">
+              Din epostadresse <i>- som du vil få svar på</i>
+            </Label>
+            <Input
+              type="email"
+              name="email"
+              id="email"
+              onChange={(e) =>
+                setDetails({ ...details, email: e.target.value })
+              }
+              value={details.email}
             />
           </FormGroup>
           <FormGroup>
