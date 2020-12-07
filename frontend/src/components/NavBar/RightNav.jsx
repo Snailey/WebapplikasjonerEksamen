@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Ul } from '../../styles/StyledComponents';
+import './Button.css';
 
 const RightNav = ({ open }) => (
   <Ul open={open}>
