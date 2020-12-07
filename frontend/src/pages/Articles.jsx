@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   StyledWelcome,
@@ -10,13 +10,14 @@ import {
   ArticleNewBtn,
   ArticleBoxContainer,
   ArticleReadTime,
+  OfficeFilterButton,
 } from '../styles/StyledComponents';
 
 const data = [
   {
     id: 1,
     title: 'Artikkeltittel 1',
-    category: 'Kategorinavn',
+    category: 'Innredning',
     content:
       'Vi pusser opp små og mellomstore bad for privatkunder og entreprenører. Vi er opptatt av god ' +
       'kvalitet og bruker kun de beste rørleggerne i alt vi foretar oss. Vi hjelper deg med å planlegge ' +
@@ -28,7 +29,7 @@ const data = [
   {
     id: 2,
     title: 'Artikkeltittel 2',
-    category: 'Kategorinavn',
+    category: 'Bad',
     content:
       'Vi pusser opp små og mellomstore bad for privatkunder og entreprenører. Vi er opptatt av god ' +
       'kvalitet og bruker kun de beste rørleggerne i alt vi foretar oss. Vi hjelper deg med å planlegge ' +
@@ -40,7 +41,7 @@ const data = [
   {
     id: 3,
     title: 'Artikkeltittel 3',
-    category: 'Kategorinavn',
+    category: 'Kjøkken',
     content:
       'Vi pusser opp små og mellomstore bad for privatkunder og entreprenører. Vi er opptatt av god ' +
       'kvalitet og bruker kun de beste rørleggerne i alt vi foretar oss. Vi hjelper deg med å planlegge ' +
@@ -52,7 +53,7 @@ const data = [
   {
     id: 4,
     title: 'Artikkeltittel 4',
-    category: 'Kategorinavn',
+    category: 'Kjøkken',
     content:
       'Vi pusser opp små og mellomstore bad for privatkunder og entreprenører. Vi er opptatt av god ' +
       'kvalitet og bruker kun de beste rørleggerne i alt vi foretar oss. Vi hjelper deg med å planlegge ' +
@@ -64,7 +65,7 @@ const data = [
   {
     id: 5,
     title: 'Artikkeltittel 5',
-    category: 'Kategorinavn',
+    category: 'Bad',
     content:
       'Vi pusser opp små og mellomstore bad for privatkunder og entreprenører. Vi er opptatt av god ' +
       'kvalitet og bruker kun de beste rørleggerne i alt vi foretar oss. Vi hjelper deg med å planlegge ' +
@@ -75,7 +76,38 @@ const data = [
   },
 ];
 
+const filterData = [
+  {
+    value: '',
+    label: 'Alle',
+  },
+  {
+    value: 'Bad',
+    label: 'Bad',
+  },
+  {
+    value: 'Kjøkken',
+    label: 'Kjøkken',
+  },
+  {
+    value: 'Armatur',
+    label: 'Armatur',
+  },
+  {
+    value: 'Innredning',
+    label: 'Innredning',
+  },
+];
+
 function Articles() {
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState('');
+
+  const handleChange = (e) => {
+    setFilter(e.value);
+    console.log(filter);
+  };
+
   return (
     <>
       <StyledWelcome>
@@ -86,37 +118,53 @@ function Articles() {
           <ArticleNewBtn>NY ARTIKKEL</ArticleNewBtn>
           <ArticleBoxContainer>
             <ArticleSearchBtn>SØK</ArticleSearchBtn>
+            <textarea
+              type="text"
+              name="search"
+              id="search"
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+            />
             <ArticleSearchBtn>FILTER</ArticleSearchBtn>
+            <OfficeFilterButton
+              placeholder="Filter"
+              value={filterData.find((obj) => obj.value === filter)}
+              options={filterData}
+              onChange={handleChange}
+            />
           </ArticleBoxContainer>
         </ArticleBtnContainer>
-        {data.map((article) => (
-          <Link to={`/articles/${article.id}`}>
-            <ArticleContainer>
-              <ArticleImageContainer>
-                <img
-                  src={article.image}
-                  alt="Bilde av Rørlegger"
-                  width="128"
-                  height="128"
-                />
-              </ArticleImageContainer>
-              <div>
-                <ArticleContainer>
-                  <h1>{article.title}</h1>
-                  <ArticleBoxContainer>
-                    <p>
-                      <b>{article.category}</b>
-                    </p>
-                  </ArticleBoxContainer>
-                </ArticleContainer>
-                <p>{article.content}</p>
-                <ArticleReadTime>
-                  Lesetid ca. {Math.floor(article.readTime / 60)} minutter.
-                </ArticleReadTime>
-              </div>
-            </ArticleContainer>
-          </Link>
-        ))}
+        {data
+          .filter((category) => category.category.includes(filter))
+          .filter((title) => title.title.includes(search))
+          .map((article) => (
+            <Link to={`/articles/${article.id}`}>
+              <ArticleContainer>
+                <ArticleImageContainer>
+                  <img
+                    src={article.image}
+                    alt="Bilde av Rørlegger"
+                    width="128"
+                    height="128"
+                  />
+                </ArticleImageContainer>
+                <div>
+                  <ArticleContainer>
+                    <h1>{article.title}</h1>
+                    <ArticleBoxContainer>
+                      <p>
+                        <b>{article.category}</b>
+                      </p>
+                    </ArticleBoxContainer>
+                  </ArticleContainer>
+                  <p>{article.content}</p>
+                  <ArticleReadTime>
+                    Lesetid ca. {Math.floor(article.readTime / 60)} minutter.
+                  </ArticleReadTime>
+                </div>
+              </ArticleContainer>
+            </Link>
+          ))}
       </ArticleBodyContainer>
     </>
   );
