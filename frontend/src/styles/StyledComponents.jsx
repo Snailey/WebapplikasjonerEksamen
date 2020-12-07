@@ -331,6 +331,10 @@ export const ArticleEditBtn = styled.button`
   font-size: 16px;
 `;
 
+export const ArticleReadTime = styled.p`
+  float: right;
+`;
+
 // FORM
 export const FormContainer = styled.section`
   width: 500px;

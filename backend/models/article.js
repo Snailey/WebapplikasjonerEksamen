@@ -25,7 +25,7 @@ const ArticleSchema = new Schema(
         content: {
           type: String,
         },
-      }
+      },
     ],
     image: {
       type: String,
@@ -38,12 +38,15 @@ const ArticleSchema = new Schema(
       type: Date, // '2002-12-09'
     },
     published: {
-      type: Boolean,
+      type: Boolean, // trenger vel egentlig ikke denne når det legges til en dato for når artikkelen blir publisert
       defult: false,
     },
     public: {
       type: Boolean,
       default: false,
+    },
+    readTime: {
+      type: Number, // seconds
     },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }

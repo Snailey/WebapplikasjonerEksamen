@@ -9,6 +9,7 @@ import {
   ArticleSearchBtn,
   ArticleNewBtn,
   ArticleBoxContainer,
+  ArticleReadTime,
 } from '../styles/StyledComponents';
 
 const data = [
@@ -22,6 +23,7 @@ const data = [
       'drømmebadet ditt fra A til Å! Med hjertet for faget yter vi kvalitet i alle ledd for at du skal være i ' +
       'trygge hender',
     image: 'https://www.gamereactor.no/media/65/_1976583.jpg',
+    readTime: 156,
   },
   {
     id: 2,
@@ -33,6 +35,7 @@ const data = [
       'drømmebadet ditt fra A til Å! Med hjertet for faget yter vi kvalitet i alle ledd for at du skal være i ' +
       'trygge hender',
     image: 'https://www.gamereactor.no/media/65/_1976583.jpg',
+    readTime: 560,
   },
   {
     id: 3,
@@ -44,6 +47,7 @@ const data = [
       'drømmebadet ditt fra A til Å! Med hjertet for faget yter vi kvalitet i alle ledd for at du skal være i ' +
       'trygge hender',
     image: 'https://www.gamereactor.no/media/65/_1976583.jpg',
+    readTime: 300,
   },
   {
     id: 4,
@@ -55,6 +59,7 @@ const data = [
       'drømmebadet ditt fra A til Å! Med hjertet for faget yter vi kvalitet i alle ledd for at du skal være i ' +
       'trygge hender',
     image: 'https://www.gamereactor.no/media/65/_1976583.jpg',
+    readTime: 600,
   },
   {
     id: 5,
@@ -66,6 +71,7 @@ const data = [
       'drømmebadet ditt fra A til Å! Med hjertet for faget yter vi kvalitet i alle ledd for at du skal være i ' +
       'trygge hender',
     image: 'https://www.gamereactor.no/media/65/_1976583.jpg',
+    readTime: 500,
   },
 ];
 
@@ -104,6 +110,9 @@ function Articles() {
                   </ArticleBoxContainer>
                 </ArticleContainer>
                 <p>{article.content}</p>
+                <ArticleReadTime>
+                  Lesetid ca. {Math.floor(article.readTime / 60)} minutter.
+                </ArticleReadTime>
               </div>
             </ArticleContainer>
           </Link>

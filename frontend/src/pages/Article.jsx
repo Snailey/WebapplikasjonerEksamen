@@ -6,6 +6,7 @@ import {
   ArticleEditBtn,
   ArticleBoxContainer,
   ArticleContainer,
+  ArticleReadTime,
 } from '../styles/StyledComponents';
 import { create } from '../utils/logService';
 
@@ -83,6 +84,7 @@ const data = {
     },
   ],
   imgage: 'https://www.gamereactor.no/media/65/_1976583.jpg',
+  readTime: 350,
 };
 
 function Article() {
@@ -126,8 +128,13 @@ function Article() {
         <p>
           <b>{data.category}</b>
         </p>
-        <ArticleDeleteBtn>SLETT</ArticleDeleteBtn>
-        <ArticleEditBtn>REDIGER</ArticleEditBtn>
+        <div>
+          <ArticleDeleteBtn>SLETT</ArticleDeleteBtn>
+          <ArticleEditBtn>REDIGER</ArticleEditBtn>
+          <ArticleReadTime>
+            Lesetid ca. {Math.floor(data.readTime / 60)} minutter.
+          </ArticleReadTime>
+        </div>
       </ArticleBodyContainer>
     </>
   );
