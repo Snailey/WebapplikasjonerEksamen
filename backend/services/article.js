@@ -9,12 +9,20 @@ export const createArticle = async (data) => Article.create(data);
 export const getArticleById = async (id) =>
   Article.findById(id).populate('author');
 
-// get list of all articles
+// get list of all articles -- Admin Only
 export const listArticles = async () => Article.find().populate('author');
 
-// get list of all public articles
+// get list of all public articles -- For logged in users
+export const listPublishedArticles = async () =>
+  Article.find({ published: true }).populate('author');
+
+// get list of all public articles -- For not logged in
 export const listPublicArticles = async () =>
-  Article.find({ public: true }).populate('author');
+  Article.find({ public: true, published: true }).populate('author');
+
+// get list of all unpublished articles -- Admin only - to see unpublished
+export const listUnpublishedArticles = async () =>
+  Article.find({ published: false }).populate('author');
 
 // PUT
 // edit article

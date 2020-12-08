@@ -22,9 +22,21 @@ export const list = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({ success: true, data: articles });
 });
 
+// get list of all published articles
+export const listPublished = catchAsyncErrors(async (req, res, next) => {
+  const articles = await articleService.listPublishedArticles();
+  res.status(200).json({ success: true, data: articles });
+});
+
 // get list of all public articles
 export const listPublic = catchAsyncErrors(async (req, res, next) => {
   const articles = await articleService.listPublicArticles();
+  res.status(200).json({ success: true, data: articles });
+});
+
+// get list of all not published articles
+export const listNotPublished = catchAsyncErrors(async (req, res, next) => {
+  const articles = await articleService.listNotPublishedArticles();
   res.status(200).json({ success: true, data: articles });
 });
 

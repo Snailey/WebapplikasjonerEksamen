@@ -1,5 +1,6 @@
 import express from 'express';
 import { logController } from '../controllers/index.js';
+import { isAuthenticated, isAuthorized } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -7,10 +8,10 @@ const router = express.Router();
 router.post('/', logController.create);
 
 // GET
-router.get('/csv/', logController.listCSV);
-router.get('/list/', logController.list);
-router.get('/', logController.findByUrl);
-router.get('/:id', logController.findById);
+router.get('/csv/', logController.listCSV); // add isAuticated, isAuthorized('super')
+router.get('/list/', logController.list); // add isAuticated, isAuthorized('super')
+router.get('/', logController.findByUrl); // add isAuticated, isAuthorized('super')
+router.get('/:id', logController.findById); // add isAuticated, isAuthorized('super')
 
 // PUT
 router.put('/', logController.update);

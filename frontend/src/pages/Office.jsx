@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { get } from '../utils/office.js';
 import {
   StyledWelcome,
   OfficeGridNoBorder,
@@ -6,6 +8,7 @@ import {
   OfficeBodyContainer,
 } from '../styles/StyledComponents';
 
+/*
 const data = {
   name: 'Rørlegger 1',
   city: 'Fredrikstad',
@@ -89,37 +92,57 @@ const data = {
   ],
 };
 
+*/
 function Office() {
+  const [office, setOffice] = useState(null);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await get(id);
+      if (!data.success) {
+        console.log('error getting data from db');
+      } else {
+        setOffice(data.data);
+      }
+    };
+    fetchData();
+  });
   return (
     <>
       <StyledWelcome>
-        <p>Kontor Rørlegger {data.id}</p>
+        <p>Kontor {office && office.name}</p>
       </StyledWelcome>
       <OfficeBodyContainer>
-        <h1>Velkommen til {data.name}</h1>
-        <p>{data.description}</p>
+        <h1>Velkommen til {office && office.name}</h1>
+        <p>{office && office.description}</p>
         <br />
         <h1>Våre ansatte</h1>
         <EmployeeContainer>
-          {data.employees.map((employee) => (
-            <OfficeGridNoBorder>
-              <img
-                src={employee.image}
-                alt="Bilde av Rørlegger"
-                width="128"
-                height="128"
-              />
-              <p>{employee.name}</p>
-              <p>{employee.position}</p>
-            </OfficeGridNoBorder>
-          ))}
+          {office &&
+            office.employees.map((employee) => (
+              <OfficeGridNoBorder>
+                <img
+                  src={employee.image}
+                  alt="Bilde av Rørlegger"
+                  width="128"
+                  height="128"
+                />
+                <p>employee.name</p>
+                <p>employee.position</p>
+              </OfficeGridNoBorder>
+            ))}
         </EmployeeContainer>
       </OfficeBodyContainer>
       <StyledWelcome>
-        <p>Kontakt oss på {data.phone}</p>
+        <p>Kontakt oss på {office && office.phone}</p>
       </StyledWelcome>
     </>
   );
 }
 
 export default Office;
+
+/*
+ 
+*/

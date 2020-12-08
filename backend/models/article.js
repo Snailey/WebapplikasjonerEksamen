@@ -38,7 +38,7 @@ const ArticleSchema = new Schema(
       type: Date, // '2002-12-09'
     },
     published: {
-      type: Boolean, // trenger vel egentlig ikke denne når det legges til en dato for når artikkelen blir publisert
+      type: Boolean,
       defult: false,
     },
     public: {

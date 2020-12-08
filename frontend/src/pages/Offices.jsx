@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BsFillGridFill } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
+import { list } from '../utils/office.js';
 import {
   OfficeFilterButton,
   OfficeButtonsContainer,
@@ -15,6 +16,7 @@ import {
   OfficeBodyContainer,
 } from '../styles/StyledComponents';
 
+/*
 const data = [
   {
     city: 'Fredrikstad',
@@ -184,6 +186,7 @@ const data = [
     ],
   },
 ];
+*/
 
 const filterData = [
   {
@@ -211,6 +214,19 @@ const filterData = [
 function Offices() {
   const [search, setSearch] = useState('');
   const [displayType, setDisplayType] = useState('grid');
+  const [offices, setOffices] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await list();
+      if (!data.success) {
+        console.log('error getting data from db');
+      } else {
+        setOffices(data.data);
+      }
+    };
+    fetchData();
+  });
 
   const updateView = (isList) => {
     if (isList) setDisplayType('list');
@@ -244,34 +260,29 @@ function Offices() {
         </OfficeViewButton>
       </OfficeButtonsContainer>
       <OfficeBodyContainer>
-        {data
-          .filter((city) => city.city.includes(search))
-          .map((city) => (
-            <>
-              <CityHeader>
-                {city.city} ({city.offices.length} kontorer){' '}
-              </CityHeader>
-              <OfficeCity displayType={displayType}>
-                {city.offices.map((office, index) => (
-                  <OfficeContainer displayType={displayType}>
-                    <>
-                      {displayType === 'list' && (
-                        <OfficeListNumber>{index + 1}</OfficeListNumber>
-                      )}
-                      <p>
-                        <Link to={`/offices/${office.id}`}>
-                          <b>{office.name}</b>
-                        </Link>
-                      </p>
-                      <p>{office.Address}</p>
-                      <p>{office.phone}</p>
-                      <a href={`mailto:${office.email}`}>{office.email}</a>
-                    </>
-                  </OfficeContainer>
-                ))}
-              </OfficeCity>
-            </>
-          ))}
+        <CityHeader>By antall kontorer</CityHeader>
+        <OfficeCity displayType={displayType}>
+          {offices &&
+            offices
+              .filter((city) => city.city.includes(search))
+              .map((city) => (
+                <OfficeContainer displayType={displayType}>
+                  <>
+                    {displayType === 'list' && (
+                      <OfficeListNumber>{city.index + 1}</OfficeListNumber>
+                    )}
+                    <p>
+                      <Link to={`/offices/${city._id}`}>
+                        <b>{city.name}</b>
+                      </Link>
+                    </p>
+                    <p>{city.Address}</p>
+                    <p>{city.phone}</p>
+                    <a href={`mailto:${city.email}`}>{city.email}</a>
+                  </>
+                </OfficeContainer>
+              ))}
+        </OfficeCity>
       </OfficeBodyContainer>
     </>
   );

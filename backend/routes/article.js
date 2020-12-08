@@ -8,7 +8,9 @@ const router = express.Router();
 router.post('/', articleController.create); // add isAuticated
 
 // GET
-router.get('/all/', articleController.list); // add isAuticated
+router.get('/all/', articleController.list); // add isAuticated, isAuthorized('admin')
+router.get('/published/', articleController.listPublished); // add isAuticated
+router.get('/notPublished/', articleController.listNotPublished); // add isAuticated, isAuthorized('admin')
 router.get('/public/', articleController.listPublic);
 router.get('/:id', articleController.findById);
 

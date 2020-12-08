@@ -4,40 +4,43 @@ const { Schema } = mongoose;
 
 const OfficeSchema = new Schema(
   {
+    id: {
+      type: Number,
+    },
     name: {
       type: String,
-      required: [true, 'Fyll ut Navn på kontor'],
+      // required: [true, 'Fyll ut Navn på kontor'],
     },
     email: {
       type: String,
-      required: [true, 'Fyll ut epost'],
-      unique: true,
+      // required: [true, 'Fyll ut epost'],
+      // unique: true,
     },
     city: {
       type: String,
-      required: [true, 'Fyll ut byen kontoret ligger i'],
+      // required: [true, 'Fyll ut byen kontoret ligger i'],
     },
     address: {
       type: String,
-      required: [true, 'Fyll ut gateadresse til kontoret'],
+      // required: [true, 'Fyll ut gateadresse til kontoret'],
     },
     phone: {
-      type: Number,
-      required: [true, 'Fyll ut telefonnr til kontoret'],
+      type: String,
+      // required: [true, 'Fyll ut telefonnr til kontoret'],
     },
     description: {
       type: String,
-      required: [true, 'Fyll ut beskrivelsen til kontoret'],
+      // required: [true, 'Fyll ut beskrivelsen til kontoret'],
     },
     employees: [
       {
         name: {
           type: String,
-          required: [true, 'Fyll ut ansattes navn'],
+          // required: [true, 'Fyll ut ansattes navn'],
         },
         position: {
           type: String,
-          required: [true, 'Fyll ut ansattes stilling'],
+          // required: [true, 'Fyll ut ansattes stilling'],
         },
         image: {
           type: String,
