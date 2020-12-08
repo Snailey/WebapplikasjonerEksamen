@@ -25,15 +25,12 @@ const Log = () => {
           <h1>Stats for {url.url}</h1>
           <h5>Total viewed: {url.views} times</h5>
           <h5>Total time on site: {url.time} sec</h5>
-          <h5>Time pr view: {url.time / url.views} sec</h5>
           <h2>User stats on page</h2>
           {url.users &&
             url.users.map((user) => (
               <div>
                 <h3>UserId: {user.user}</h3>
                 <h5>Times visited: {user.views}</h5>
-                <h5>Time used: {user.time}</h5>
-                <h5>Time pr visit: {user.time / user.view} sec</h5>
               </div>
             ))}
         </div>

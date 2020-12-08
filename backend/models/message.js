@@ -8,10 +8,11 @@ const MessageSchema = new Schema(
       type: String,
       required: [true, 'Fyll ut melding'],
     },
+    email: {
+      type: String,
+    },
     author: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'User',
-      required: [true, 'Det må finnes en frofatter av meldingen'],
+      type: String,
     },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }

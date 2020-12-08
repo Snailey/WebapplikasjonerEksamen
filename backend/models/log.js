@@ -24,9 +24,6 @@ const LogSchema = new Schema(
         views: {
           type: Number,
         },
-        time: {
-          type: Number,
-        },
       },
     ],
   },
