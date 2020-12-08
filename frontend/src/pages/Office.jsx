@@ -128,8 +128,8 @@ function Office() {
                   width="128"
                   height="128"
                 />
-                <p>employee.name</p>
-                <p>employee.position</p>
+                <p>{employee.name}</p>
+                <p>{employee.position}</p>
               </OfficeGridNoBorder>
             ))}
         </EmployeeContainer>

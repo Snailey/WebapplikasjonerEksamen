@@ -14,7 +14,6 @@ import {
   StyledWelcome,
   FilterButtonContainer,
   OfficeBodyContainer,
-  // showCity,
 } from '../styles/StyledComponents';
 
 const filterData = [
@@ -41,13 +40,9 @@ const filterData = [
 ];
 
 function Offices() {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState('Alle');
   const [displayType, setDisplayType] = useState('grid');
   const [offices, setOffices] = useState(null);
-  // const [fredrikstad, setFredrikstad] = useState(null);
-  // const [sasrpsborg, setSarpsborg] = useState(null);
-  // const [moss, setMoss] = useState(null);
-  // const [oslo, setOslo] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {

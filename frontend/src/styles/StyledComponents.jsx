@@ -157,14 +157,6 @@ export const MainText = styled.p`
 `;
 
 // OFFICES
-export const showCity = styled.div`
-  ${(props) =>
-    props.search !== ('Fredrikstad' || 'Alle')
-      ? ` display: none;`
-      : `display: true;
-`};
-`;
-
 export const OfficeCity = styled.ul`
   ${(props) =>
     props.displayType === 'grid'
@@ -218,7 +210,8 @@ export const OfficeListNumber = styled.section`
 `;
 
 export const CityHeader = styled.h1`
-  margin-left: 1.4em;
+  margin-left: 1.4rem;
+  margin-top: 2rem;
 `;
 
 export const OfficeButtonsContainer = styled.section`
@@ -357,7 +350,7 @@ export const FormGroup = styled.section`
   color: black;
   display: block;
   width: 300px;
-  margin: 50px auto;
+  margin: 5px auto;
 `;
 
 export const Label = styled.label`

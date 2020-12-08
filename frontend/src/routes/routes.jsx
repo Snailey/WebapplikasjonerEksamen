@@ -8,6 +8,8 @@ import Offices from '../pages/Offices';
 import Office from '../pages/Office';
 import Contact from '../pages/Contact';
 import MiniCMS from '../pages/MiniCMS';
+import Log from '../pages/Log';
+import Logs from '../pages/Logs';
 
 const Routes = () => (
   <Router>
@@ -45,6 +47,16 @@ const Routes = () => (
       <Switch>
         <Route path="/newArticle">
           <MiniCMS />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route exact path="/logs">
+          <Logs />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route exact path="/logs/:id">
+          <Log />
         </Route>
       </Switch>
     </Layout>
