@@ -934,9 +934,9 @@ const offices = [
   new Office({
     id: 33,
     name: 'Rørlegger 21',
-    email: 'oslo19@epost.no',
+    email: 'oslo21@epost.no',
     city: 'Oslo',
-    address: 'Rørleggerveien 19',
+    address: 'Rørleggerveien 21',
     phone: '69 99 00 00',
     description:
       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ' +
@@ -969,9 +969,9 @@ const offices = [
   new Office({
     id: 34,
     name: 'Rørlegger 22',
-    email: 'oslo19@epost.no',
+    email: 'oslo22@epost.no',
     city: 'Oslo',
-    address: 'Rørleggerveien 19',
+    address: 'Rørleggerveien 22',
     phone: '69 99 00 00',
     description:
       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ' +

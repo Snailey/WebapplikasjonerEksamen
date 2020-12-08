@@ -157,6 +157,14 @@ export const MainText = styled.p`
 `;
 
 // OFFICES
+export const showCity = styled.div`
+  ${(props) =>
+    props.search !== ('Fredrikstad' || 'Alle')
+      ? ` display: none;`
+      : `display: true;
+`};
+`;
+
 export const OfficeCity = styled.ul`
   ${(props) =>
     props.displayType === 'grid'
@@ -248,6 +256,7 @@ export const EmployeeContainer = styled.section`
 `;
 
 export const OfficeBodyContainer = styled.section`
+  padding-top: 8rem;
   padding-left: 2rem;
 `;
 

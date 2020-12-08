@@ -14,7 +14,199 @@ import {
   StyledWelcome,
   FilterButtonContainer,
   OfficeBodyContainer,
+  // showCity,
 } from '../styles/StyledComponents';
+
+const filterData = [
+  {
+    value: 'Alle',
+    label: 'Alle',
+  },
+  {
+    value: 'Fredrikstad',
+    label: 'Fredrikstad',
+  },
+  {
+    value: 'Sarpsborg',
+    label: 'Sarpsborg',
+  },
+  {
+    value: 'Moss',
+    label: 'Moss',
+  },
+  {
+    value: 'Oslo',
+    label: 'Oslo',
+  },
+];
+
+function Offices() {
+  const [search, setSearch] = useState('');
+  const [displayType, setDisplayType] = useState('grid');
+  const [offices, setOffices] = useState(null);
+  // const [fredrikstad, setFredrikstad] = useState(null);
+  // const [sasrpsborg, setSarpsborg] = useState(null);
+  // const [moss, setMoss] = useState(null);
+  // const [oslo, setOslo] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await list();
+      if (!data.success) {
+        console.log('error getting data from db');
+      } else {
+        setOffices(data.data);
+      }
+    };
+    fetchData();
+  });
+
+  const updateView = (isList) => {
+    if (isList) setDisplayType('list');
+    else setDisplayType('grid');
+  };
+
+  const handleChange = (e) => {
+    setSearch(e.value);
+    console.log(search);
+  };
+
+  return (
+    <>
+      <StyledWelcome>
+        <p>Våre Kontorer</p>
+      </StyledWelcome>
+      <OfficeButtonsContainer>
+        <FilterButtonContainer>
+          <OfficeFilterButton
+            placeholder="Filter"
+            value={filterData.find((obj) => obj.value === search)}
+            options={filterData}
+            onChange={handleChange}
+          />
+        </FilterButtonContainer>
+        <OfficeViewButton onClick={() => updateView(true)}>
+          <GiHamburgerMenu />
+        </OfficeViewButton>
+        <OfficeViewButton onClick={() => updateView(false)}>
+          <BsFillGridFill />
+        </OfficeViewButton>
+      </OfficeButtonsContainer>
+      <OfficeBodyContainer>
+        {search === 'Fredrikstad' || search === 'Alle' ? (
+          <>
+            <CityHeader>Fredrikstad - 8 kontorer</CityHeader>
+            <OfficeCity displayType={displayType} search={search}>
+              {offices &&
+                offices
+                  .filter((city) => city.city.includes('Fredrikstad'))
+                  .map((city, index) => (
+                    <OfficeContainer displayType={displayType}>
+                      <>
+                        {displayType === 'list' && (
+                          <OfficeListNumber>{index + 1}</OfficeListNumber>
+                        )}
+                        <p>
+                          <Link to={`/offices/${city._id}`}>
+                            <b>{city.name}</b>
+                          </Link>
+                        </p>
+                        <p>{city.Address}</p>
+                        <p>{city.phone}</p>
+                        <a href={`mailto:${city.email}`}>{city.email}</a>
+                      </>
+                    </OfficeContainer>
+                  ))}
+            </OfficeCity>
+          </>
+        ) : null}
+        {search === 'Sarpsborg' || search === 'Alle' ? (
+          <>
+            <CityHeader>Sarpsborg - 5 kontorer</CityHeader>
+            <OfficeCity displayType={displayType}>
+              {offices &&
+                offices
+                  .filter((city) => city.city.includes('Sarpsborg'))
+                  .map((city, index) => (
+                    <OfficeContainer displayType={displayType}>
+                      <>
+                        {displayType === 'list' && (
+                          <OfficeListNumber>{index + 1}</OfficeListNumber>
+                        )}
+                        <p>
+                          <Link to={`/offices/${city._id}`}>
+                            <b>{city.name}</b>
+                          </Link>
+                        </p>
+                        <p>{city.Address}</p>
+                        <p>{city.phone}</p>
+                        <a href={`mailto:${city.email}`}>{city.email}</a>
+                      </>
+                    </OfficeContainer>
+                  ))}
+            </OfficeCity>
+          </>
+        ) : null}
+        {search === 'Moss' || search === 'Alle' ? (
+          <>
+            <CityHeader>Moss - 4 kontorer</CityHeader>
+            <OfficeCity displayType={displayType}>
+              {offices &&
+                offices
+                  .filter((city) => city.city.includes('Moss'))
+                  .map((city, index) => (
+                    <OfficeContainer displayType={displayType}>
+                      <>
+                        {displayType === 'list' && (
+                          <OfficeListNumber>{index + 1}</OfficeListNumber>
+                        )}
+                        <p>
+                          <Link to={`/offices/${city._id}`}>
+                            <b>{city.name}</b>
+                          </Link>
+                        </p>
+                        <p>{city.Address}</p>
+                        <p>{city.phone}</p>
+                        <a href={`mailto:${city.email}`}>{city.email}</a>
+                      </>
+                    </OfficeContainer>
+                  ))}
+            </OfficeCity>
+          </>
+        ) : null}
+        {search === 'Oslo' || search === 'Alle' ? (
+          <>
+            <CityHeader>Oslo - 4 kontorer</CityHeader>
+            <OfficeCity displayType={displayType}>
+              {offices &&
+                offices
+                  .filter((city) => city.city.includes('Oslo'))
+                  .map((city, index) => (
+                    <OfficeContainer displayType={displayType}>
+                      <>
+                        {displayType === 'list' && (
+                          <OfficeListNumber>{index + 1}</OfficeListNumber>
+                        )}
+                        <p>
+                          <Link to={`/offices/${city._id}`}>
+                            <b>{city.name}</b>
+                          </Link>
+                        </p>
+                        <p>{city.Address}</p>
+                        <p>{city.phone}</p>
+                        <a href={`mailto:${city.email}`}>{city.email}</a>
+                      </>
+                    </OfficeContainer>
+                  ))}
+            </OfficeCity>
+          </>
+        ) : null}
+      </OfficeBodyContainer>
+    </>
+  );
+}
+
+export default Offices;
 
 /*
 const data = [
@@ -187,105 +379,3 @@ const data = [
   },
 ];
 */
-
-const filterData = [
-  {
-    value: '',
-    label: 'Alle',
-  },
-  {
-    value: 'Fredrikstad',
-    label: 'Fredrikstad',
-  },
-  {
-    value: 'Sarpsborg',
-    label: 'Sarpsborg',
-  },
-  {
-    value: 'Moss',
-    label: 'Moss',
-  },
-  {
-    value: 'Oslo',
-    label: 'Oslo',
-  },
-];
-
-function Offices() {
-  const [search, setSearch] = useState('');
-  const [displayType, setDisplayType] = useState('grid');
-  const [offices, setOffices] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await list();
-      if (!data.success) {
-        console.log('error getting data from db');
-      } else {
-        setOffices(data.data);
-      }
-    };
-    fetchData();
-  });
-
-  const updateView = (isList) => {
-    if (isList) setDisplayType('list');
-    else setDisplayType('grid');
-  };
-
-  const handleChange = (e) => {
-    setSearch(e.value);
-    console.log(search);
-  };
-
-  return (
-    <>
-      <StyledWelcome>
-        <p>Våre Kontorer</p>
-      </StyledWelcome>
-      <OfficeButtonsContainer>
-        <FilterButtonContainer>
-          <OfficeFilterButton
-            placeholder="Filter"
-            value={filterData.find((obj) => obj.value === search)}
-            options={filterData}
-            onChange={handleChange}
-          />
-        </FilterButtonContainer>
-        <OfficeViewButton onClick={() => updateView(true)}>
-          <GiHamburgerMenu />
-        </OfficeViewButton>
-        <OfficeViewButton onClick={() => updateView(false)}>
-          <BsFillGridFill />
-        </OfficeViewButton>
-      </OfficeButtonsContainer>
-      <OfficeBodyContainer>
-        <CityHeader>By antall kontorer</CityHeader>
-        <OfficeCity displayType={displayType}>
-          {offices &&
-            offices
-              .filter((city) => city.city.includes(search))
-              .map((city) => (
-                <OfficeContainer displayType={displayType}>
-                  <>
-                    {displayType === 'list' && (
-                      <OfficeListNumber>{city.index + 1}</OfficeListNumber>
-                    )}
-                    <p>
-                      <Link to={`/offices/${city._id}`}>
-                        <b>{city.name}</b>
-                      </Link>
-                    </p>
-                    <p>{city.Address}</p>
-                    <p>{city.phone}</p>
-                    <a href={`mailto:${city.email}`}>{city.email}</a>
-                  </>
-                </OfficeContainer>
-              ))}
-        </OfficeCity>
-      </OfficeBodyContainer>
-    </>
-  );
-}
-
-export default Offices;
