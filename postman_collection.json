@@ -568,7 +568,17 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "localhost:5000/api/v1/log/5fcc26b6cfaa4d184ca92127",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"log",
+								"5fcc26b6cfaa4d184ca92127"
+							]
 						}
 					},
 					"response": []
