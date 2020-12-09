@@ -1013,6 +1013,8 @@ const offices = [
   }),
 ];
 
+connectDB();
+
 app.use(
   cors({
     origin: 'http://localhost:3000',
@@ -1026,32 +1028,26 @@ app.listen(
   console.log(`Server running on port ${process.env.PORT}`)
 );
 
-const seedDB = async () => {
-  await connectDB();
+users.map(async (user, index) => {
+  try {
+    await user.save(() => {
+      if (index === users.length - 1) {
+        console.log('USERS DONE!');
+      }
+    });
+  } catch (error) {
+    console.log('ERROS SAVING USERS');
+  }
+});
 
-  users.map(async (user, index) => {
-    try {
-      await user.save(() => {
-        if (index === users.length - 1) {
-          console.log('USERS DONE!');
-        }
-      });
-    } catch (error) {
-      console.log('ERROS SAVING USERS');
-    }
-  });
-
-  offices.map(async (office, index) => {
-    try {
-      await office.save(() => {
-        if (index === offices.length - 1) {
-          console.log('OFFICES DONE!');
-        }
-      });
-    } catch (error) {
-      console.log('ERROR SAVING OFFICES');
-    }
-  });
-};
-
-seedDB();
+offices.map(async (office, index) => {
+  try {
+    await office.save(() => {
+      if (index === offices.length - 1) {
+        console.log('OFFICES DONE!');
+      }
+    });
+  } catch (error) {
+    console.log('ERROR SAVING OFFICES');
+  }
+});

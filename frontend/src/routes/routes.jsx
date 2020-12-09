@@ -15,11 +15,6 @@ const Routes = () => (
   <Router>
     <Layout>
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-      </Switch>
-      <Switch>
         <Route exact path="/offices">
           <Offices />
         </Route>
@@ -57,6 +52,11 @@ const Routes = () => (
       <Switch>
         <Route exact path="/logs/:id">
           <Log />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route path="/">
+          <Home />
         </Route>
       </Switch>
     </Layout>
