@@ -8,7 +8,7 @@ import connectDB from './config/database.js';
 import article from './routes/article.js';
 import user from './routes/user.js';
 import office from './routes/office.js';
-// import auth from './routes/auth.js';
+import auth from './routes/auth.js';
 import message from './routes/message.js';
 import log from './routes/log.js';
 
@@ -33,6 +33,7 @@ app.use(`${process.env.BASEURL}/users`, user);
 app.use(`${process.env.BASEURL}/offices`, office);
 app.use(`${process.env.BASEURL}/message`, message);
 app.use(`${process.env.BASEURL}/log`, log);
+app.use(`${process.env.BASEURL}/auth`, auth);
 
 app.listen(
   process.env.PORT,
