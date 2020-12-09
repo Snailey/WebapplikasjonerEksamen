@@ -15,7 +15,7 @@ import { login } from '../utils/users';
 const Modal = (props) => {
   const [user, setUser] = useContext(Context);
   const [loginData, setLoginData] = useState({
-    email: 'Fyll ut Epost',
+    email: '',
     password: '',
   });
   const [error, setError] = useState('');
@@ -24,7 +24,10 @@ const Modal = (props) => {
     console.log(loginData);
     event.preventDefault();
     const { data, error } = await login(loginData);
-    if (error) setError(error);
+    console.log(data);
+    if (!data.success) {
+      setError(error);
+    }
     setUser(data);
     props.updateModal(false);
   };
