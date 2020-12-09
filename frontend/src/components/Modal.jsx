@@ -22,14 +22,16 @@ const Modal = (props) => {
 
   const handleSubmit = async (event) => {
     console.log(loginData);
-    event.preventDefault();
     const { data, error } = await login(loginData);
     console.log(data);
     if (!data.success) {
       setError(error);
     }
     setUser(data);
+    if (error) setError(error);
+    else setUser(data);
     props.updateModal(false);
+    event.preventDefault();
   };
 
   const updateValue = (event) => {
@@ -56,13 +58,6 @@ const Modal = (props) => {
           </ModalHeader>
           <ModalFormContainer>
             <form>
-              {user !== null && (
-                <p>
-                  Logged in as:
-                  {JSON.stringify(user.user.email)}
-                  Token: {JSON.stringify(user.token)}
-                </p>
-              )}
               <Label>Epost:</Label>
               <input
                 type="email"
