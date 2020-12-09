@@ -7,17 +7,20 @@ import {
   StyledModal,
   ModalHeader,
   ModalFormContainer,
+  CloseButton,
 } from '../styles/StyledComponents';
 import { login } from '../utils/users';
 
 const Modal = (modal, setModal) => {
   const [user, setUser] = useContext(Context);
   const [loginData, setLoginData] = useState('');
-
-  const handleSubmit = (event) => {
+  const [error, setError] = useState('');
+  const handleSubmit = async (event) => {
     console.log(loginData);
     event.preventDefault();
-    setUser(login(loginData));
+    const { data, error } = await login(loginData);
+    if (error) setError(error);
+    setUser(data);
   };
   const updateValue = (event) => {
     const inputValue = { [event.target.name]: event.target.value };
@@ -32,13 +35,23 @@ const Modal = (modal, setModal) => {
         <ModalContents>
           <ModalHeader>
             <p>Logg inn</p>
-            <button type="button" onClick={() => setModal(!modal)} id="close">
+            <CloseButton
+              type="button"
+              onClick={() => setModal(!modal)}
+              id="close"
+            >
               &times;
-            </button>
+            </CloseButton>
           </ModalHeader>
           <ModalFormContainer>
             <form>
-              {JSON.stringify(user)}
+              {user !== null && (
+                <p>
+                  Logged in as:
+                  {JSON.stringify(user.user.email)}
+                  Token: {JSON.stringify(user.token)}
+                </p>
+              )}
               <Label>Epost:</Label>
               <input type="text" onChange={updateValue} name="email" />
               <Label>Passord:</Label>
@@ -50,6 +63,7 @@ const Modal = (modal, setModal) => {
           </ModalFormContainer>
         </ModalContents>
       </StyledModal>
+      {error && <p>Error Message:{error}</p>}
     </>
   );
 };

@@ -482,3 +482,8 @@ export const ModalFormContainer = styled.section`
     margin-bottom: 0px;
   }
 `;
+
+export const CloseButton = styled.button`
+  border: 0;
+  padding: 0;
+`;
