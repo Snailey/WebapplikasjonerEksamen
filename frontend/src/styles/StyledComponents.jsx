@@ -396,3 +396,67 @@ export const CenterH2 = styled.h2`
   margin: auto;
   text-align: 'center';
 `;
+
+export const StyledModal = styled.section`
+  position: fixed;
+  z-index: 11;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(155, 138, 138, 0.4);
+`;
+
+export const ModalContents = styled.section`
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fefefe;
+  padding: 0;
+  border: 1px solid #888;
+  width: 15%;
+`;
+
+export const ModalHeader = styled.section`
+  padding: 0.3rem;
+  display: inline-block;
+  margin: 0px;
+  box-shadow: 0 4px 3px -3px grey;
+  width: 100%;
+  max-height: 30px;
+  margin-bottom: 10px;
+  & > button {
+    padding: 0;
+    float: right;
+  }
+
+  & > p {
+    float: left;
+    padding: 0;
+    margin: 0;
+    margin-left: 12px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+`;
+
+export const ModalFormContainer = styled.section`
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+
+  padding: 0.5rem;
+  display: inline-block;
+  margin-right: auto;
+  margin-left: auto;
+
+  & > label {
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0px;
+  }
+`;

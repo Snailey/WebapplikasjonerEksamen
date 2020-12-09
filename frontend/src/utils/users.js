@@ -14,6 +14,7 @@ export const login = async (data) => {
   try {
     return await http.post(`/login`, { ...data });
   } catch (err) {
+    console.log(err.response);
     return err.response;
   }
 };
