@@ -29,8 +29,17 @@ export const getUserInfo = async () => {
   }
 };
 
+export const logout = async () => {
+  try {
+    return await http.post('/auth/logout');
+  } catch (err) {
+    return err.response;
+  }
+};
+
 export default {
   register,
   login,
   getUserInfo,
+  logout,
 };

@@ -12,7 +12,6 @@ import {
   Input,
   TextArea,
   CenterH2,
-  //  Message,
 } from '../styles/StyledComponents';
 
 function Contact() {

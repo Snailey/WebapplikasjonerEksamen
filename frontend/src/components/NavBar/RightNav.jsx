@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { React, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Ul } from '../../styles/StyledComponents';
+import { logout } from '../../utils/users';
 import './Button.css';
 
 import Modal from '../Modal';
@@ -44,6 +45,11 @@ const RightNav = ({ open }) => {
         <li>
           <button type="button" onClick={() => updateModal(true)}>
             Logg inn
+          </button>
+        </li>
+        <li>
+          <button type="button" onClick={() => logout()}>
+            Logg ut
           </button>
         </li>
       </Ul>
