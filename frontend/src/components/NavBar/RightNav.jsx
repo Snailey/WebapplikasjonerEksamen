@@ -9,6 +9,10 @@ import Modal from '../Modal';
 const RightNav = ({ open }) => {
   const [modal, setModal] = useState(false);
 
+  const updateModal = (data) => {
+    setModal(data);
+  };
+
   return (
     <>
       <Ul open={open}>
@@ -38,12 +42,12 @@ const RightNav = ({ open }) => {
           </NavLink>
         </li>
         <li>
-          <button type="button" onClick={() => setModal(!modal)}>
+          <button type="button" onClick={() => updateModal(true)}>
             Logg inn
           </button>
         </li>
       </Ul>
-      {modal && <Modal modal={modal} setModal={setModal} />}
+      {modal && <Modal modal={modal} updateModal={updateModal} />}
     </>
   );
 };
