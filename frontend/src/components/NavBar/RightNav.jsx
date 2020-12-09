@@ -4,38 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { Ul } from '../../styles/StyledComponents';
 import './Button.css';
 
-const RightNav = ({ open }) => (
-  <Ul open={open}>
-    <li>
-      <NavLink exact to="/" activeClassName="active">
-        <p>Hjem</p>
-      </NavLink>
-    </li>
-    <li>
-      <NavLink exact to="/offices" activeClassName="active">
-        <p>Kontorer</p>
-      </NavLink>
-    </li>
-    <li>
-      <NavLink exact to="/articles" activeClassName="active">
-        <p>Fagartikler</p>
-      </NavLink>
-    </li>
-    <li>
-      <NavLink exact to="/contact" activeClassName="active">
-        <p>Kontakt oss</p>
-      </NavLink>
-    </li>
-    <li>
-      <NavLink exact to="/logs" activeClassName="active">
-        <p>Logg</p>
-      </NavLink>
-    </li>
-    <li>
-      <p>Logg inn</p>
-    </li>
-  </Ul>
-);
 import Modal from '../Modal';
 
 const RightNav = ({ open }) => {
@@ -46,22 +14,27 @@ const RightNav = ({ open }) => {
       <Ul open={open}>
         <li>
           <NavLink exact to="/" activeClassName="active">
-            <a>Hjem</a>
+            <p>Hjem</p>
           </NavLink>
         </li>
         <li>
           <NavLink exact to="/offices" activeClassName="active">
-            <a>Kontorer</a>
+            <p>Kontorer</p>
           </NavLink>
         </li>
         <li>
           <NavLink exact to="/articles" activeClassName="active">
-            <a>Fagartikler</a>
+            <p>Fagartikler</p>
           </NavLink>
         </li>
         <li>
           <NavLink exact to="/contact" activeClassName="active">
-            <a>Kontakt oss</a>
+            <p>Kontakt oss</p>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink exact to="/logs" activeClassName="active">
+            <p>Logg</p>
           </NavLink>
         </li>
         <li>
