@@ -14,7 +14,10 @@ import { login } from '../utils/users';
 
 const Modal = (props) => {
   const [user, setUser] = useContext(Context);
-  const [loginData, setLoginData] = useState('');
+  const [loginData, setLoginData] = useState({
+    email: 'Fyll ut Epost',
+    password: 'Skriv en passord',
+  });
   const [error, setError] = useState('');
 
   const handleSubmit = async (event) => {
@@ -25,6 +28,7 @@ const Modal = (props) => {
     setUser(data);
     props.updateModal(false);
   };
+
   const updateValue = (event) => {
     const inputValue = { [event.target.name]: event.target.value };
     setLoginData((prev) => ({
@@ -32,6 +36,7 @@ const Modal = (props) => {
       ...inputValue,
     }));
   };
+
   return (
     <>
       <StyledModal>
@@ -56,9 +61,25 @@ const Modal = (props) => {
                 </p>
               )}
               <Label>Epost:</Label>
-              <input type="text" onChange={updateValue} name="email" />
+              <input
+                type="email"
+                name="email"
+                id="email"
+                onChange={(e) =>
+                  setLoginData({ ...loginData, email: e.target.value })
+                }
+                value={loginData.email}
+              />
               <Label>Passord:</Label>
-              <input type="password" onChange={updateValue} name="password" />
+              <input
+                type="password"
+                name="password"
+                id="password"
+                onChange={(e) =>
+                  setLoginData({ ...loginData, password: e.target.value })
+                }
+                value={loginData.password}
+              />
               <button type="button" onClick={handleSubmit}>
                 Logg inn
               </button>
