@@ -239,7 +239,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"password\":\"123456\",\r\n    \"email\":\"testesen2@test.com\"\r\n}",
+							"raw": "{\r\n    \"password\":\"123456\",\r\n    \"email\":\"admin@test.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -247,7 +247,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:5000/api/v1/login",
+							"raw": "localhost:5000/api/v1/auth/login",
 							"host": [
 								"localhost"
 							],
@@ -255,6 +255,7 @@
 							"path": [
 								"api",
 								"v1",
+								"auth",
 								"login"
 							]
 						}
@@ -283,7 +284,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:5000/api/v1/logout",
+							"raw": "localhost:5000/api/v1/auth/logout",
 							"host": [
 								"localhost"
 							],
@@ -291,6 +292,7 @@
 							"path": [
 								"api",
 								"v1",
+								"auth",
 								"logout"
 							]
 						}
@@ -322,7 +324,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:5000/api/v1/me",
+							"raw": "localhost:5000/api/v1/auth/me",
 							"host": [
 								"localhost"
 							],
@@ -330,6 +332,7 @@
 							"path": [
 								"api",
 								"v1",
+								"auth",
 								"me"
 							]
 						}
@@ -513,7 +516,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:5000/api/v1/log/list/",
+							"raw": "localhost:5000/api/v1/log/list/?sort=-views&limit=10",
 							"host": [
 								"localhost"
 							],
@@ -524,6 +527,36 @@
 								"log",
 								"list",
 								""
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "-views"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "6",
+									"disabled": true
+								},
+								{
+									"key": "q",
+									"value": "Article",
+									"disabled": true
+								},
+								{
+									"key": "public",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "published",
+									"value": "true",
+									"disabled": true
+								}
 							]
 						}
 					},

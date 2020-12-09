@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import create from '../utils/messageService.js';
+import { getUserInfo } from '../utils/users.js';
 
 import {
   StyledWelcome,
@@ -15,12 +16,10 @@ import {
 } from '../styles/StyledComponents';
 
 function Contact() {
-  // const [error, setError] = useState('');
-  // const [message, setMessage] = useState('');
   const [details, setDetails] = useState({
     author: 'Fyll ut navn',
     email: 'Fyll ut Epost',
-    message: 'Skriv en melding',
+    message: ' ',
   });
 
   const history = useHistory();
@@ -35,6 +34,19 @@ function Contact() {
     history.push('/');
     e.preventDefault();
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await getUserInfo();
+      if (!data.success) {
+        console.log('error getting data from db');
+      } else {
+        setDetails({ author: data.data.name, email: data.data.email });
+        // console.log(data);
+      }
+    };
+    fetchData();
+  });
 
   return (
     <>

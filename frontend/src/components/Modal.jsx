@@ -16,7 +16,7 @@ const Modal = (props) => {
   const [user, setUser] = useContext(Context);
   const [loginData, setLoginData] = useState({
     email: 'Fyll ut Epost',
-    password: 'Skriv en passord',
+    password: '',
   });
   const [error, setError] = useState('');
 

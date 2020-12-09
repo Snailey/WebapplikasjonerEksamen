@@ -20,3 +20,17 @@ export const login = async (data) => {
     return err.response;
   }
 };
+
+export const getUserInfo = async () => {
+  try {
+    return await http.get('/auth/me');
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export default {
+  register,
+  login,
+  getUserInfo,
+};

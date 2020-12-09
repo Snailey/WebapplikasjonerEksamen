@@ -6,7 +6,6 @@ const MessageSchema = new Schema(
   {
     message: {
       type: String,
-      required: [true, 'Fyll ut melding'],
     },
     email: {
       type: String,
