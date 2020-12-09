@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
 
 const defaultState = {
-  user: { email: '', role: '' },
-  token: '',
+  user: { email: 'thisisatest', role: 'fuck' },
+  token: 'asdas',
 };
 
-export const GlobalContext = React.createContext();
+export const Context = React.createContext();
 
 // eslint-disable-next-line react/prop-types
-const User = ({ children }) => {
+const UserStore = ({ children }) => {
   const [user, setUser] = useState(defaultState);
   return (
-    <GlobalContext.Provider value={[user, setUser]}>
-      {children}
-    </GlobalContext.Provider>
+    <Context.Provider value={[user, setUser]}>{children}</Context.Provider>
   );
 };
 
-export default User;
+export default UserStore;
