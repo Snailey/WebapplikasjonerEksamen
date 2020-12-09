@@ -12,7 +12,9 @@ export const register = async (data) => {
 export const login = async (data) => {
   console.log(data);
   try {
-    return await http.post(`/login`, { ...data });
+    const result = await http.post(`/login`, { ...data });
+    console.log(JSON.stringify(result));
+    return result;
   } catch (err) {
     console.log(err.response);
     return err.response;
