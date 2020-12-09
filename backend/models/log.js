@@ -30,4 +30,9 @@ const LogSchema = new Schema(
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
+LogSchema.index({
+  url: 'text',
+  views: 'number',
+});
+
 export default mongoose.model('Log', LogSchema);

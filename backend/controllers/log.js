@@ -10,7 +10,7 @@ export const create = catchAsyncErrors(async (req, res, next) => {
     // if log for the url exist, it gets updated instead
     const views = check.views + 1;
     const newTime = check.time + time;
-    const newUsers = check.users + users; // logikken funker ikke for å legge til fler brukere i arrayen av brukere - heller ikke sjekk om brukeren som skal legges til finnes i lista fra før...
+    const newUsers = check.users; // + users; // logikken funker ikke for å legge til fler brukere i arrayen av brukere - heller ikke sjekk om brukeren som skal legges til finnes i lista fra før...
     const updatedLog = await logService.updateLog(check.id, {
       url,
       time: newTime,
@@ -49,7 +49,7 @@ export const findById = catchAsyncErrors(async (req, res, next) => {
 
 // get list of all logs
 export const list = catchAsyncErrors(async (req, res, next) => {
-  const logs = await logService.listLogs();
+  const logs = await logService.listLogs(req.query);
   res.status(200).json({ success: true, data: logs });
 });
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { CSVLink } from 'react-csv';
 import { get } from '../utils/logService';
 
 const Log = () => {
@@ -33,6 +34,18 @@ const Log = () => {
                 <h5>Times visited: {user.views}</h5>
               </div>
             ))}
+          <CSVLink
+            data={JSON.stringify({
+              url: url.url,
+              views: url.view,
+              time: url.time,
+            })}
+            filename={`${url.url}_logdata.csv`}
+            enclosingCharacter={` `}
+            replace={(' ', '"')}
+          >
+            Download CSV-file for this url
+          </CSVLink>
         </div>
       )}
     </div>

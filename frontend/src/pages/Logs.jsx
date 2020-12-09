@@ -1,23 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CSVLink } from 'react-csv';
-import { list } from '../utils/logService';
+import { list, topTen } from '../utils/logService';
 
 const Logs = () => {
   const [urls, setUrls] = useState(null);
+  const [topTenUrl, setTopTenUrl] = useState(null);
+
+  const getTopTen = async () => {
+    const { data } = await topTen();
+    if (!data.success) {
+      console.log('error getting topTen-data from db');
+    } else {
+      setTopTenUrl(data.data.data);
+    }
+  };
+
+  const getList = async () => {
+    const { data } = await list();
+    if (!data.success) {
+      console.log('error getting all-data from db');
+    } else {
+      setUrls(data.data);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await list();
-      if (!data.success) {
-        console.log('error getting data from db');
-      } else {
-        setUrls(data.data);
-      }
-    };
-    fetchData();
+    // const fetchData = async () => {};
+    getTopTen();
+    getList();
+    // fetchData();
   });
 
+  /*
   const headers = [
     // { label: 'ID', key: '_id' },
     { label: 'URL', key: 'url' },
@@ -25,6 +40,7 @@ const Logs = () => {
     { label: 'Time', key: 'time' },
     // { label: 'ID', key: 'id' },
   ];
+  */
 
   /*
   const newData = [
@@ -35,7 +51,8 @@ const Logs = () => {
 
   // console.log(...newData);
 
-  const newData = JSON.stringify(urls);
+  // const newData = JSON.stringify(urls);
+  // const newTopTen = JSON.stringify(topTenUrl);
   // console.log(newData);
   // const newData = { ...urls };
   // console.log(moreNewData);
@@ -47,11 +64,34 @@ const Logs = () => {
     filename: 'LoggRapport.csv',
   };
   */
-
   return (
     <>
       <h1>LOGG FOR LG RØRLEGGER SERVICE A/S</h1>
-      <h3>Sider:</h3>
+      <h3>Topp 10 Views</h3>
+      {topTenUrl &&
+        topTenUrl.map((url) => (
+          <div>
+            <Link to={`/logs/${url.id}`}>
+              <h5>
+                Views: {url.views} - {url.url}
+              </h5>
+            </Link>
+          </div>
+        ))}
+      {topTenUrl && (
+        <CSVLink
+          // header={headers}
+          data={JSON.stringify(
+            topTenUrl.map((x) => ({ url: x.url, views: x.views, time: x.time }))
+          )}
+          filename="top10logdata.csv"
+          enclosingCharacter={` `}
+          replace={(' ', '"')}
+        >
+          Download CSV-file for TOP10
+        </CSVLink>
+      )}
+      <h3>Alle Sider</h3>
       {urls &&
         urls.map((url) => (
           <div>
@@ -60,26 +100,26 @@ const Logs = () => {
             </Link>
           </div>
         ))}
-      <CSVLink
-        header={headers}
-        data={newData}
-        // data={urls.map((x) => ({ url: x.url, views: x.views, time: x.time }))}
-        filename="logdata.csv"
-        enclosingCharacter={` `}
-        replace={(' ', '"')}
-      >
-        Download CSV-file
-      </CSVLink>
+      {urls && (
+        <CSVLink
+          // header={headers}
+          // data={newData}
+          data={JSON.stringify(
+            urls.map((x) => ({ url: x.url, views: x.views, time: x.time }))
+          )}
+          filename="logdata.csv"
+          enclosingCharacter={` `}
+          replace={(' ', '"')}
+        >
+          Download CSV-file for All
+        </CSVLink>
+      )}
     </>
   );
 };
 export default Logs;
 
 /*
-<CSVLink data={urls} enclosingCharacter={`'`}>
-        Download CSV-file
-      </CSVLink>
-
       urls.map((x) => ({ url: x.url, views: x.views, time: x.time }))
 */
 
