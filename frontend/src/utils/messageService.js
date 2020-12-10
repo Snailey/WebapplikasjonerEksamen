@@ -9,7 +9,7 @@ export const create = async (data) => {
   }
 };
 
-export const list = async () => {
+export const MsgList = async () => {
   try {
     return await http.get(`/message`);
   } catch (err) {
@@ -17,4 +17,4 @@ export const list = async () => {
   }
 };
 
-export default { create, list };
+export default { create, MsgList };

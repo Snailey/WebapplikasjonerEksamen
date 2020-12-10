@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CSVLink } from 'react-csv';
 import { list, topTen } from '../utils/logService';
+import { MsgList } from '../utils/messageService';
 
 const Logs = () => {
   const [urls, setUrls] = useState(null);
   const [topTenUrl, setTopTenUrl] = useState(null);
+  const [msg, setMsg] = useState(null);
 
   const getTopTen = async () => {
     const { data } = await topTen();
@@ -25,45 +27,21 @@ const Logs = () => {
     }
   };
 
+  const getMsg = async () => {
+    const { data } = await MsgList();
+    if (!data.success) {
+      console.log('error getting msg-data from db');
+    } else {
+      setMsg(data.data);
+    }
+  };
+
   useEffect(() => {
-    // const fetchData = async () => {};
     getTopTen();
     getList();
-    // fetchData();
+    getMsg();
   });
 
-  /*
-  const headers = [
-    // { label: 'ID', key: '_id' },
-    { label: 'URL', key: 'url' },
-    { label: 'Views', key: 'views' },
-    { label: 'Time', key: 'time' },
-    // { label: 'ID', key: 'id' },
-  ];
-  */
-
-  /*
-  const newData = [
-    ['URL', 'VIEWS', 'TIME'],
-    urls && urls.map((url) => [url.url, url.views, url.time]),
-  ];
-  */
-
-  // console.log(...newData);
-
-  // const newData = JSON.stringify(urls);
-  // const newTopTen = JSON.stringify(topTenUrl);
-  // console.log(newData);
-  // const newData = { ...urls };
-  // console.log(moreNewData);
-
-  /*
-  const csvReport = {
-    data: newData,
-    headers,
-    filename: 'LoggRapport.csv',
-  };
-  */
   return (
     <>
       <h1>LOGG FOR LG RØRLEGGER SERVICE A/S</h1>
@@ -114,10 +92,26 @@ const Logs = () => {
           Download CSV-file for All
         </CSVLink>
       )}
+      <h1>Meldinger fra brukerene</h1>
+      {msg &&
+        msg.map((messages) => (
+          <div>
+            <h5>Navn: {messages.author}</h5>
+            <h5>Epost: {messages.email}</h5>
+            <h5>Melding: {messages.message}</h5>
+            <h5>
+              ---------------------------------------------------------------------------------------------
+            </h5>
+          </div>
+        ))}
     </>
   );
 };
 export default Logs;
+
+/*
+
+*/
 
 /*
       urls.map((x) => ({ url: x.url, views: x.views, time: x.time }))

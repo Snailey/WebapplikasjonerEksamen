@@ -1,3 +1,4 @@
+// mye er hentet fra forelesnings eksempler
 import catchAsyncErrors from '../middleware/catchAsync.js';
 import { userService } from '../services/index.js';
 import { sendToken } from '../utils/jwtToken.js';
