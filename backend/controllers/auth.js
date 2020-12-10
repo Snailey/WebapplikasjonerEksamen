@@ -4,6 +4,20 @@ import { userService } from '../services/index.js';
 import { sendToken } from '../utils/jwtToken.js';
 
 export const register = catchAsyncErrors(async (req, res, next) => {
+  const { name, email, password } = req.body;
+  if (
+    !name ||
+    !email ||
+    !password ||
+    password.length < 6 ||
+    !password.match(/\d/)
+  ) {
+    res
+      .status(400)
+      .json(
+        'Fyll ut navn, epost og passord. Passord må være minst 6 tegn og inneholde minst et siffer'
+      );
+  }
   const user = await userService.createUser(req.body);
   sendToken(user, res);
 });

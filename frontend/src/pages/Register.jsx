@@ -10,18 +10,23 @@ import {
   Label,
   Input,
   CenterH2,
+  ErrorMessage,
 } from '../styles/StyledComponents';
 
 function Register() {
   const [data, setData] = useState({ name: '', email: '', password: '' });
+  const [errormsg, setErrormsg] = useState('');
 
   const history = useHistory();
 
   const submitHandler = async () => {
     console.log(data);
-    const registerUser = await register(data);
+    const { registerUser, error } = await register(data);
     console.log(registerUser);
-    if (registerUser) {
+    if (!registerUser.success) {
+      if (error) setErrormsg(error);
+      else setErrormsg(data);
+    } else {
       history.push('/');
     }
   };
@@ -65,6 +70,7 @@ function Register() {
             />
           </FormGroup>
           <Button type="submit">Registrer bruker</Button>
+          {errormsg && <ErrorMessage>{errormsg}</ErrorMessage>}
         </FormContainer>
       </form>
     </>

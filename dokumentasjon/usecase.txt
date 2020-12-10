@@ -66,14 +66,15 @@ Kontaktsiden
 
 Opplasting av bilde
 (Oppgave 7)
-	- En bruker som er logget inn som admin skal kunne laste opp bildefiler og knytte disse til artikkelen
+	- En bruker som er logget inn som admin skal kunne laste opp bildefiler og knytte disse til artikkelen, andre typer filer skal ikke kunne lastes opp
 
 Error, validereing, dokumentasjon og testing
 (Oppgave 8)
 	- En bruker skal få feilbeskjed når brukeren fyller inn ugyldig epost, passordet er kortere enn tre tegn og ikke inneholder et tall, glemmer å fylle inn navn og om bilde formatet er feil
-	- En bruker skal kunne lese en dokumentasjon av WebAppen
 	- En bruker skal være sikker på at tjenesten er sikker, og at personopplysninger ikke kan stjeles
 	- En bruker skal være sikker på at WebApen ikke krasjer ved bruk
+
+	- En produkteier skal kunne lese en dokumentasjon av WebAppen
 
 Logging av nettsted
 (Oppgave 9)

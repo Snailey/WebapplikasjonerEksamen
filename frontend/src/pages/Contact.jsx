@@ -12,6 +12,7 @@ import {
   Input,
   TextArea,
   CenterH2,
+  ErrorMessage,
 } from '../styles/StyledComponents';
 
 function Contact() {
@@ -19,18 +20,21 @@ function Contact() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [getData, setGetData] = useState(null);
+  const [errormsg, setErrormsg] = useState('');
 
   const history = useHistory();
 
   const submitHandler = async () => {
-    const data = {
+    const msgdata = {
       author,
       email,
       message,
     };
-    console.log(data);
-    const createMsg = await create(data);
-    if (createMsg) {
+    const { data, error } = await create(msgdata);
+    if (!data.success) {
+      if (error) setErrormsg(error);
+      else setErrormsg(data);
+    } else {
       history.push('/');
     }
   };
@@ -94,6 +98,7 @@ function Contact() {
             />
           </FormGroup>
           <Button type="submit">Send Melding</Button>
+          {errormsg && <ErrorMessage>{errormsg}</ErrorMessage>}
         </FormContainer>
       </form>
     </>
