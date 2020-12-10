@@ -24,7 +24,6 @@ const Modal = (props) => {
   const handleSubmit = async (event) => {
     console.log(loginData);
     const { data, error } = await login(loginData);
-    console.log(data);
     if (!data.success) {
       if (error) setErrormsg(error);
       else setErrormsg(data);

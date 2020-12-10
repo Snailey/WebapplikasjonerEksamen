@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from '../contexts/GlobalStateContext';
 import {
   StyledWelcome,
   ArticleImageContainer,
@@ -100,6 +101,7 @@ const filterData = [
 ];
 
 function Articles() {
+  const [user] = useContext(Context);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('');
 
@@ -115,9 +117,11 @@ function Articles() {
       </StyledWelcome>
       <ArticleBodyContainer>
         <ArticleBtnContainer>
-          <Link to="/newArticle">
-            <ArticleNewBtn>NY ARTIKKEL</ArticleNewBtn>
-          </Link>
+          {user?.user?.role === 'admin' && (
+            <Link to="/newArticle">
+              <ArticleNewBtn>NY ARTIKKEL</ArticleNewBtn>
+            </Link>
+          )}
           <ArticleBoxContainer>
             <ArticleSearchBtn>SØK</ArticleSearchBtn>
             <textarea
