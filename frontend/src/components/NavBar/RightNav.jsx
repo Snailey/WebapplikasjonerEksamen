@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
-import { React, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { React, useState, useContext } from 'react';
+import { useHistory, NavLink } from 'react-router-dom';
+
+import { Context } from '../../contexts/GlobalStateContext';
 import { Ul } from '../../styles/StyledComponents';
 import { logout } from '../../utils/users';
 import './Button.css';
@@ -8,10 +10,20 @@ import './Button.css';
 import Modal from '../Modal';
 
 const RightNav = ({ open }) => {
+  const [user, setUser] = useContext(Context);
   const [modal, setModal] = useState(false);
+
+  const history = useHistory();
 
   const updateModal = (data) => {
     setModal(data);
+  };
+
+  const LogOutUser = () => {
+    console.log(user);
+    logout();
+    setUser('');
+    history.push('/');
   };
 
   return (
@@ -48,7 +60,7 @@ const RightNav = ({ open }) => {
           </button>
         </li>
         <li>
-          <button type="button" onClick={() => logout()}>
+          <button type="button" onClick={() => LogOutUser()}>
             Logg ut
           </button>
         </li>

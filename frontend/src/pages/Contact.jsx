@@ -30,7 +30,7 @@ function Contact() {
     };
     console.log(data);
     await create(data);
-    history('/');
+    history.push('/');
   };
 
   useEffect(() => {
