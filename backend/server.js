@@ -3,6 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import hpp from 'hpp';
+import path from 'path';
 import xssClean from 'xss-clean';
 // import csrf from 'csurf';
 import mongoSanitize from 'express-mongo-sanitize';
@@ -17,6 +18,7 @@ import office from './routes/office.js';
 import auth from './routes/auth.js';
 import message from './routes/message.js';
 import log from './routes/log.js';
+import image from './routes/image.js';
 
 const app = express();
 app.use(helmet()); // secures app with HTTP headers
@@ -32,8 +34,9 @@ const limiter = rateLimit({
 
 app.use(limiter); // stops bruteForce Attacks
 */
+const __dirname = path.resolve();
 app.use(express.json());
-// app.use(express.static(`${__dirname}/public`));
+app.use(express.static(`${__dirname}/public`));
 
 connectDB();
 
@@ -58,6 +61,7 @@ app.use(`${process.env.BASEURL}/users`, user);
 app.use(`${process.env.BASEURL}/offices`, office);
 app.use(`${process.env.BASEURL}/message`, message);
 app.use(`${process.env.BASEURL}/log`, log);
+app.use(`${process.env.BASEURL}/`, image);
 app.use(`${process.env.BASEURL}/auth`, auth);
 
 app.listen(
