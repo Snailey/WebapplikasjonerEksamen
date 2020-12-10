@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { React, useState, useContext } from 'react';
 import { useHistory, NavLink } from 'react-router-dom';
-
 import { Context } from '../../contexts/GlobalStateContext';
 import { Ul } from '../../styles/StyledComponents';
 import { logout } from '../../utils/users';
@@ -49,26 +48,34 @@ const RightNav = ({ open }) => {
             <p>Kontakt oss</p>
           </NavLink>
         </li>
-        <li>
-          <NavLink exact to="/logs" activeClassName="active">
-            <p>Logg</p>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink exact to="/register" activeClassName="active">
-            <p>Registrer ny bruker</p>
-          </NavLink>
-        </li>
-        <li>
-          <button type="button" onClick={() => updateModal(true)}>
-            Logg inn
-          </button>
-        </li>
-        <li>
-          <button type="button" onClick={() => LogOutUser()}>
-            Logg ut
-          </button>
-        </li>
+        {user?.user?.role === 'super' && (
+          <li>
+            <NavLink exact to="/logs" activeClassName="active">
+              <p>Logg</p>
+            </NavLink>
+          </li>
+        )}
+        {!user?.user?.role && (
+          <li>
+            <NavLink exact to="/register" activeClassName="active">
+              <p>Registrer ny bruker</p>
+            </NavLink>
+          </li>
+        )}
+        {!user?.user?.role && (
+          <li>
+            <button type="button" onClick={() => updateModal(true)}>
+              Logg inn
+            </button>
+          </li>
+        )}
+        {user?.user?.role && (
+          <li>
+            <button type="button" onClick={() => LogOutUser()}>
+              Logg ut
+            </button>
+          </li>
+        )}
       </Ul>
       {modal && <Modal modal={modal} updateModal={updateModal} />}
     </>

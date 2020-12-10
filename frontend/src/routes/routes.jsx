@@ -16,7 +16,7 @@ const Routes = () => (
   <Router>
     <Layout>
       <Switch>
-        <Route exact path="/offices">
+        <Route exact path="/offices/">
           <Offices />
         </Route>
       </Switch>
@@ -26,7 +26,7 @@ const Routes = () => (
         </Route>
       </Switch>
       <Switch>
-        <Route exact path="/articles">
+        <Route exact path="/articles/">
           <Articles />
         </Route>
       </Switch>
@@ -36,17 +36,17 @@ const Routes = () => (
         </Route>
       </Switch>
       <Switch>
-        <Route path="/contact">
+        <Route path="/contact/">
           <Contact />
         </Route>
       </Switch>
       <Switch>
-        <Route path="/newArticle">
+        <Route path="/newArticle/">
           <MiniCMS />
         </Route>
       </Switch>
       <Switch>
-        <Route exact path="/logs">
+        <Route exact path="/logs/">
           <Logs />
         </Route>
       </Switch>
@@ -56,7 +56,7 @@ const Routes = () => (
         </Route>
       </Switch>
       <Switch>
-        <Route exact path="/register">
+        <Route exact path="/register/">
           <Register />
         </Route>
       </Switch>

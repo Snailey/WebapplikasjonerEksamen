@@ -19,8 +19,11 @@ function Register() {
 
   const submitHandler = async () => {
     console.log(data);
-    await register(data);
-    history.push('/');
+    const registerUser = await register(data);
+    console.log(registerUser);
+    if (registerUser) {
+      history.push('/');
+    }
   };
 
   return (
