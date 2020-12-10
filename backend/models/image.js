@@ -9,6 +9,10 @@ const ImageSchema = new Schema(
       type: String,
       required: true,
     },
+    file_mimetype: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

@@ -27,7 +27,7 @@ export const get = catchAsyncErrors(async (req, res, next) => {
   });
   const __dirname = path.resolve();
   console.log(__dirname);
-  console.log(path.join(__dirname, '..', image.path));
+  console.log(path.join(__dirname, image.path));
   res.sendFile(path.join(__dirname, image.path));
   //   const imagePath = image.file_path.replace('public/', '');
 
