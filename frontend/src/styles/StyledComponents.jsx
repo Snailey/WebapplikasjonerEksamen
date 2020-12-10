@@ -465,3 +465,7 @@ export const CloseButton = styled.button`
   border: 0;
   padding: 0;
 `;
+export const ErrorMessage = styled.p`
+  color: #d8000c;
+  background-color: #ffbaba;
+`;

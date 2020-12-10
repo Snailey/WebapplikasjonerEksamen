@@ -9,6 +9,7 @@ import {
   ModalHeader,
   ModalFormContainer,
   CloseButton,
+  ErrorMessage,
 } from '../styles/StyledComponents';
 import { login } from '../utils/users';
 
@@ -18,19 +19,20 @@ const Modal = (props) => {
     email: '',
     password: '',
   });
-  const [error, setError] = useState('');
+  const [errormsg, setErrormsg] = useState('');
 
   const handleSubmit = async (event) => {
     console.log(loginData);
     const { data, error } = await login(loginData);
-    // console.log(data);
+    console.log(data);
     if (!data.success) {
-      setError(error);
+      if (error) setErrormsg(error);
+      else setErrormsg(data);
+    } else if (data.success) {
+      setUser(data);
+      props.updateModal(false);
     }
-    setUser(data);
-    if (error) setError(error);
-    else setUser(data);
-    props.updateModal(false);
+
     event.preventDefault();
   };
 
@@ -83,9 +85,9 @@ const Modal = (props) => {
               </button>
             </form>
           </ModalFormContainer>
+          {errormsg && <ErrorMessage>{errormsg}</ErrorMessage>}
         </ModalContents>
       </StyledModal>
-      {error && <p>Error Message:{error}</p>}
     </>
   );
 };
