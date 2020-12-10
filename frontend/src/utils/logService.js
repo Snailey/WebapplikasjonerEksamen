@@ -1,7 +1,7 @@
 import http from './http';
 
 export const create = async (data) => {
-  console.log(data);
+  // console.log(data);
   try {
     return await http.post(`/log`, { ...data });
   } catch (err) {

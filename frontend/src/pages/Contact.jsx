@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom';
-import create from '../utils/messageService.js';
+import { useHistory } from 'react-router-dom';
+import { create } from '../utils/messageService.js';
 import { getUserInfo } from '../utils/users.js';
 
 import {
@@ -12,36 +12,40 @@ import {
   Input,
   TextArea,
   CenterH2,
-  //  Message,
 } from '../styles/StyledComponents';
 
 function Contact() {
-  const [details, setDetails] = useState({
-    author: 'Fyll ut navn',
-    email: 'Fyll ut Epost',
-    message: ' ',
-  });
+  const [author, setAuthor] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [getData, setGetData] = useState(null);
 
-  // const history = useHistory();
-  // setError('');
+  const history = useHistory();
 
-  const submitHandler = async (e) => {
-    // console.log(details);
-
-    await create(details);
-
-    // history.push('/');
-    e.preventDefault();
+  const submitHandler = async () => {
+    const data = {
+      author,
+      email,
+      message,
+    };
+    console.log(data);
+    await create(data);
+    history.push('/');
   };
 
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await getUserInfo();
       if (!data.success) {
-        console.log('error getting data from db');
+        console.log('Laster ikke ned data fra db');
       } else {
-        setDetails({ author: data.data.name, email: data.data.email });
-        // console.log(data);
+        setGetData(data.data);
+        if (getData) {
+          setAuthor(getData.name);
+        }
+        if (getData) {
+          setEmail(getData.email);
+        }
       }
     };
     fetchData();
@@ -61,10 +65,8 @@ function Contact() {
               type="text"
               name="name"
               id="name"
-              onChange={(e) =>
-                setDetails({ ...details, author: e.target.value })
-              }
-              value={details.author}
+              onChange={(e) => setAuthor(e.target.value)}
+              value={author}
             />
           </FormGroup>
           <FormGroup>
@@ -75,10 +77,8 @@ function Contact() {
               type="email"
               name="email"
               id="email"
-              onChange={(e) =>
-                setDetails({ ...details, email: e.target.value })
-              }
-              value={details.email}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
             />
           </FormGroup>
           <FormGroup>
@@ -87,10 +87,8 @@ function Contact() {
               type="text"
               name="message"
               id="message"
-              onChange={(e) =>
-                setDetails({ ...details, message: e.target.value })
-              }
-              value={details.message}
+              onChange={(e) => setMessage(e.target.value)}
+              value={message}
             />
           </FormGroup>
           <Button type="submit">Send Melding</Button>

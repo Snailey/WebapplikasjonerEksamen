@@ -3,7 +3,7 @@ import http from './http';
 export const register = async (data) => {
   console.log(data);
   try {
-    return await http.post(`/register`, { ...data });
+    return await http.post(`/auth/register`, { ...data });
   } catch (err) {
     return err.response;
   }
@@ -29,8 +29,17 @@ export const getUserInfo = async () => {
   }
 };
 
+export const logout = async () => {
+  try {
+    return await http.post('/auth/logout');
+  } catch (err) {
+    return err.response;
+  }
+};
+
 export default {
   register,
   login,
   getUserInfo,
+  logout,
 };
