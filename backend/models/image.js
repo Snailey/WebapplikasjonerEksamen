@@ -1,3 +1,4 @@
+// hentet fra forelesningseksempler
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;

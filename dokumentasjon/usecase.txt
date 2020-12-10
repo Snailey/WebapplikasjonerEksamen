@@ -1,0 +1,86 @@
+Epics:
+
+Designe nettsidene
+(Oppgave 1a)
+	- En bruker skal kunne se en oversiktlig hjem-side
+	- En bruker skal se en oversikt over alle avdelingskontorene
+	- En bruker skal kunne se en oversikt over alle fagartikler
+	- En bruker skal kunne se kontakt informasjon på en takontakt-side
+	- En bruker skal kunne benytte siten, med både liten og stor skjerm
+	- En bruker skal kunne navigere mellom sidene med en nav-bar på toppen av sidene
+
+Desigen avdelingskontorsidene
+(Oppgave 1a)
+	- En bruker skal kunne se kontorene som en liste for å få oversikt over mange samtidig
+	- En bruker skal kunne velge å se kontorene i liste eller som kort for å få informasjonen tydlig presentert
+	- En bruker skal kunne filtrere avdelingskontorene etter by, for å se hvem som er nærmest
+
+Fagartikler
+(Oppgave 2)
+	
+	- En bruker skal kunne se fagartikler med tittel, utdrag fra innholdet og kategori for å kunne vite om det er relevant før de går inn på artikkelen
+	- En bruker skal kunne søke etter, filtrere og paginere fagartikler for å finne frem til relevante artikler
+	- En bruker skal kunne komme til en artikkels detaljeside 
+
+	- En admin skal kunne skrive en fagartikkel for å informere brukerene	
+	- En admin skal kunne trykke på en knapp kalt "ny artikkel" for å kunne lage en ny artikkel
+	- En admin skal kunnelegge til nye kategorier for fagartikler for å kunne kategorisere fagartiklene 
+	- En admin skal kunne velge seg selv fra en nedtrekksliste for å sette seg som forfatter av artikkelen
+	
+Opprette, redigere og publisere fagartikler
+(Oppgave 3)
+	- Bare en admin skal kunne skrive artikler
+	- Bare en admin skal kunne redigere en artikkel
+	- Bare en admin skal kunne publisere en artikkel
+	- Bare en admin skal kunne ha tilgang til CMSet for fagartikler
+
+Logg inn
+( Oppgave 4)
+	- En admin må kunne logge inn
+	- Kun en innlogget admin skal kunne se knappen for å komme inn i CMSet
+	- Kun en innlogget admin skal kunne redigere og slette artikkelen fra detaljvisningen av artikkelen
+	- En bruker skal få feilmelding når brukeren benytter innloggingsskjema eller lagrer artikler
+	- En bruker skal kunne se en listevisning av alle artiklene når brukeren besøker siden
+	- En bruker som ikke er logget inn skal se en "logg Inn" knapp i navigasjonen, og ved å klikke på denne knappen skal brukeren taes til en "logg inn"-side
+	- En bruker som er logget inn skal se en "logg ut"-knapp isteden for "logg inn"-knappen
+	- Når en bruker er logget inn som admin skal brukeren se en knapp for å lage en ny artikkel, denne knappen skal skjules når brukeren logger ut
+	- Når en bruker er logget inn som admin skal brukeren se en knapp for "slett artikkel" og en for "rediger artkkel", disse skal skjules når brukeren logger ut
+
+Kunde bruker
+(Oppgave 5)
+	- En bruker skal kunne opprette seg en brukerprofil, ved å klikke på en "opprett bruker"-knapp i navigasjonen
+	- En bruker som er logget inn skal ha tilgang til skjulte artikler
+	- En bruker skal kunne filtrere listene basert på kategori
+	- En bruker skal kunne søke i artiklene etter tittel
+	- En bruker skal se fem artikkler på hver side, er det fler enn fem skal disse vises på de neste sidene
+	- En bruker som oppretter en brukerprofil skal pr default bli vanlig "user"/kundebruker
+
+Kontaktsiden
+(Oppgave 6)
+	- En kunde skal kunne ta kontakt med bedriften gjennom kontaktsiden
+	- En kunde som tar kontakt skal navn og beskjed sendes med kontaktskjemaet
+	- En kunde som er logget inn skal få sitt navn fderdig utfylt i kontaktskjemaet
+	- En kunde som sender inn en beskjed, skal automatisk bli tilsendt en epost som bekreftelse på at meldingen er sendt. Det skal også sendes en kopi til admin
+	- En opprettet epost skal lagres i databasen
+	- En nadmin skal ha tilgang til en liste med alle sendte eposter
+
+Opplasting av bilde
+(Oppgave 7)
+	- En bruker som er logget inn som admin skal kunne laste opp bildefiler og knytte disse til artikkelen
+
+Error, validereing, dokumentasjon og testing
+(Oppgave 8)
+	- En bruker skal få feilbeskjed når brukeren fyller inn ugyldig epost, passordet er kortere enn tre tegn og ikke inneholder et tall, glemmer å fylle inn navn og om bilde formatet er feil
+	- En bruker skal kunne lese en dokumentasjon av WebAppen
+	- En bruker skal være sikker på at tjenesten er sikker, og at personopplysninger ikke kan stjeles
+	- En bruker skal være sikker på at WebApen ikke krasjer ved bruk
+
+Logging av nettsted
+(Oppgave 9)
+	- En bruker skal se gjennomsnittlig lesetid pr artikkel
+
+	- En super-admin skal kunne se en link som fører til en side som viser logging av nettstedet
+	- En super-admin skal kunne se antall visninger pr artikkel
+	- En super-admin skal kunne se antall artikkler lest pr bruker
+	- En super-admin skal kunne se de 10 mest leste artikklene
+	- En super4-bruker skal kunne exportere logg-data som en csv eller exel fil	

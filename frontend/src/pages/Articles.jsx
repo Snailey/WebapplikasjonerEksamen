@@ -148,7 +148,7 @@ function Articles() {
               <ArticleContainer>
                 <ArticleImageContainer>
                   <img
-                    src={article.image}
+                    src={article?.image}
                     alt="Bilde av Rørlegger"
                     width="128"
                     height="128"
@@ -156,16 +156,16 @@ function Articles() {
                 </ArticleImageContainer>
                 <div>
                   <ArticleContainer>
-                    <h1>{article.title}</h1>
+                    <h1>{article?.title}</h1>
                     <ArticleBoxContainer>
                       <p>
-                        <b>{article.category}</b>
+                        <b>{article?.category}</b>
                       </p>
                     </ArticleBoxContainer>
                   </ArticleContainer>
-                  <p>{article.content}</p>
+                  <p>{article?.content}</p>
                   <ArticleReadTime>
-                    Lesetid ca. {Math.floor(article.readTime / 60)} minutter.
+                    Lesetid ca. {Math.floor(article?.readTime / 60)} minutter.
                   </ArticleReadTime>
                 </div>
               </ArticleContainer>

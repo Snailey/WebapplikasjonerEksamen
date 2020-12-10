@@ -1,3 +1,4 @@
+// mye er hentet fra forelesningseksempler
 import jwt from 'jsonwebtoken';
 import { userService } from '../services/index.js';
 import catchAsyncErrors from './catchAsync.js';

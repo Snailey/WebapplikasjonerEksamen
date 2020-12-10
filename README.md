@@ -49,4 +49,7 @@ Name: Super Superson
 Email: super@test.com
 Password: 123456
 
-Postman LINK: ******\*\*\*******
+URLS:
+Postman: ******\*\*\*******
+GITHUB: https://github.com/Snailey/WebapplikasjonerEksamen
+Trello: https://trello.com/b/GsUUn0Lg/webapplikasjoner-eksamen
