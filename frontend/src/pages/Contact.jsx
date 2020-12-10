@@ -36,7 +36,7 @@ function Contact() {
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await getUserInfo();
-      if (!data) {
+      if (!data.success) {
         console.log('Laster ikke ned data fra db');
       } else {
         setGetData(data.data);
