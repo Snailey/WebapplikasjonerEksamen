@@ -1,0 +1,19 @@
+Frontend:
+SERVER_URL=http://localhost:5000/api/v1/
+SKIP_PREFLIGHT_CHECK=true
+
+Backend:
+PORT=5000
+DATABASE=mongodb://localhost:27017/LG
+BASEURL=/api/v1
+
+JWT_SECRET=deTtEerSuuuuPerSiKkErt
+JWT_EXPIRES_TIME=7d
+COOKIE_EXPIRE_TIME=7
+EMAIL_HOST= smtp.mailtrap.io
+EMAIL_PORT=2525
+EMAIL_USER=0fb5b93a635acf
+EMAIL_PASSWORD=3c0e0c11fe20be
+EMAIL_FROM=noreply@lgrorlegger.no
+EMAIL_FROM_NAME=LG Rørlegger
+
