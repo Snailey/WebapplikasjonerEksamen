@@ -17,7 +17,7 @@ const Log = () => {
       }
     };
     fetchData();
-  });
+  }, []);
 
   return (
     <div>

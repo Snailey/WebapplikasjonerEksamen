@@ -33,13 +33,19 @@
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "csurf": "^1.11.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.0.1",
+    "express-rate-limit": "^5.2.3",
+    "helmet": "^4.2.0",
+    "hpp": "^0.2.3",
     "husky": "^4.3.0",
     "jsonwebtoken": "^8.5.1",
     "lint-staged": "^10.5.2",
     "mongoose": "^5.11.0",
-    "nodemailer": "^6.4.16"
+    "nodemailer": "^6.4.16",
+    "xss-clean": "^0.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",

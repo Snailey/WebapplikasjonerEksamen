@@ -54,7 +54,7 @@ function Offices() {
       }
     };
     fetchData();
-  });
+  }, []);
 
   const updateView = (isList) => {
     if (isList) setDisplayType('list');

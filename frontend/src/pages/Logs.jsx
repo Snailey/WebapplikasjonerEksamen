@@ -9,6 +9,7 @@ const Logs = () => {
   const [topTenUrl, setTopTenUrl] = useState(null);
   const [msg, setMsg] = useState(null);
 
+  /*
   const getTopTen = async () => {
     const { data } = await topTen();
     if (!data.success) {
@@ -17,6 +18,7 @@ const Logs = () => {
       setTopTenUrl(data.data.data);
     }
   };
+
 
   const getList = async () => {
     const { data } = await list();
@@ -35,12 +37,39 @@ const Logs = () => {
       setMsg(data.data);
     }
   };
+  */
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await list();
+      if (!data.success) {
+        console.log('error getting all-data from db');
+      } else {
+        setUrls(data.data);
+      }
+      const { dataMsg } = await MsgList();
+      if (!dataMsg.success) {
+        console.log('error getting msg-data from db');
+      } else {
+        setMsg(dataMsg.data);
+      }
+      const { dataTop } = await topTen();
+      if (!dataTop.success) {
+        console.log('error getting topTen-data from db');
+      } else {
+        setTopTenUrl(dataTop.data.data);
+      }
+    };
+    fetchData();
+  }, []);
+
+  /*
   useEffect(() => {
     getTopTen();
     getList();
     getMsg();
-  });
+  }, []);
+*/
 
   return (
     <>

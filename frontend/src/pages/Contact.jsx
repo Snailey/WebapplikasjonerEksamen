@@ -36,10 +36,11 @@ function Contact() {
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await getUserInfo();
-      if (!data.success) {
+      if (!data) {
         console.log('Laster ikke ned data fra db');
       } else {
         setGetData(data.data);
+        console.log(getData);
         if (getData) {
           setAuthor(getData.name);
         }
@@ -49,7 +50,7 @@ function Contact() {
       }
     };
     fetchData();
-  });
+  }, []);
 
   return (
     <>

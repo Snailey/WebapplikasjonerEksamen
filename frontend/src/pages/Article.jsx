@@ -105,7 +105,7 @@ function Article() {
         sendLog(time, url);
       }
     };
-  });
+  }, []);
   return (
     <>
       <StyledWelcome>
