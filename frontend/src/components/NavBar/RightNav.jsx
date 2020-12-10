@@ -48,28 +48,28 @@ const RightNav = ({ open }) => {
             <p>Kontakt oss</p>
           </NavLink>
         </li>
-        {user.user?.role === 'super' && (
+        {user?.user?.role === 'super' && (
           <li>
             <NavLink exact to="/logs" activeClassName="active">
               <p>Logg</p>
             </NavLink>
           </li>
         )}
-        {!user.user?.role && (
+        {!user?.user?.role && (
           <li>
             <NavLink exact to="/register" activeClassName="active">
               <p>Registrer ny bruker</p>
             </NavLink>
           </li>
         )}
-        {!user.user?.role && (
+        {!user?.user?.role && (
           <li>
             <button type="button" onClick={() => updateModal(true)}>
               Logg inn
             </button>
           </li>
         )}
-        {user.user?.role && (
+        {user?.user?.role && (
           <li>
             <button type="button" onClick={() => LogOutUser()}>
               Logg ut
