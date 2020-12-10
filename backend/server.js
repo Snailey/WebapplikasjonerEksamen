@@ -32,7 +32,7 @@ const limiter = rateLimit({
 app.use(limiter); // stops bruteForce Attacks
 
 app.use(express.json());
-app.use(express.static(`${__dirname}/public`));
+// app.use(express.static(`${__dirname}/public`));
 
 connectDB();
 
@@ -46,11 +46,11 @@ app.use(
 
 app.use(cookieParser());
 
-app.use(csrf({ cookie: true })); // stops Cross-Site Request Forgery attacks
+// app.use(csrf({ cookie: true })); // stops Cross-Site Request Forgery attacks
 
-app.get(`${process.env.BASEURL}/csrf-token`, (req, res) => {
-  res.status(200).json({ data: req.csrfToken() });
-});
+// app.get(`${process.env.BASEURL}/csrf-token`, (req, res) => {
+//   res.status(200).json({ data: req.csrfToken() });
+// });
 
 app.use(`${process.env.BASEURL}/articles`, article);
 app.use(`${process.env.BASEURL}/users`, user);
