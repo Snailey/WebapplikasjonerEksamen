@@ -15,6 +15,7 @@ import log from './routes/log.js';
 const app = express();
 
 app.use(express.json());
+app.use(express.static(`${__dirname}/public`));
 
 connectDB();
 
