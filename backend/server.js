@@ -4,9 +4,9 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import xssClean from 'xss-clean';
-import csrf from 'csurf';
+// import csrf from 'csurf';
 import mongoSanitize from 'express-mongo-sanitize';
-import rateLimit from 'express-rate-limit';
+// import rateLimit from 'express-rate-limit';
 
 import 'dotenv/config.js';
 
@@ -24,13 +24,14 @@ app.use(mongoSanitize()); // stops noSql injections
 app.use(xssClean()); // stops xss attacks - removes scripts
 app.use(hpp()); // stops Pollution attacks
 
+/*
 const limiter = rateLimit({
   windowsMs: 10 * 60 * 1000, // only 10 request every minute
   max: 100, // only 100 attempts from user
 });
 
 app.use(limiter); // stops bruteForce Attacks
-
+*/
 app.use(express.json());
 // app.use(express.static(`${__dirname}/public`));
 
