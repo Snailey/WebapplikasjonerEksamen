@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-// import { Redirect } from 'react-router-dom';
 import { create } from '../utils/messageService.js';
 import { getUserInfo } from '../utils/users.js';
 
@@ -30,9 +29,10 @@ function Contact() {
       message,
     };
     console.log(data);
-    await create(data);
-    history.push('/', { from: 'Contact' });
-    // <Redirect to="/" />;
+    const createMsg = await create(data);
+    if (createMsg) {
+      history.push('/');
+    }
   };
 
   useEffect(() => {
