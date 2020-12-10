@@ -32,7 +32,6 @@ const limiter = rateLimit({
 app.use(limiter); // stops bruteForce Attacks
 
 app.use(express.json());
-app.use(express.static(`${__dirname}/public`));
 
 connectDB();
 
