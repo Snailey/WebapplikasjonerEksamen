@@ -10,6 +10,7 @@ import Contact from '../pages/Contact';
 import MiniCMS from '../pages/MiniCMS';
 import Log from '../pages/Log';
 import Logs from '../pages/Logs';
+import Register from '../pages/Register';
 
 const Routes = () => (
   <Router>
@@ -52,6 +53,11 @@ const Routes = () => (
       <Switch>
         <Route exact path="/logs/:id">
           <Log />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route exact path="/register">
+          <Register />
         </Route>
       </Switch>
       <Switch>

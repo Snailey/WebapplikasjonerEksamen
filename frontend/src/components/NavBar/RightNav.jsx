@@ -55,6 +55,11 @@ const RightNav = ({ open }) => {
           </NavLink>
         </li>
         <li>
+          <NavLink exact to="/register" activeClassName="active">
+            <p>Registrer ny bruker</p>
+          </NavLink>
+        </li>
+        <li>
           <button type="button" onClick={() => updateModal(true)}>
             Logg inn
           </button>

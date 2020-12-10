@@ -8,17 +8,9 @@ const Logs = () => {
   const [urls, setUrls] = useState(null);
   const [topTenUrl, setTopTenUrl] = useState(null);
   const [msg, setMsg] = useState(null);
-
-  /*
-  const getTopTen = async () => {
-    const { data } = await topTen();
-    if (!data.success) {
-      console.log('error getting topTen-data from db');
-    } else {
-      setTopTenUrl(data.data.data);
-    }
-  };
-
+  console.log(topTenUrl);
+  console.log(urls);
+  console.log(msg);
 
   const getList = async () => {
     const { data } = await list();
@@ -29,7 +21,16 @@ const Logs = () => {
     }
   };
 
-  const getMsg = async () => {
+  const getTopTen = async () => {
+    const { data } = await topTen();
+    if (!data.success) {
+      console.log('error getting topTen-data from db');
+    } else {
+      setTopTenUrl(data.data.data);
+    }
+  };
+
+  const getMessages = async () => {
     const { data } = await MsgList();
     if (!data.success) {
       console.log('error getting msg-data from db');
@@ -37,39 +38,14 @@ const Logs = () => {
       setMsg(data.data);
     }
   };
-  */
-
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await list();
-      if (!data.success) {
-        console.log('error getting all-data from db');
-      } else {
-        setUrls(data.data);
-      }
-      const { dataMsg } = await MsgList();
-      if (!dataMsg.success) {
-        console.log('error getting msg-data from db');
-      } else {
-        setMsg(dataMsg.data);
-      }
-      const { dataTop } = await topTen();
-      if (!dataTop.success) {
-        console.log('error getting topTen-data from db');
-      } else {
-        setTopTenUrl(dataTop.data.data);
-      }
+      getList();
+      getTopTen();
+      getMessages();
     };
     fetchData();
   }, []);
-
-  /*
-  useEffect(() => {
-    getTopTen();
-    getList();
-    getMsg();
-  }, []);
-*/
 
   return (
     <>
@@ -137,15 +113,6 @@ const Logs = () => {
   );
 };
 export default Logs;
-
-/*
-
-*/
-
-/*
-      urls.map((x) => ({ url: x.url, views: x.views, time: x.time }))
-*/
-
 /*
 const exportCsv = () => {
     const csvRow = [];

@@ -2,7 +2,6 @@ import http from './http';
 // import { getCsrfToken } from './users';
 
 export const create = async (data) => {
-  // console.log(data);
   try {
     // await getCsrfToken();
     return await http.post(`/log`, { ...data });
