@@ -1,8 +1,18 @@
 import http from './http';
 
+export const getCsrfToken = async () => {
+  try {
+    const { data } = await http.get('/csrf-token');
+    http.defaults.headers['X-CSRF-Token'] = data.data;
+  } catch (err) {
+    return err.response;
+  }
+};
+
 export const register = async (data) => {
   console.log(data);
   try {
+    await getCsrfToken();
     return await http.post(`/auth/register`, { ...data });
   } catch (err) {
     return err.response;
@@ -12,6 +22,7 @@ export const register = async (data) => {
 export const login = async (data) => {
   console.log(data);
   try {
+    await getCsrfToken();
     const result = await http.post(`/auth/login`, { ...data });
     console.log(JSON.stringify(result));
     return result;
@@ -31,6 +42,7 @@ export const getUserInfo = async () => {
 
 export const logout = async () => {
   try {
+    await getCsrfToken();
     return await http.post('/auth/logout');
   } catch (err) {
     return err.response;
@@ -42,4 +54,5 @@ export default {
   login,
   getUserInfo,
   logout,
+  getCsrfToken,
 };

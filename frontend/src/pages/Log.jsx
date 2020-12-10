@@ -23,24 +23,24 @@ const Log = () => {
     <div>
       {url && (
         <div>
-          <h1>Stats for {url.url}</h1>
-          <h5>Total viewed: {url.views} times</h5>
-          <h5>Total time on site: {url.time} sec</h5>
+          <h1>Stats for {url?.url}</h1>
+          <h5>Total viewed: {url?.views} times</h5>
+          <h5>Total time on site: {url?.time} sec</h5>
           <h2>User stats on page</h2>
           {url.users &&
-            url.users.map((user) => (
+            url?.users.map((user) => (
               <div>
-                <h3>UserId: {user.user}</h3>
-                <h5>Times visited: {user.views}</h5>
+                <h3>UserId: {user?.user}</h3>
+                <h5>Times visited: {user?.views}</h5>
               </div>
             ))}
           <CSVLink
             data={JSON.stringify({
-              url: url.url,
-              views: url.view,
-              time: url.time,
+              url: url?.url,
+              views: url?.view,
+              time: url?.time,
             })}
-            filename={`${url.url}_logdata.csv`}
+            filename={`${url?.url}_logdata.csv`}
             enclosingCharacter={` `}
             replace={(' ', '"')}
           >

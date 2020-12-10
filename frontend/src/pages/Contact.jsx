@@ -40,7 +40,6 @@ function Contact() {
         console.log('Laster ikke ned data fra db');
       } else {
         setGetData(data.data);
-        console.log(getData);
         if (getData) {
           setAuthor(getData.name);
         }

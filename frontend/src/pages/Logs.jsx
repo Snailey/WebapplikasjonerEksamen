@@ -76,7 +76,7 @@ const Logs = () => {
       <h1>LOGG FOR LG RØRLEGGER SERVICE A/S</h1>
       <h3>Topp 10 Views</h3>
       {topTenUrl &&
-        topTenUrl.map((url) => (
+        topTenUrl?.map((url) => (
           <div>
             <Link to={`/logs/${url.id}`}>
               <h5>
@@ -100,7 +100,7 @@ const Logs = () => {
       )}
       <h3>Alle Sider</h3>
       {urls &&
-        urls.map((url) => (
+        urls?.map((url) => (
           <div>
             <Link to={`/logs/${url.id}`}>
               <h5>{url.url}</h5>
@@ -123,11 +123,11 @@ const Logs = () => {
       )}
       <h1>Meldinger fra brukerene</h1>
       {msg &&
-        msg.map((messages) => (
+        msg?.map((messages) => (
           <div>
-            <h5>Navn: {messages.author}</h5>
-            <h5>Epost: {messages.email}</h5>
-            <h5>Melding: {messages.message}</h5>
+            <h5>Navn: {messages?.author}</h5>
+            <h5>Epost: {messages?.email}</h5>
+            <h5>Melding: {messages?.message}</h5>
             <h5>
               ---------------------------------------------------------------------------------------------
             </h5>

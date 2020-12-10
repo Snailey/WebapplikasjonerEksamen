@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import xssClean from 'xss-clean';
-// import csrf from 'csurf';
+import csrf from 'csurf';
 import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 
@@ -38,14 +38,18 @@ connectDB();
 app.use(
   cors({
     origin: 'http://localhost:3000',
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'],
     credentials: true,
   })
 );
 
 app.use(cookieParser());
 
-// app.use(csrf({ cookie: true })); // stops Cross-Site Request Forgery attacks
+app.use(csrf({ cookie: true })); // stops Cross-Site Request Forgery attacks
+
+app.get(`${process.env.BASEURL}/csrf-token`, (req, res) => {
+  res.status(200).json({ data: req.csrfToken() });
+});
 
 app.use(`${process.env.BASEURL}/articles`, article);
 app.use(`${process.env.BASEURL}/users`, user);

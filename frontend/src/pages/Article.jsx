@@ -109,20 +109,20 @@ function Article() {
   return (
     <>
       <StyledWelcome>
-        <p>{data.title}</p>
+        <p>{data?.title}</p>
       </StyledWelcome>
       <ArticleBodyContainer>
         <ArticleContainer>
-          <p>Av {data.author}</p>
+          <p>Av {data?.author}</p>
           <ArticleBoxContainer>
-            <p className="article_date">{data.date}</p>
+            <p className="article_date">{data?.date}</p>
           </ArticleBoxContainer>
         </ArticleContainer>
         <p>{data.ingress}</p>
-        {data.content.map((content) => (
+        {data?.content?.map((content) => (
           <>
-            <h2>{content.subtitle}</h2>
-            <p>{content.content}</p>
+            <h2>{content?.subtitle}</h2>
+            <p>{content?.content}</p>
           </>
         ))}
         <p>
@@ -132,7 +132,7 @@ function Article() {
           <ArticleDeleteBtn>SLETT</ArticleDeleteBtn>
           <ArticleEditBtn>REDIGER</ArticleEditBtn>
           <ArticleReadTime>
-            Lesetid ca. {Math.floor(data.readTime / 60)} minutter.
+            Lesetid ca. {Math.floor(data?.readTime / 60)} minutter.
           </ArticleReadTime>
         </div>
       </ArticleBodyContainer>

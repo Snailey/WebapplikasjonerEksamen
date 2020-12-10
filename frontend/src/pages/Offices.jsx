@@ -75,7 +75,7 @@ function Offices() {
         <FilterButtonContainer>
           <OfficeFilterButton
             placeholder="Filter"
-            value={filterData.find((obj) => obj.value === search)}
+            value={filterData?.find((obj) => obj.value === search)}
             options={filterData}
             onChange={handleChange}
           />
@@ -102,13 +102,13 @@ function Offices() {
                           <OfficeListNumber>{index + 1}</OfficeListNumber>
                         )}
                         <p>
-                          <Link to={`/offices/${city._id}`}>
-                            <b>{city.name}</b>
+                          <Link to={`/offices/${city?._id}`}>
+                            <b>{city?.name}</b>
                           </Link>
                         </p>
-                        <p>{city.Address}</p>
-                        <p>{city.phone}</p>
-                        <a href={`mailto:${city.email}`}>{city.email}</a>
+                        <p>{city?.Address}</p>
+                        <p>{city?.phone}</p>
+                        <a href={`mailto:${city?.email}`}>{city?.email}</a>
                       </>
                     </OfficeContainer>
                   ))}
@@ -129,13 +129,13 @@ function Offices() {
                           <OfficeListNumber>{index + 1}</OfficeListNumber>
                         )}
                         <p>
-                          <Link to={`/offices/${city._id}`}>
-                            <b>{city.name}</b>
+                          <Link to={`/offices/${city?._id}`}>
+                            <b>{city?.name}</b>
                           </Link>
                         </p>
-                        <p>{city.Address}</p>
-                        <p>{city.phone}</p>
-                        <a href={`mailto:${city.email}`}>{city.email}</a>
+                        <p>{city?.Address}</p>
+                        <p>{city?.phone}</p>
+                        <a href={`mailto:${city?.email}`}>{city?.email}</a>
                       </>
                     </OfficeContainer>
                   ))}
@@ -156,13 +156,13 @@ function Offices() {
                           <OfficeListNumber>{index + 1}</OfficeListNumber>
                         )}
                         <p>
-                          <Link to={`/offices/${city._id}`}>
-                            <b>{city.name}</b>
+                          <Link to={`/offices/${city?._id}`}>
+                            <b>{city?.name}</b>
                           </Link>
                         </p>
-                        <p>{city.Address}</p>
-                        <p>{city.phone}</p>
-                        <a href={`mailto:${city.email}`}>{city.email}</a>
+                        <p>{city?.Address}</p>
+                        <p>{city?.phone}</p>
+                        <a href={`mailto:${city?.email}`}>{city?.email}</a>
                       </>
                     </OfficeContainer>
                   ))}
@@ -183,13 +183,13 @@ function Offices() {
                           <OfficeListNumber>{index + 1}</OfficeListNumber>
                         )}
                         <p>
-                          <Link to={`/offices/${city._id}`}>
-                            <b>{city.name}</b>
+                          <Link to={`/offices/${city?._id}`}>
+                            <b>{city?.name}</b>
                           </Link>
                         </p>
-                        <p>{city.Address}</p>
-                        <p>{city.phone}</p>
-                        <a href={`mailto:${city.email}`}>{city.email}</a>
+                        <p>{city?.Address}</p>
+                        <p>{city?.phone}</p>
+                        <a href={`mailto:${city?.email}`}>{city?.email}</a>
                       </>
                     </OfficeContainer>
                   ))}

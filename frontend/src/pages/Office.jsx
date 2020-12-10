@@ -26,16 +26,16 @@ function Office() {
   return (
     <>
       <StyledWelcome>
-        <p>Kontor {office && office.name}</p>
+        <p>Kontor {office && office?.name}</p>
       </StyledWelcome>
       <OfficeBodyContainer>
-        <h1>Velkommen til {office && office.name}</h1>
+        <h1>Velkommen til {office && office?.name}</h1>
         <p>{office && office.description}</p>
         <br />
         <h1>Våre ansatte</h1>
         <EmployeeContainer>
           {office &&
-            office.employees.map((employee) => (
+            office?.employees.map((employee) => (
               <OfficeGridNoBorder>
                 <img
                   src={employee.image}
@@ -43,14 +43,14 @@ function Office() {
                   width="128"
                   height="128"
                 />
-                <p>{employee.name}</p>
-                <p>{employee.position}</p>
+                <p>{employee?.name}</p>
+                <p>{employee?.position}</p>
               </OfficeGridNoBorder>
             ))}
         </EmployeeContainer>
       </OfficeBodyContainer>
       <StyledWelcome>
-        <p>Kontakt oss på {office && office.phone}</p>
+        <p>Kontakt oss på {office && office?.phone}</p>
       </StyledWelcome>
     </>
   );
