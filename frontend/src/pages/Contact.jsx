@@ -50,7 +50,7 @@ function Contact() {
       }
     };
     fetchData();
-  }, []);
+  }, [getData]);
 
   return (
     <>
