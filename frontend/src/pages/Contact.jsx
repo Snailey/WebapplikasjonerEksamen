@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import create from '../utils/messageService.js';
 import { getUserInfo } from '../utils/users.js';
 
@@ -22,16 +22,15 @@ function Contact() {
     message: ' ',
   });
 
-  const history = useHistory();
+  // const history = useHistory();
   // setError('');
 
   const submitHandler = async (e) => {
     // console.log(details);
 
-    console.log(await create(details));
     await create(details);
 
-    history.push('/');
+    // history.push('/');
     e.preventDefault();
   };
 
