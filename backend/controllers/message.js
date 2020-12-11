@@ -15,7 +15,7 @@ export const create = catchAsyncErrors(async (req, res, next) => {
     message: msg.message,
     name: msg.author,
   });
-  res.status(201).json(message);
+  res.status(201).json({ success: true, data: msg });
 });
 
 // GET
