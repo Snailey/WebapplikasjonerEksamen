@@ -1,5 +1,6 @@
-import { React, useContext } from 'react';
+import { React, useContext, useState } from 'react';
 import ExpandingTextArea from '../components/ExpandingTextarea';
+import ImageModal from '../components/ImageModal';
 import { Context } from '../contexts/GlobalStateContext';
 import {
   StyledWelcome,
@@ -10,7 +11,35 @@ import {
 } from '../styles/StyledComponents';
 
 const MiniCMS = () => {
+  const [state, setState] = useState({
+    title: '',
+    author: '',
+    ingress: '',
+    image: '',
+    cateogry: '',
+  });
+  const [imageModal, setImageModal] = useState(false);
   const [user] = useContext(Context);
+  const updateImageModal = (data) => {
+    setImageModal(data);
+  };
+  const handleSubmit = async (event) => {
+    let valuesSet = true;
+    event.preventDefault();
+    // for (const key in state)
+    Object.keys(state).forEach((key) => {
+      if (`${key}` !== 'image' && !key) valuesSet = false;
+    });
+    alert(valuesSet);
+  };
+
+  const updateValue = (event) => {
+    const inputValue = { [event.target.name]: event.target.value };
+    setState((prev) => ({
+      ...prev,
+      ...inputValue,
+    }));
+  };
   return (
     <>
       {(() => {
@@ -32,15 +61,27 @@ const MiniCMS = () => {
                 <p>Ny Artikkel</p>
               </StyledWelcome>
               <FormContainer>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <Label>Tittel</Label>
-                  <Input placeholder="Skriv din tittel her" />
+                  <Input
+                    onChange={updateValue}
+                    name="title"
+                    placeholder="Skriv din tittel her"
+                  />
                   <Label>Ingress</Label>
-                  <Input placeholder="Skriv ingressen her" />
+                  <Input
+                    name="ingress"
+                    onChange={updateValue}
+                    placeholder="Skriv ingressen her"
+                  />
                   <Label>Innhold</Label>
                   <ExpandingTextArea />
+                  <Label>Bilde</Label>
+                  <button type="button" onClick={() => updateImageModal(true)}>
+                    Last opp bilde..
+                  </button>
                   <Label>Forfatter</Label>
-                  <select>
+                  <select onChange={updateValue} name="author">
                     <option disabled selected value>
                       Velg forfatter....
                     </option>
@@ -50,7 +91,11 @@ const MiniCMS = () => {
                   </select>
                   <Label>Kategori</Label>
                   <section>
-                    <select placeholder="Velg kategori">
+                    <select
+                      name="category"
+                      onChange={updateValue}
+                      placeholder="Velg kategori"
+                    >
                       <option>standby</option>
                     </select>
                     <button type="button">Legg til kategori</button>
@@ -58,6 +103,9 @@ const MiniCMS = () => {
                 </form>
                 <button type="submit">Send inn artikkel</button>
               </FormContainer>
+              {imageModal && (
+                <ImageModal modal={imageModal} updateModal={updateImageModal} />
+              )}
             </>
           );
         }
