@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types';
-import { React, useState, useContext } from 'react';
+import { React, useState } from 'react';
 import { upload, download } from '../utils/imageService';
 import {
   Label,
@@ -11,7 +11,6 @@ import {
   CloseButton,
   ErrorMessage,
 } from '../styles/StyledComponents';
-import { login } from '../utils/users';
 
 const ImageModal = (props) => {
   const [file, setFile] = useState();
@@ -19,18 +18,6 @@ const ImageModal = (props) => {
   const [success, setSuccess] = useState(false);
   const [id, setImageId] = useState(null);
   const [src, setSrc] = useState(null);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const { data } = await upload(file);
-    if (!data.success) {
-      setError(data.message);
-    } else {
-      setImageId(data?.data?._id);
-      setSuccess(true);
-      setError(null);
-    }
-  };
 
   function arrayBufferToBase64(buffer) {
     let binary = '';
@@ -51,12 +38,26 @@ const ImageModal = (props) => {
     // const imgUrl = `${process.env.BASE_URL}/${data?.data?.imagePath}`;
     setSrc(img);
   };
-  const updateValue = (event) => {
-    const inputValue = { [event.target.name]: event.target.value };
+  const updateValue = () => {
+    const inputValue = { image: id };
     props.setState((prev) => ({
       ...prev,
       ...inputValue,
     }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { data } = await upload(file);
+    if (!data.success) {
+      setError(data.message);
+    } else {
+      setImageId(data?.data?._id);
+      setSuccess(true);
+      setError(null);
+      updateValue();
+      props.updateModal(false);
+    }
   };
   return (
     <>

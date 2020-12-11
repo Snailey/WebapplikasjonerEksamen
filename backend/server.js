@@ -19,6 +19,7 @@ import auth from './routes/auth.js';
 import message from './routes/message.js';
 import log from './routes/log.js';
 import image from './routes/image.js';
+import category from './routes/category.js';
 
 const app = express();
 app.use(helmet()); // secures app with HTTP headers
@@ -61,6 +62,7 @@ app.use(`${process.env.BASEURL}/users`, user);
 app.use(`${process.env.BASEURL}/offices`, office);
 app.use(`${process.env.BASEURL}/message`, message);
 app.use(`${process.env.BASEURL}/log`, log);
+app.use(`${process.env.BASEURL}/categories`, category);
 app.use(`${process.env.BASEURL}/`, image);
 app.use(`${process.env.BASEURL}/auth`, auth);
 

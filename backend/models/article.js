@@ -17,21 +17,18 @@ const ArticleSchema = new Schema(
       type: String,
       required: [true, 'Artikkelen må ha inngress'],
     },
-    content: [
-      {
-        subtitle: {
-          type: String,
-        },
-        content: {
-          type: String,
-        },
-      },
-    ],
-    image: {
+
+    content: {
       type: String,
+      required: [true, 'Artikkelen må ha innhold'],
+    },
+    image: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Image',
     },
     category: {
-      type: String,
+      type: mongoose.Schema.ObjectId,
+      ref: 'Category',
       required: [true, 'Må ha en kategori'],
     },
     publishdate: {

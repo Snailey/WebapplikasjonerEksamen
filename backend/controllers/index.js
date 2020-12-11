@@ -5,3 +5,4 @@ export * as officeController from './office.js';
 export * as userController from './user.js';
 export * as logController from './log.js';
 export * as imageController from './image.js';
+export * as categoryController from './category.js';

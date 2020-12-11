@@ -28,3 +28,6 @@ export const download = async (id) => {
     return err.response;
   }
 };
+
+export const downloadUrl = (id) =>
+  `http://localhost:5000/api/v1/${API_DOWNLOAD_URL}/${id}`;
