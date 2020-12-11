@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { create } from '../utils/messageService.js';
 import { getUserInfo } from '../utils/users.js';
 
@@ -21,10 +21,12 @@ function Contact() {
   const [message, setMessage] = useState('');
   const [getData, setGetData] = useState(null);
   const [errormsg, setErrormsg] = useState('');
+  const [msgSendt, setMsgSendt] = useState(false);
 
-  const history = useHistory();
+  // const history = useHistory();
 
-  const submitHandler = async () => {
+  const submitHandler = async (e) => {
+    e.preventDefault();
     const msgdata = {
       author,
       email,
@@ -35,7 +37,7 @@ function Contact() {
       if (error) setErrormsg(error);
       else setErrormsg(data);
     } else {
-      history.push('/');
+      setMsgSendt(true);
     }
   };
 
@@ -97,7 +99,11 @@ function Contact() {
               value={message}
             />
           </FormGroup>
-          <Button type="submit">Send Melding</Button>
+          {!msgSendt && <Button type="submit">Send Melding</Button>}
+          {msgSendt && (
+            <h3>Melding er sendt, du vil få bekreftelse på epost</h3>
+          )}
+
           {errormsg && <ErrorMessage>{errormsg}</ErrorMessage>}
         </FormContainer>
       </form>

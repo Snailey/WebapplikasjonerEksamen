@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+// import { Redirect } from 'react-router-dom';
 import { register } from '../utils/users.js';
+import { Context } from '../contexts/GlobalStateContext';
 
 import {
   StyledWelcome,
@@ -14,20 +15,24 @@ import {
 } from '../styles/StyledComponents';
 
 function Register() {
-  const [data, setData] = useState({ name: '', email: '', password: '' });
+  const [user, setUser] = useContext(Context);
+  const [registerData, setRegisterData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
   const [errormsg, setErrormsg] = useState('');
 
-  const history = useHistory();
-
-  const submitHandler = async () => {
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const { data, error } = await register(registerData);
     console.log(data);
-    const { registerUser, error } = await register(data);
-    console.log(registerUser);
-    if (!registerUser.success) {
+    if (!data.success) {
       if (error) setErrormsg(error);
       else setErrormsg(data);
-    } else {
-      history.push('/');
+    } else if (data.success) {
+      setUser(data);
+      console.log(user);
     }
   };
 
@@ -45,8 +50,10 @@ function Register() {
               type="text"
               name="name"
               id="name"
-              onChange={(e) => setData({ ...data, name: e.target.value })}
-              value={data.name}
+              onChange={(e) =>
+                setRegisterData({ ...registerData, name: e.target.value })
+              }
+              value={registerData.name}
             />
           </FormGroup>
           <FormGroup>
@@ -55,8 +62,10 @@ function Register() {
               type="email"
               name="email"
               id="email"
-              onChange={(e) => setData({ ...data, email: e.target.value })}
-              value={data.email}
+              onChange={(e) =>
+                setRegisterData({ ...registerData, email: e.target.value })
+              }
+              value={registerData.email}
             />
           </FormGroup>
           <FormGroup>
@@ -65,13 +74,16 @@ function Register() {
               type="password"
               name="password"
               id="password"
-              onChange={(e) => setData({ ...data, password: e.target.value })}
-              value={data.password}
+              onChange={(e) =>
+                setRegisterData({ ...registerData, password: e.target.value })
+              }
+              value={registerData.password}
             />
           </FormGroup>
-          <Button type="submit">Registrer bruker</Button>
-          {errormsg && <ErrorMessage>{errormsg}</ErrorMessage>}
+          {!user?.user?.role && <Button type="submit">Registrer bruker</Button>}
+          {user?.user?.role && <h3>Du er registrert</h3>}
         </FormContainer>
+        {errormsg && <ErrorMessage>{errormsg}</ErrorMessage>}
       </form>
     </>
   );

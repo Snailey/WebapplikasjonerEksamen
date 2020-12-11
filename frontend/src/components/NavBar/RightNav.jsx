@@ -30,7 +30,7 @@ const RightNav = ({ open }) => {
       <Ul open={open}>
         <li>
           <NavLink exact to="/" activeClassName="active">
-            <p>Hjem</p>
+            <>Hjem</>
           </NavLink>
         </li>
         <li>
