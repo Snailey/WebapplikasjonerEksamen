@@ -469,3 +469,17 @@ export const ErrorMessage = styled.p`
   color: #d8000c;
   background-color: #ffbaba;
 `;
+
+export const ImageContainer = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  width: 500px;
+  height: 280px;
+`;
+
+export const Image = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+`;

@@ -2,40 +2,49 @@ import { React, useContext, useState, useEffect } from 'react';
 import ExpandingTextArea from '../components/ExpandingTextarea';
 import ImageModal from '../components/ImageModal';
 import { Context } from '../contexts/GlobalStateContext';
-// eslint-disable-next-line import/no-named-as-default
 import { catList } from '../utils/categoryService';
-import { downloadUrl } from '../utils/imageService';
+import { download } from '../utils/imageService';
+import CategoryModal from '../components/CategoryModal';
+import { create } from '../utils/article';
+// eslint-disable-next-line no-unused-vars
+import ArticleImage from '../components/ArticleImage';
 import {
   StyledWelcome,
   Label,
   Input,
   FormContainer,
   ErrorMessage,
+  Image,
+  ImageContainer,
 } from '../styles/StyledComponents';
 
 const MiniCMS = () => {
   const [error, setError] = useState('');
   // eslint-disable-next-line no-unused-vars
   const [cats, setCats] = useState('');
+  const [src, setSrc] = useState(null);
   const [state, setState] = useState({
     title: '',
     author: '',
     ingress: '',
     content: '',
-    image: '',
     category: '',
   });
+  const [categoryModal, setCategoryModal] = useState(false);
   const [imageModal, setImageModal] = useState(false);
   const [user] = useContext(Context);
   const updateImageModal = (data) => {
     setImageModal(data);
+  };
+  const updateCategoryModal = (data) => {
+    setCategoryModal(data);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await catList();
       if (!data) {
-        setError('f cats');
+        setError('fetching categories failed');
       } else {
         setCats(data);
       }
@@ -43,16 +52,16 @@ const MiniCMS = () => {
     fetchData();
   }, []);
   const handleSubmit = async (event) => {
-    let valuesSet = true;
     event.preventDefault();
     // for (const key in state)
-    Object.keys(state).forEach((key) => {
-      if (`${key}` !== 'image' && !state.key) {
-        console.log(key + state.key);
-        valuesSet = false;
-      }
-    });
-    alert(valuesSet);
+    alert(JSON.stringify(state));
+    const { data, error } = await create(state);
+    if (!data.success) {
+      if (error) setError(error);
+      else setError(data);
+    } else {
+      alert('sendt');
+    }
   };
 
   const updateValue = (event) => {
@@ -64,6 +73,27 @@ const MiniCMS = () => {
     }));
     console.log(JSON.stringify(state));
   };
+
+  function arrayBufferToBase64(buffer) {
+    let binary = '';
+    const bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach((b) => (binary += String.fromCharCode(b)));
+    return window.btoa(binary);
+  }
+
+  const downloadImage = async (id) => {
+    const { data } = await download(id);
+    console.log(data);
+    const img = await data.arrayBuffer().then((buffer) => {
+      const base64Flag = 'data:image/jpeg;base64,';
+      const imageStr = arrayBufferToBase64(buffer);
+      return base64Flag + imageStr;
+    });
+    console.log(img);
+    // const imgUrl = `${process.env.BASE_URL}/${data?.data?.imagePath}`;
+    setSrc(img);
+  };
+
   return (
     <>
       {(() => {
@@ -100,13 +130,12 @@ const MiniCMS = () => {
                     placeholder="Skriv ingressen her"
                   />
                   <Label>Innhold</Label>
-                  <ExpandingTextArea />
+                  <ExpandingTextArea setState={setState} />
                   <Label>Bilde</Label>
-                  {state.image && (
-                    <img
-                      src={downloadUrl(state.image)}
-                      alt="ARticle illustration"
-                    />
+                  {src && (
+                    <ImageContainer>
+                      <Image alt="your upload" src={src} />
+                    </ImageContainer>
                   )}
                   <button type="button" onClick={() => updateImageModal(true)}>
                     Last opp bilde..
@@ -114,7 +143,7 @@ const MiniCMS = () => {
                   <Label>Forfatter</Label>
                   <select onChange={updateValue} name="author">
                     <option disabled selected value>
-                      Velg forfatter....
+                      Velg forfatter...
                     </option>
                     <option value="Lars Larsen">Lars Larsen</option>
                     <option value="Gunn Gundersen">Gunn Gundersen</option>
@@ -124,7 +153,7 @@ const MiniCMS = () => {
                   <section>
                     <select name="category" onChange={updateValue}>
                       <option disabled selected value>
-                        Velg kategori....
+                        Velg kategori...
                       </option>
                       {cats?.data?.data?.map((e, key) => (
                         <option key={key} value={e._id}>
@@ -132,7 +161,12 @@ const MiniCMS = () => {
                         </option>
                       ))}
                     </select>
-                    <button type="button">Legg til kategori</button>
+                    <button
+                      type="button"
+                      onClick={() => updateCategoryModal(true)}
+                    >
+                      Legg til kategori
+                    </button>
                   </section>
                   <button type="submit">Send inn artikkel</button>
                 </form>
@@ -142,6 +176,14 @@ const MiniCMS = () => {
                   modal={imageModal}
                   updateModal={updateImageModal}
                   setState={setState}
+                  downloadImage={downloadImage}
+                />
+              )}
+              {categoryModal && (
+                <CategoryModal
+                  modal={categoryModal}
+                  updateModal={updateCategoryModal}
+                  setState={setState}
                 />
               )}
             </>
@@ -149,7 +191,7 @@ const MiniCMS = () => {
         }
         <ErrorMessage>
           Du må være administrator eller forfatter for å skrive artikler. Du er
-          en {user.user.role}. Stringify: {JSON.stringify(user)}
+          en {user?.user?.role}.
         </ErrorMessage>;
       })()}
     </>

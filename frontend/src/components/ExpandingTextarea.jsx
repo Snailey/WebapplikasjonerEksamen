@@ -1,10 +1,16 @@
 import { React, useState } from 'react';
-
+import PropTypes from 'prop-types';
 import { StyledExpandingTextArea } from '../styles/StyledComponents';
 
-const ExpandingTextArea = ({ minRows = 5, maxRows = 20 }) => {
+const ExpandingTextArea = (props, { minRows = 5, maxRows = 20 }) => {
   const [rows, setRows] = useState(minRows);
   const handleChange = (event) => {
+    const inputValue = { [event.target.name]: event.target.value };
+    console.log(inputValue);
+    props.setState((prev) => ({
+      ...prev,
+      ...inputValue,
+    }));
     const lineheight = 20;
 
     const f = Math.floor(event.target.scrollHeight / lineheight);
@@ -26,9 +32,12 @@ const ExpandingTextArea = ({ minRows = 5, maxRows = 20 }) => {
         onChange={handleChange}
         lineheight={20}
         rows={rows}
+        name="content"
       />
     </>
   );
 };
-
+ExpandingTextArea.propTypes = {
+  setState: PropTypes.func,
+};
 export default ExpandingTextArea;

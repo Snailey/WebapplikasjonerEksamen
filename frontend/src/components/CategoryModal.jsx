@@ -12,7 +12,7 @@ import {
 } from '../styles/StyledComponents';
 import { create } from '../utils/categoryService';
 
-const Modal = (props) => {
+const CategoryModal = (props) => {
   const [category, setCategory] = useState('');
   const [errormsg, setErrormsg] = useState('');
 
@@ -23,9 +23,8 @@ const Modal = (props) => {
       else setErrormsg(data);
     } else if (data.success) {
       props.updateModal(false);
+      console.log(JSON.stringify(data));
     }
-
-    event.preventDefault();
   };
 
   return (
@@ -33,7 +32,7 @@ const Modal = (props) => {
       <StyledModal>
         <ModalContents>
           <ModalHeader>
-            <p>Logg inn</p>
+            <p>Legg til kategori</p>
             <CloseButton
               type="button"
               onClick={() => props.updateModal(false)}
@@ -64,8 +63,8 @@ const Modal = (props) => {
   );
 };
 
-Modal.propTypes = {
+CategoryModal.propTypes = {
   updateModal: PropTypes.func,
 };
 
-export default Modal;
+export default CategoryModal;
