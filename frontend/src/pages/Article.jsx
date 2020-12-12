@@ -13,6 +13,7 @@ import { Context } from '../contexts/GlobalStateContext';
 import { create } from '../utils/logService';
 import { get, remove } from '../utils/article';
 import EditArticle from '../components/EditArticle';
+import ArticleImage from '../components/ArticleImage';
 
 function Article() {
   const [user] = useContext(Context);
@@ -81,6 +82,7 @@ function Article() {
             <p className="article_date">{article?.date}</p>
           </ArticleBoxContainer>
         </ArticleContainer>
+        <ArticleImage id={article?.image} />
         <p>{article?.ingress}</p>
         <p>{article?.content}</p>
         <p>
