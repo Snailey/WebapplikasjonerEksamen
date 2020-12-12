@@ -1,12 +1,10 @@
 import { React, useContext, useState, useEffect } from 'react';
-import { PropTypes } from 'prop-types';
 import ExpandingTextArea from '../components/ExpandingTextarea';
 import ImageModal from '../components/ImageModal';
 import { Context } from '../contexts/GlobalStateContext';
 import { catList } from '../utils/categoryService';
 import CategoryModal from '../components/CategoryModal';
 import { create } from '../utils/article';
-// eslint-disable-next-line no-unused-vars
 import ArticleImage from '../components/ArticleImage';
 import {
   StyledWelcome,
@@ -16,7 +14,8 @@ import {
   ErrorMessage,
 } from '../styles/StyledComponents';
 
-const MiniCMS = ({ before }) => {
+// eslint-disable-next-line react/prop-types
+const EditArticle = ({ before }) => {
   const [error, setError] = useState('');
   const [cats, setCats] = useState('');
   const [showImg, setShowImg] = useState(false);
@@ -151,16 +150,12 @@ const MiniCMS = ({ before }) => {
                     </button>
                   </section>
                   {user.user.role === 'admin' && (
-                    <>
-                      <Label>Make public</Label>
-                      <input
-                        type="checkbox"
-                        onChange={handleCheckBox}
-                        checked={state?.public}
-                      />
-                    </>
+                    <input
+                      type="checkbox"
+                      onChange={handleCheckBox}
+                      checked={state?.public}
+                    />
                   )}
-                  <br />
                   <button type="submit">Send inn artikkel</button>
                 </form>
               </FormContainer>
@@ -184,16 +179,11 @@ const MiniCMS = ({ before }) => {
           );
         }
         <ErrorMessage>
-          Du må være administrator eller forfatter for å skrive eller redigere
-          artikler. Du er en {user?.user?.role}.
+          Du må være administrator eller forfatter for å redigere artikler. Du
+          er en {user?.user?.role}.
         </ErrorMessage>;
       })()}
     </>
   );
 };
-
-MiniCMS.propTypes = {
-  before: PropTypes.any,
-};
-
-export default MiniCMS;
+export default EditArticle;

@@ -11,6 +11,16 @@ export const create = async (data) => {
   }
 };
 
+export const update = async (data) => {
+  console.log(data);
+  try {
+    // await getCsrfToken();
+    return await http.put(`/articles/${data._id}`, { ...data });
+  } catch (err) {
+    return err.response;
+  }
+};
+
 export const getPublic = async () => {
   try {
     // await getCsrfToken();
