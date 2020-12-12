@@ -7,6 +7,7 @@ export const listArticlesFilter = async (queryString) => {
   const filter = new Filter(Article.find(), queryString)
     .sort()
     .filter()
+    .search()
     .limit();
   const article = await filter.query;
   const paginate = await filter.paginate().query;
