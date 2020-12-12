@@ -1,5 +1,4 @@
 import { React, useContext, useState, useEffect } from 'react';
-import { PropTypes } from 'prop-types';
 import ExpandingTextArea from '../components/ExpandingTextarea';
 import ImageModal from '../components/ImageModal';
 import { Context } from '../contexts/GlobalStateContext';
@@ -16,11 +15,18 @@ import {
   ErrorMessage,
 } from '../styles/StyledComponents';
 
-const MiniCMS = ({ before }) => {
+const MiniCMS = () => {
   const [error, setError] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const [cats, setCats] = useState('');
   const [showImg, setShowImg] = useState(false);
-  const [state, setState] = useState(before);
+  const [state, setState] = useState({
+    title: '',
+    author: '',
+    ingress: '',
+    content: '',
+    category: '',
+  });
   const [categoryModal, setCategoryModal] = useState(false);
   const [imageModal, setImageModal] = useState(false);
   const [user] = useContext(Context);
@@ -47,7 +53,8 @@ const MiniCMS = ({ before }) => {
     // for (const key in state)
     alert(JSON.stringify(state));
     const { data, error } = await create(state);
-    if (!data.success) {
+    console.log(JSON.stringify(data));
+    if (!data?.success || !data.status === '201') {
       if (error) setError(error);
       else setError(data);
     } else {
@@ -64,12 +71,7 @@ const MiniCMS = ({ before }) => {
     }));
     console.log(JSON.stringify(state));
   };
-  const handleCheckBox = (e) => {
-    setState((prev) => ({
-      ...prev,
-      public: e.target.checked,
-    }));
-  };
+
   return (
     <>
       {(() => {
@@ -97,14 +99,12 @@ const MiniCMS = ({ before }) => {
                   <Input
                     onChange={updateValue}
                     name="title"
-                    value={state?.title}
                     placeholder="Skriv din tittel her"
                   />
                   <Label>Ingress</Label>
                   <Input
                     name="ingress"
                     onChange={updateValue}
-                    value={state?.ingress}
                     placeholder="Skriv ingressen her"
                   />
                   <Label>Innhold</Label>
@@ -116,13 +116,10 @@ const MiniCMS = ({ before }) => {
                   </button>
                   <Label>Forfatter</Label>
                   <select
+                    defaultValue="Velg forfatter..."
                     onChange={updateValue}
-                    value={state?.author}
                     name="author"
                   >
-                    <option disabled selected value>
-                      Velg forfatter...
-                    </option>
                     <option value="Lars Larsen">Lars Larsen</option>
                     <option value="Gunn Gundersen">Gunn Gundersen</option>
                     <option value="Simen Simensen">Simen Simensen</option>
@@ -130,8 +127,8 @@ const MiniCMS = ({ before }) => {
                   <Label>Kategori</Label>
                   <section>
                     <select
+                      defaultValue="Velg kategori..."
                       name="category"
-                      value={state?.category}
                       onChange={updateValue}
                     >
                       <option disabled selected value>
@@ -150,17 +147,6 @@ const MiniCMS = ({ before }) => {
                       Legg til kategori
                     </button>
                   </section>
-                  {user.user.role === 'admin' && (
-                    <>
-                      <Label>Make public</Label>
-                      <input
-                        type="checkbox"
-                        onChange={handleCheckBox}
-                        checked={state?.public}
-                      />
-                    </>
-                  )}
-                  <br />
                   <button type="submit">Send inn artikkel</button>
                 </form>
               </FormContainer>
@@ -184,16 +170,11 @@ const MiniCMS = ({ before }) => {
           );
         }
         <ErrorMessage>
-          Du må være administrator eller forfatter for å skrive eller redigere
-          artikler. Du er en {user?.user?.role}.
+          Du må være administrator eller forfatter for å skrive artikler. Du er
+          en {user?.user?.role}.
         </ErrorMessage>;
       })()}
     </>
   );
 };
-
-MiniCMS.propTypes = {
-  before: PropTypes.any,
-};
-
 export default MiniCMS;

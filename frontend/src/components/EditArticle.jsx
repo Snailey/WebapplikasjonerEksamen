@@ -1,11 +1,12 @@
 import { React, useContext, useState, useEffect } from 'react';
-import ExpandingTextArea from '../components/ExpandingTextarea';
-import ImageModal from '../components/ImageModal';
+import { PropTypes } from 'prop-types';
+import ExpandingTextArea from './ExpandingTextarea';
+import ImageModal from './ImageModal';
 import { Context } from '../contexts/GlobalStateContext';
 import { catList } from '../utils/categoryService';
-import CategoryModal from '../components/CategoryModal';
+import CategoryModal from './CategoryModal';
 import { create } from '../utils/article';
-import ArticleImage from '../components/ArticleImage';
+import ArticleImage from './ArticleImage';
 import {
   StyledWelcome,
   Label,
@@ -14,7 +15,6 @@ import {
   ErrorMessage,
 } from '../styles/StyledComponents';
 
-// eslint-disable-next-line react/prop-types
 const EditArticle = ({ before }) => {
   const [error, setError] = useState('');
   const [cats, setCats] = useState('');
@@ -150,11 +150,14 @@ const EditArticle = ({ before }) => {
                     </button>
                   </section>
                   {user.user.role === 'admin' && (
-                    <input
-                      type="checkbox"
-                      onChange={handleCheckBox}
-                      checked={state?.public}
-                    />
+                    <>
+                      <Label>Make public</Label>
+                      <input
+                        type="checkbox"
+                        onChange={handleCheckBox}
+                        checked={state?.public}
+                      />
+                    </>
                   )}
                   <button type="submit">Send inn artikkel</button>
                 </form>
@@ -186,4 +189,9 @@ const EditArticle = ({ before }) => {
     </>
   );
 };
+
+EditArticle.propTypes = {
+  before: PropTypes.object,
+};
+
 export default EditArticle;
