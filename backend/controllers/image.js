@@ -36,3 +36,8 @@ export const get = catchAsyncErrors(async (req, res, next) => {
   //     data: { image, imagePath },
   //   });
 });
+
+export const getImageById = catchAsyncErrors(async (req, res, next) => {
+  const image = await imageService.getImageById(req.params.id);
+  res.status(201).json({ success: true, data: image });
+});

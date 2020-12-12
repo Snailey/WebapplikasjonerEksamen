@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     cb(null, './public/images');
   },
   filename(req, file, cb) {
-    cb(null, `custom_value_${file.originalname}`);
+    cb(null, `article_image_${file.originalname}`);
   },
 });
 

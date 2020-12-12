@@ -19,7 +19,6 @@ const ImageModal = (props) => {
   const [id, setImageId] = useState(null);
 
   const updateValue = () => {
-    props.downloadImage(id);
     const inputValue = { image: id };
     props.setState((prev) => ({
       ...prev,
@@ -37,7 +36,8 @@ const ImageModal = (props) => {
       setSuccess(true);
       setError(null);
       updateValue();
-      props.updateModal(false);
+      console.log(props?.state);
+      props.setShowImg(true);
     }
   };
   return (
@@ -86,7 +86,8 @@ const ImageModal = (props) => {
 ImageModal.propTypes = {
   updateModal: PropTypes.func,
   setState: PropTypes.func,
-  downloadImage: PropTypes.func,
+  setShowImg: PropTypes.func,
+  state: PropTypes.any,
 };
 
 export default ImageModal;
