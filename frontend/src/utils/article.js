@@ -26,30 +26,47 @@ export const getPublic = async (search: String, filter: String) => {
   try {
     // await getCsrfToken();
     if (filter === 'Alle' || search === null) {
-      return await http.get(`articles/filter/?public=true&published=true`);
+      return await http.get(
+        `articles/filter/?public=true&published=true&limit=100`
+      );
     }
     if (filter === 'Alle' || search === !null) {
       return await http.get(
-        `articles/filter/?public=true&published=true&q=${search}`
+        `articles/filter/?public=true&published=true&q=${search}&limit=100`
       );
     }
     if (filter !== 'Alle' || search === !null) {
       return await http.get(
-        `articles/filter/?public=true&published=true&category=${filter}`
+        `articles/filter/?public=true&published=true&category=${filter}&limit=100`
       );
     }
     return await http.get(
-      `articles/filter/?public=true&published=true&category=${filter}&q=${search}`
+      `articles/filter/?public=true&published=true&category=${filter}&q=${search}&limit=100`
     );
   } catch (err) {
     return err.response.data;
   }
 };
 
-export const getPublished = async () => {
+export const getPublished = async (search: String, filter: String) => {
   try {
     // await getCsrfToken();
-    return await http.get(`articles/filter/?published=true`);
+    if (filter === 'Alle' || search === null) {
+      return await http.get(`articles/filter/?published=true&limit=100`);
+    }
+    if (filter === 'Alle' || search === !null) {
+      return await http.get(
+        `articles/filter/?published=true&q=${search}&limit=100`
+      );
+    }
+    if (filter !== 'Alle' || search === !null) {
+      return await http.get(
+        `articles/filter/?published=true&category=${filter}&limit=100`
+      );
+    }
+    return await http.get(
+      `articles/filter/?published=true&category=${filter}&q=${search}&limit=100`
+    );
   } catch (err) {
     return err.response.data;
   }

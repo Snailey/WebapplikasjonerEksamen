@@ -37,6 +37,10 @@ const filterData = [
     value: 'Innredning',
     label: 'Innredning',
   },
+  {
+    value: 'Rør',
+    label: 'Rør',
+  },
 ];
 
 function Articles() {
@@ -44,6 +48,7 @@ function Articles() {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('Alle');
   const [articles, setArticles] = useState(null);
+  // const [page, setPage] = useState(1);
 
   function avgReadTime(str) {
     const words = str.split(' ').length;
@@ -66,7 +71,6 @@ function Articles() {
       console.log('error getting data from db');
     } else {
       setArticles(data.data.data);
-      // console.log(data.data);
     }
   };
 
@@ -107,7 +111,7 @@ function Articles() {
             </Link>
           )}
           <ArticleBoxContainer>
-            <ArticleSearchBtn>SØK</ArticleSearchBtn>
+            <p>Søke felt</p>
             <textarea
               type="text"
               name="search"
@@ -115,7 +119,7 @@ function Articles() {
               onChange={(e) => setSearch(e.target.value)}
               value={search}
             />
-            <ArticleSearchBtn>FILTER</ArticleSearchBtn>
+            <p>Filter</p>
             {filter && (
               <OfficeFilterButton
                 value={filterData?.find((obj) => obj.value === filter)}
@@ -123,6 +127,7 @@ function Articles() {
                 onChange={handleChange}
               />
             )}
+            <ArticleSearchBtn onClick={getData}>SØK</ArticleSearchBtn>
           </ArticleBoxContainer>
         </ArticleBtnContainer>
         {articles &&
@@ -163,6 +168,30 @@ function Articles() {
 }
 
 export default Articles;
+
+/*
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(null);
+
+<div>
+          <p>
+            Du er nå på side {page} av {totalPages}
+          </p>
+          <button type="button" onClick={setPage(1)}>
+            {page}
+          </button>
+        </div>
+
+
+  const getTotalPages = async () => {
+    const { data } = await getPublic(search, filter);
+    if (!data?.success) {
+      console.log('error getting data from db');
+    } else {
+      setTotalPages(data.data.totalPages);
+    }
+  };
+*/
 
 /*
  .filter((category) => category.category.includes(filter))
