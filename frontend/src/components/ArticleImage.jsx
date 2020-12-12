@@ -20,7 +20,7 @@ const ArticleImage = ({ id }) => {
       } else {
         console.log(JSON.stringify(data));
         const path = data?.data?.data?.path;
-        const path2 = path?.substring(path.lastIndexOf('\\') + 1);
+        const path2 = path?.substring(path?.lastIndexOf('\\') + 1);
         setSrc(`http://localhost:5000/images/${path2}`);
       }
     };
