@@ -26,11 +26,11 @@ const OfficeSchema = new Schema(
     },
     phone: {
       type: String,
-      // required: [true, 'Fyll ut telefonnr til kontoret'],
+      required: [true, 'Fyll ut telefonnr til kontoret'],
     },
     description: {
       type: String,
-      // required: [true, 'Fyll ut beskrivelsen til kontoret'],
+      required: [true, 'Fyll ut beskrivelsen til kontoret'],
     },
     employees: [
       {
