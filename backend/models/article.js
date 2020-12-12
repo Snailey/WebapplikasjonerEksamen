@@ -6,20 +6,20 @@ const ArticleSchema = new Schema(
   {
     title: {
       type: String,
-      // required: [true, 'Fyll ut overskrift'],
+      required: [true, 'Fyll ut overskrift'],
     },
     author: {
       type: String,
-      // required: [true, 'Det må finnes en frofatter av artikkelen'],
+      required: [true, 'Det må finnes en frofatter av artikkelen'],
     },
     ingress: {
       type: String,
-      // required: [true, 'Artikkelen må ha inngress'],
+      required: [true, 'Artikkelen må ha inngress'],
     },
 
     content: {
       type: String,
-      // required: [true, 'Artikkelen må ha innhold'],
+      required: [true, 'Artikkelen må ha innhold'],
     },
     image: {
       type: mongoose.Schema.ObjectId,
@@ -27,7 +27,7 @@ const ArticleSchema = new Schema(
     },
     category: {
       type: String,
-      // required: [true, 'Må ha en kategori'],
+      required: [true, 'Må ha en kategori'],
     },
     publishdate: {
       type: Date, // '2002-12-09'
