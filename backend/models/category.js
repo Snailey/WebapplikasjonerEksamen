@@ -12,4 +12,11 @@ const CategorySchema = new Schema(
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
+CategorySchema.virtual('article', {
+  ref: 'Article',
+  localField: '_id',
+  foreignField: 'article',
+  justOne: false,
+});
+
 export default mongoose.model('Category', CategorySchema);
