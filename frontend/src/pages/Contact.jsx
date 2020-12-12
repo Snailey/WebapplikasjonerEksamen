@@ -22,22 +22,41 @@ function Contact() {
   const [getData, setGetData] = useState(null);
   const [errormsg, setErrormsg] = useState('');
   const [msgSendt, setMsgSendt] = useState(false);
+  const [validated, setValidated] = useState(false);
 
-  // const history = useHistory();
+  const validate = () => {
+    if (author.length <= 0) {
+      setErrormsg('Fyll ut navn');
+    } else if (author.length <= 2) {
+      setErrormsg('Fyll ut navn, minst 3 tegn');
+    } else if (email.length <= 0) {
+      setErrormsg('Fyll ut epost');
+    } else if (message.length <= 0) {
+      setErrormsg('Fyll inn beskjed');
+    } else if (message.length <= 5) {
+      setErrormsg('Beskjeden må minst ha 6 tegn');
+    } else {
+      setValidated(true);
+      setErrormsg(null);
+    }
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const msgdata = {
-      author,
-      email,
-      message,
-    };
-    const { data, error } = await create(msgdata);
-    if (!data.success) {
-      if (error) setErrormsg(error);
-      else setErrormsg(data);
-    } else {
-      setMsgSendt(true);
+    validate();
+    if (validated) {
+      const msgdata = {
+        author,
+        email,
+        message,
+      };
+      const { data, error } = await create(msgdata);
+      if (!data.success) {
+        if (error) setErrormsg(error);
+        else setErrormsg(data);
+      } else {
+        setMsgSendt(true);
+      }
     }
   };
 

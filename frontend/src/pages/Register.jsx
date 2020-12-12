@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-// import { Redirect } from 'react-router-dom';
 import { register } from '../utils/users.js';
 import { Context } from '../contexts/GlobalStateContext';
 
@@ -22,17 +21,42 @@ function Register() {
     password: '',
   });
   const [errormsg, setErrormsg] = useState('');
+  const [validated, setValidated] = useState(false);
+
+  const validate = () => {
+    const hasNumber = /\d/;
+
+    if (registerData.name.length <= 0) {
+      setErrormsg('Fyll ut navn');
+    } else if (registerData.name.length <= 2) {
+      setErrormsg('Fyll ut navn, minst 3 tegn');
+    } else if (registerData.email.length <= 0) {
+      setErrormsg('Fyll ut epost');
+    } else if (registerData.password.length <= 0) {
+      setErrormsg('Fyll ut passord');
+    } else if (registerData.password.length <= 5) {
+      setErrormsg('Passord må minst ha 6 tegn');
+    } else if (!hasNumber.test(registerData.password)) {
+      setErrormsg('Passord må inneholde minst 1 siffer');
+    } else {
+      setValidated(true);
+      setErrormsg(null);
+    }
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const { data, error } = await register(registerData);
-    console.log(data);
-    if (!data.success) {
-      if (error) setErrormsg(error);
-      else setErrormsg(data);
-    } else if (data.success) {
-      setUser(data);
-      console.log(user);
+    validate();
+    if (validated) {
+      const { data, error } = await register(registerData);
+      console.log(data);
+      if (!data.success) {
+        if (error) setErrormsg(error);
+        else setErrormsg(data);
+      } else if (data.success) {
+        setUser(data);
+        console.log(user);
+      }
     }
   };
 

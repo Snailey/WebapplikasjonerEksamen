@@ -36,9 +36,3 @@ export const updateLog = async (id, data) =>
   Log.findByIdAndUpdate(id, data, {
     new: true,
   });
-
-// add user views
-export const addUserViews = async (email, url) =>
-  Log.findOne(url, {
-    new: true,
-  });
