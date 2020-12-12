@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"email\": \"test4@test.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"email\": \"test44565@test.com\",\r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -51,7 +51,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Test\",\r\n    \"author\": \"5fc776949d354058c5551e0f\",\r\n    \"ingress\": \"Test Ingress\",\r\n    \"category\": \"Test\",\r\n    \"content\": [\r\n        {\r\n            \"subtitle\": \"Test Subtitle1\",\r\n            \"content\": \"Test Content1\"\r\n        },\r\n        {\r\n            \"subtitle\": \"Test Subtitle2\",\r\n            \"content\": \"Test Conten2\"\r\n        }\r\n    ],\r\n    \"image\": \"https://www.gamereactor.no/media/65/_1976583.jpg\",\r\n    \"publishdate\": \"2020-12-02\",\r\n    \"public\": \"true\"\r\n}",
+							"raw": "{\r\n    \"title\": \"Test\",\r\n    \"author\": \"Arne Johansen\",\r\n    \"ingress\": \"Test Ingress\",\r\n    \"category\": \"Rør\",\r\n    \"content\": \"Dett er en masse test\",\r\n    \"publishdate\": \"2020-12-02\",\r\n    \"public\": \"false\",\r\n    \"published\": \"false\",\r\n    \"image\": \"5fd505fab2e0b14f983462a1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -70,7 +70,8 @@
 								"articles",
 								""
 							]
-						}
+						},
+						"description": "Create new Article: \r\n\r\nBody;\r\n{\r\n    \"title\": \"Test\",\r\n    \"author\": \"Arne Johansen\",\r\n    \"ingress\": \"Test Ingress\",\r\n    \"category\": \"Rør\",\r\n    \"content\": \"Dett er en masse test\",\r\n    \"publishdate\": \"2020-12-02\",\r\n    \"public\": \"false\",\r\n    \"published\": \"false\",\r\n    \"image\": \"5fd505fab2e0b14f983462a1\"\r\n}\r\n\r\nResponse:\r\n{\r\n    \"public\": false,\r\n    \"_id\": \"5fd5371d55d4c949880c216d\",\r\n    \"title\": \"Test\",\r\n    \"author\": \"Arne Johansen\",\r\n    \"ingress\": \"Test Ingress\",\r\n    \"category\": \"Rør\",\r\n    \"content\": \"Dett er en masse test\",\r\n    \"publishdate\": \"2020-12-02T00:00:00.000Z\",\r\n    \"published\": false,\r\n    \"image\": \"5fd505fab2e0b14f983462a1\",\r\n    \"createdAt\": \"2020-12-12T21:33:17.512Z\",\r\n    \"updatedAt\": \"2020-12-12T21:33:17.512Z\",\r\n    \"__v\": 0,\r\n    \"id\": \"5fd5371d55d4c949880c216d\"\r\n}"
 					},
 					"response": []
 				},
@@ -97,12 +98,12 @@
 					"response": []
 				},
 				{
-					"name": "getArticleById",
+					"name": "ListArticlesByFilter",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:5000/api/v1/articles/5fc81ccfd35f11373cc25533",
+							"raw": "localhost:5000/api/v1/articles/filter/?public=true&published=true",
 							"host": [
 								"localhost"
 							],
@@ -111,9 +112,71 @@
 								"api",
 								"v1",
 								"articles",
-								"5fc81ccfd35f11373cc25533"
+								"filter",
+								""
+							],
+							"query": [
+								{
+									"key": "public",
+									"value": "true"
+								},
+								{
+									"key": "published",
+									"value": "true"
+								},
+								{
+									"key": "q",
+									"value": "test",
+									"disabled": true
+								}
 							]
-						}
+						},
+						"description": "Get Articles by filter\r\n\r\nexample:\r\nlocalhost:5000/api/v1/articles/filter/?public=true&published=true&q=test\r\ngets all articles with public = true, published = true, and contains \"test\""
+					},
+					"response": []
+				},
+				{
+					"name": "getPublishedArticles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/articles/published/",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"articles",
+								"published",
+								""
+							]
+						},
+						"description": "Dev only"
+					},
+					"response": []
+				},
+				{
+					"name": "getArticleById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/articles/5fd4dfd76bb26b41d4116d2d",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"articles",
+								"5fd4dfd76bb26b41d4116d2d"
+							]
+						},
+						"description": "Get article by ID\r\n\r\nGET: \r\nlocalhost:5000/api/v1/articles/5fd4dfd76bb26b41d4116d2d\r\n\r\nResponse:\r\n{\r\n    \"success\": true,\r\n    \"data\": {\r\n        \"public\": true,\r\n        \"_id\": \"5fd5065db2e0b14f983462a5\",\r\n        \"title\": \"Test\",\r\n        \"author\": \"Arne Johansen\",\r\n        \"ingress\": \"Test Ingress\",\r\n        \"category\": \"Rør\",\r\n        \"content\": \"Dett er en masse test\",\r\n        \"publishdate\": \"2020-12-02T00:00:00.000Z\",\r\n        \"published\": false,\r\n        \"image\": \"5fd505fab2e0b14f983462a1\",\r\n        \"createdAt\": \"2020-12-12T18:05:17.179Z\",\r\n        \"updatedAt\": \"2020-12-12T18:05:17.179Z\",\r\n        \"__v\": 0,\r\n        \"id\": \"5fd5065db2e0b14f983462a5\"\r\n    }\r\n}"
 					},
 					"response": []
 				},
@@ -135,7 +198,8 @@
 								"public",
 								""
 							]
-						}
+						},
+						"description": "Dev only"
 					},
 					"response": []
 				},
@@ -165,7 +229,8 @@
 								"articles",
 								"5fc77e9be8d5764020934cda"
 							]
-						}
+						},
+						"description": "Update article\r\nneeds ID\r\nand updated info in body"
 					},
 					"response": []
 				},
@@ -186,7 +251,8 @@
 								"articles",
 								"5fc78b7a5f9ed3bcc08b1f2c"
 							]
-						}
+						},
+						"description": "Delete article by ID"
 					},
 					"response": []
 				}
@@ -203,7 +269,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Testesen\",\r\n    \"password\":\"123456\",\r\n    \"email\":\"testesen2@test.com\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Testesen\",\r\n    \"password\":\"123456\",\r\n    \"email\":\"testesen26574@test.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -211,7 +277,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:5000/api/v1/register",
+							"raw": "localhost:5000/api/v1/auth/register",
 							"host": [
 								"localhost"
 							],
@@ -219,9 +285,11 @@
 							"path": [
 								"api",
 								"v1",
+								"auth",
 								"register"
 							]
-						}
+						},
+						"description": "Regester new user\r\n\r\nBody:\r\n{\r\n    \"name\":\"Testesen\",\r\n    \"password\":\"123456\",\r\n    \"email\":\"test@test.com\"\r\n}\r\n\r\nResponse: {\r\n    \"success\": true,\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDUzODlmNTVkNGM5NDk4ODBjMjE2ZSIsImlhdCI6MTYwNzgwOTE4MywiZXhwIjoxNjA4NDEzOTgzfQ.8Y2yjj-JZfJc7xR_8PZB2h2HTWeOMuOn9caslpi5q44\",\r\n    \"user\": {\r\n        \"email\": \"testesen@test.com\",\r\n        \"role\": \"user\"\r\n    }\r\n}"
 					},
 					"response": []
 				},
@@ -258,7 +326,8 @@
 								"auth",
 								"login"
 							]
-						}
+						},
+						"description": "LogIn registerd user\r\n\r\nBody: \r\n{\r\n    \"password\":\"123456\",\r\n    \"email\":\"admin@test.com\"\r\n}\r\n\r\nResponse:\r\n{\r\n    \"success\": true,\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDJhYWUyNWQzMTU3MmUzYzA1MDE3OCIsImlhdCI6MTYwNzgwOTIzNiwiZXhwIjoxNjA4NDE0MDM2fQ.w3swv_fUgTs2mK-BXvVRtztWP_1SaFEx6aGTcVrVocc\",\r\n    \"user\": {\r\n        \"email\": \"admin@test.com\",\r\n        \"role\": \"admin\"\r\n    }\r\n}\r\n\r\nError msg:\r\n\"Finner ikke epost, prøv en annen\"\r\nor \r\n\"Passord er feil\""
 					},
 					"response": []
 				},
@@ -276,7 +345,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"password\":\"123456\",\r\n    \"email\":\"testesen2@test.com\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -295,7 +364,8 @@
 								"auth",
 								"logout"
 							]
-						}
+						},
+						"description": "Logges out current user\r\n\r\nresponse:\r\n{\r\n    \"success\": true,\r\n    \"data\": \"Logget ut\"\r\n}"
 					},
 					"response": []
 				},
@@ -335,7 +405,8 @@
 								"auth",
 								"me"
 							]
-						}
+						},
+						"description": "Gets info about current user\r\n\r\nResponse:\r\n{\r\n    \"success\": true,\r\n    \"data\": {\r\n        \"role\": \"admin\",\r\n        \"_id\": \"5fd2aae25d31572e3c050178\",\r\n        \"name\": \"Admin Adminson\",\r\n        \"email\": \"admin@test.com\",\r\n        \"createdAt\": \"2020-12-10T23:10:26.151Z\",\r\n        \"updatedAt\": \"2020-12-10T23:10:26.151Z\",\r\n        \"__v\": 0,\r\n        \"id\": \"5fd2aae25d31572e3c050178\"\r\n    }\r\n}"
 					},
 					"response": []
 				}
@@ -346,55 +417,13 @@
 			"name": "Office",
 			"item": [
 				{
-					"name": "getAllOffices",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:5000/api/v1/offices/",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"v1",
-								"offices",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getOfficeById",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:5000/api/v1/offices/5fc77e9be8d5764020934cda",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"v1",
-								"offices",
-								"5fc77e9be8d5764020934cda"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "createOffice",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"name\": \"Rørlegger 1\",\r\n    \"email\": \"fredrikstad1@epost.no\",\r\n    \"city\": \"Fredrikstad\",\r\n    \"address\": \"Rørleggerveien 1\",\r\n    \"phone\": \"69 99 00 00\",\r\n    \"description\":\r\n      \"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet\",\r\n    \"employees\": [\r\n      {\r\n        \"name\": \"Ansatt Ansattnavn\",\r\n        \"position\": \"Stilling\",\r\n        \"image\": \"https://www.gamereactor.no/media/65/_1976583.jpg\"\r\n      },\r\n      {\r\n        \"name\": \"Ansatt Ansattnavn\",\r\n        \"position\": \"Stilling\",\r\n        \"image\": \"https://www.gamereactor.no/media/65/_1976583.jpg\"\r\n      },\r\n      {\r\n        \"name\": \"Ansatt Ansattnavn\",\r\n        \"position\": \"Stilling\",\r\n        \"image\": \"https://www.gamereactor.no/media/65/_1976583.jpg\"\r\n      },\r\n      {\r\n        \"name\": \"Ansatt Ansattnavn\",\r\n        \"position\": \"Stilling\",\r\n        \"image\": \"https://www.gamereactor.no/media/65/_1976583.jpg\"\r\n      }\r\n    ] \r\n}   ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -413,7 +442,52 @@
 								"offices",
 								""
 							]
-						}
+						},
+						"description": "Dev only"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllOffices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/offices/",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"offices",
+								""
+							]
+						},
+						"description": "Gets all offices in DB"
+					},
+					"response": []
+				},
+				{
+					"name": "getOfficeById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/offices/5fd208b8a44404085098ca85",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"offices",
+								"5fd208b8a44404085098ca85"
+							]
+						},
+						"description": "Gets Offie inn DB by id:\r\n\r\nGET localhost:5000/api/v1/offices/5fd2aae25d31572e3c05017a\r\n\r\nResponse:\r\n{\r\n    \"success\": true,\r\n    \"data\": {\r\n        \"_id\": \"5fd2aae25d31572e3c05017a\",\r\n        \"id\": 1,\r\n        \"name\": \"Rørlegger 1\",\r\n        \"email\": \"fredrikstad1@epost.no\",\r\n        \"city\": \"Fredrikstad\",\r\n        \"address\": \"Rørleggerveien 1\",\r\n        \"phone\": \"69 99 00 00\",\r\n        \"description\": \"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet\",\r\n        \"employees\": [\r\n            {\r\n                \"_id\": \"5fd2aae25d31572e3c05017b\",\r\n                \"name\": \"Ansatt Ansattnavn\",\r\n                \"position\": \"Stilling\",\r\n                \"image\": \"https://www.gamereactor.no/media/65/_1976583.jpg\"\r\n            },\r\n            {\r\n                \"_id\": \"5fd2aae25d31572e3c05017c\",\r\n                \"name\": \"Ansatt Ansattnavn\",\r\n                \"position\": \"Stilling\",\r\n                \"image\": \"https://www.gamereactor.no/media/65/_1976583.jpg\"\r\n            },\r\n            {\r\n                \"_id\": \"5fd2aae25d31572e3c05017d\",\r\n                \"name\": \"Ansatt Ansattnavn\",\r\n                \"position\": \"Stilling\",\r\n                \"image\": \"https://www.gamereactor.no/media/65/_1976583.jpg\"\r\n            },\r\n            {\r\n                \"_id\": \"5fd2aae25d31572e3c05017e\",\r\n                \"name\": \"Ansatt Ansattnavn\",\r\n                \"position\": \"Stilling\",\r\n                \"image\": \"https://www.gamereactor.no/media/65/_1976583.jpg\"\r\n            },\r\n            {\r\n                \"_id\": \"5fd2aae25d31572e3c05017f\",\r\n                \"name\": \"Ansatt Ansattnavn\",\r\n                \"position\": \"Stilling\",\r\n                \"image\": \"https://www.gamereactor.no/media/65/_1976583.jpg\"\r\n            },\r\n            {\r\n                \"_id\": \"5fd2aae25d31572e3c050180\",\r\n                \"name\": \"Ansatt Ansattnavn\",\r\n                \"position\": \"Stilling\",\r\n                \"image\": \"https://www.gamereactor.no/media/65/_1976583.jpg\"\r\n            }\r\n        ],\r\n        \"createdAt\": \"2020-12-10T23:10:26.156Z\",\r\n        \"updatedAt\": \"2020-12-10T23:10:26.156Z\",\r\n        \"__v\": 0\r\n    }\r\n}"
 					},
 					"response": []
 				}
@@ -430,7 +504,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"author\": \"5fc81cacd35f11373cc25532\",\r\n    \"message\": \"Dette er en test beskjed\"\r\n}",
+							"raw": "{\r\n    \"author\": \"5fc81cacd35f11373cc25532\",\r\n    \"email\": \"test@test.com\",\r\n    \"message\": \"Dette er en test beskjed\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -449,7 +523,8 @@
 								"message",
 								""
 							]
-						}
+						},
+						"description": "Creates new messege from contact from\r\n\r\nBody:\r\n{\r\n    \"author\": \"5fc81cacd35f11373cc25532\",\r\n    \"email\": \"test@test.com\",\r\n    \"message\": \"Dette er en test beskjed\"\r\n}\r\n\r\nResponse:\r\n{\r\n    \"success\": true,\r\n    \"data\": {\r\n        \"_id\": \"5fd53a3355d4c949880c2170\",\r\n        \"author\": \"5fc81cacd35f11373cc25532\",\r\n        \"email\": \"test@test.com\",\r\n        \"message\": \"Dette er en test beskjed\",\r\n        \"createdAt\": \"2020-12-12T21:46:27.498Z\",\r\n        \"updatedAt\": \"2020-12-12T21:46:27.498Z\",\r\n        \"__v\": 0,\r\n        \"id\": \"5fd53a3355d4c949880c2170\"\r\n    }\r\n}"
 					},
 					"response": []
 				},
@@ -470,7 +545,8 @@
 								"message",
 								""
 							]
-						}
+						},
+						"description": "Gets all messages in db"
 					},
 					"response": []
 				}
@@ -478,7 +554,7 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "log",
+			"name": "Log",
 			"item": [
 				{
 					"name": "createLog",
@@ -506,7 +582,31 @@
 								"log",
 								""
 							]
-						}
+						},
+						"description": "Creates new log\r\n\r\nBody:\r\n{\r\n    \"url\":\"www.test100.com\",\r\n    \"time\": 10\r\n}\r\n\r\nResponse if url not registerd in db:\r\n{\r\n    \"success\": true,\r\n    \"data\": {\r\n        \"_id\": \"5fd53a7655d4c949880c2171\",\r\n        \"url\": \"www.test100.com\",\r\n        \"time\": 10,\r\n        \"views\": 1,\r\n        \"users\": [],\r\n        \"createdAt\": \"2020-12-12T21:47:34.275Z\",\r\n        \"updatedAt\": \"2020-12-12T21:47:34.275Z\",\r\n        \"__v\": 0,\r\n        \"id\": \"5fd53a7655d4c949880c2171\"\r\n    }\r\n}\r\n\r\nResponse if url alredy exist:\r\n{\r\n    \"success\": true,\r\n    \"data\": {\r\n        \"_id\": \"5fd53a7655d4c949880c2171\",\r\n        \"url\": \"www.test100.com\",\r\n        \"time\": 20,\r\n        \"views\": 2,\r\n        \"users\": [],\r\n        \"createdAt\": \"2020-12-12T21:47:34.275Z\",\r\n        \"updatedAt\": \"2020-12-12T21:47:44.928Z\",\r\n        \"__v\": 0,\r\n        \"id\": \"5fd53a7655d4c949880c2171\"\r\n    }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "getCSVlist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/log/csv/",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"log",
+								"csv",
+								""
+							]
+						},
+						"description": "Gets all logs from db"
 					},
 					"response": []
 				},
@@ -558,7 +658,8 @@
 									"disabled": true
 								}
 							]
-						}
+						},
+						"description": "Gets all logs by filtering\r\n\r\nexamples:\r\nsort by views\r\ncontains Article\r\nlimiits to 10 first logs"
 					},
 					"response": []
 				},
@@ -580,7 +681,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:5000/api/v1/log/",
+							"raw": "localhost:5000/api/v1/log/www.test100.com",
 							"host": [
 								"localhost"
 							],
@@ -589,9 +690,10 @@
 								"api",
 								"v1",
 								"log",
-								""
+								"www.test100.com"
 							]
-						}
+						},
+						"description": "gets Log by Url"
 					},
 					"response": []
 				},
@@ -612,7 +714,8 @@
 								"log",
 								"5fcc26b6cfaa4d184ca92127"
 							]
-						}
+						},
+						"description": "Gets log by ID\r\n\r\nGET localhost:5000/api/v1/log/5fd2bc13f2c682179c356511\r\n\r\nresponse if hit:\r\n{\r\n    \"success\": true,\r\n    \"data\": {\r\n        \"_id\": \"5fd2bc13f2c682179c356511\",\r\n        \"url\": \"http://localhost:3000/articles/2\",\r\n        \"time\": 0.957,\r\n        \"views\": 1,\r\n        \"users\": [],\r\n        \"createdAt\": \"2020-12-11T00:23:47.682Z\",\r\n        \"updatedAt\": \"2020-12-11T00:23:47.682Z\",\r\n        \"__v\": 0,\r\n        \"id\": \"5fd2bc13f2c682179c356511\"\r\n    }\r\n}\r\n\r\nresponse don't find log:\r\n\"Finner ikke log med id:  5fcc26b6cfaa4d184ca92127\""
 					},
 					"response": []
 				},
@@ -642,7 +745,124 @@
 								"log",
 								""
 							]
-						}
+						},
+						"description": "update log\r\nadds time new time to registerd\r\nadds 1 to view count"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "addCategory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Rør\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						},
+						"description": "adds category\r\n\r\nbody:\r\n{\r\n    \"name\": \"Rør\"\r\n}\r\n\r\nrespone:\r\n{\r\n    \"success\": true,\r\n    \"data\": {\r\n        \"_id\": \"5fd53c4855d4c949880c2172\",\r\n        \"name\": \"Rør\",\r\n        \"value\": \"Rør\",\r\n        \"label\": \"Rør\",\r\n        \"createdAt\": \"2020-12-12T21:55:20.576Z\",\r\n        \"updatedAt\": \"2020-12-12T21:55:20.576Z\",\r\n        \"__v\": 0,\r\n        \"id\": \"5fd53c4855d4c949880c2172\"\r\n    }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "getCategories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						},
+						"description": "gets all categories in db"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Images",
+			"item": [
+				{
+					"name": "downloadImage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/download/5fd505fab2e0b14f983462a1",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"download",
+								"5fd505fab2e0b14f983462a1"
+							]
+						},
+						"description": "gets ppicture on server by ID\r\n\r\nresponse = picture"
+					},
+					"response": []
+				},
+				{
+					"name": "uploadImage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Github/artikkel.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/upload",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"upload"
+							]
+						},
+						"description": "Upload image to server\r\n\r\nuse body - form-data\r\n    key = image \r\n    value = file on computer\r\n\r\nrespone:\r\n{\r\n    \"success\": true,\r\n    \"data\": {\r\n        \"_id\": \"5fd53c9d55d4c949880c2173\",\r\n        \"path\": \"public\\\\images\\\\article_image_artikkel.jpg\",\r\n        \"file_mimetype\": \"image/jpeg\",\r\n        \"createdAt\": \"2020-12-12T21:56:45.987Z\",\r\n        \"updatedAt\": \"2020-12-12T21:56:45.987Z\",\r\n        \"__v\": 0\r\n    }\r\n}"
 					},
 					"response": []
 				}

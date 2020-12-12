@@ -50,6 +50,7 @@ Email: super@test.com
 Password: 123456
 
 URLS:
-Postman: ******\*\*\*******
+Postman: https://www.getpostman.com/collections/ed8960ddc89690b49b3a
+Postman Published: https://documenter.getpostman.com/view/13348414/TVmV4tQR
 GITHUB: https://github.com/Snailey/WebapplikasjonerEksamen
 Trello: https://trello.com/b/GsUUn0Lg/webapplikasjoner-eksamen
