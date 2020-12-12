@@ -40,9 +40,6 @@ const ArticleSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    readTime: {
-      type: Number, // seconds
-    },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
