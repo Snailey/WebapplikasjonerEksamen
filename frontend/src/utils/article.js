@@ -5,7 +5,18 @@ export const create = async (data) => {
   // console.log(data);
   try {
     // await getCsrfToken();
-    return await http.post(`/articles`, { ...data });
+    const check = await http.post(`/articles`, { ...data });
+    console.log(check);
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export const update = async (data) => {
+  console.log(data);
+  try {
+    // await getCsrfToken();
+    return await http.put(`/articles/${data._id}`, { ...data });
   } catch (err) {
     return err.response;
   }

@@ -1,32 +1,25 @@
 import { React, useContext, useState, useEffect } from 'react';
-import ExpandingTextArea from '../components/ExpandingTextarea';
-import ImageModal from '../components/ImageModal';
+import { PropTypes } from 'prop-types';
+import ExpandingTextArea from './ExpandingTextarea';
+import ImageModal from './ImageModal';
 import { Context } from '../contexts/GlobalStateContext';
 import { catList } from '../utils/categoryService';
-import CategoryModal from '../components/CategoryModal';
+import CategoryModal from './CategoryModal';
 import { create } from '../utils/article';
-// eslint-disable-next-line no-unused-vars
-import ArticleImage from '../components/ArticleImage';
+import ArticleImage from './ArticleImage';
 import {
-  StyledWelcome,
   Label,
   Input,
   FormContainer,
   ErrorMessage,
+  CenterH2,
 } from '../styles/StyledComponents';
 
-const MiniCMS = () => {
+const EditArticle = ({ before }) => {
   const [error, setError] = useState('');
-  // eslint-disable-next-line no-unused-vars
   const [cats, setCats] = useState('');
   const [showImg, setShowImg] = useState(false);
-  const [state, setState] = useState({
-    title: '',
-    author: '',
-    ingress: '',
-    content: '',
-    category: '',
-  });
+  const [state, setState] = useState(before);
   const [categoryModal, setCategoryModal] = useState(false);
   const [imageModal, setImageModal] = useState(false);
   const [user] = useContext(Context);
@@ -53,21 +46,14 @@ const MiniCMS = () => {
     // for (const key in state)
     alert(JSON.stringify(state));
     const { data, error } = await create(state);
-    console.log(JSON.stringify(data));
-    if (!data?.success || !data.status === '201') {
+    if (!data.success) {
       if (error) setError(error);
       else setError(data);
     } else {
       alert('sendt');
     }
   };
-  const handleCheckBox = (e) => {
-    const inputValue = { [e.target.name]: e.target.value };
-    setState((prev) => ({
-      ...prev,
-      ...inputValue,
-    }));
-  };
+
   const updateValue = (event) => {
     const inputValue = { [event.target.name]: event.target.value };
     console.log(inputValue);
@@ -77,14 +63,20 @@ const MiniCMS = () => {
     }));
     console.log(JSON.stringify(state));
   };
-
+  const handleCheckBox = (e) => {
+    const inputValue = { [e.target.name]: e.target.value };
+    setState((prev) => ({
+      ...prev,
+      ...inputValue,
+    }));
+  };
   return (
     <>
       {(() => {
         if (!user) {
           return (
             <ErrorMessage>
-              Vennligst logg inn for å skrive artikler.
+              Vennligst logg inn for å redigere artikler.
             </ErrorMessage>
           );
         }
@@ -96,21 +88,21 @@ const MiniCMS = () => {
           return (
             <>
               {error && <ErrorMessage>{error}</ErrorMessage>}
-              <StyledWelcome>
-                <p>Ny Artikkel</p>
-              </StyledWelcome>
+              <CenterH2>Rediger artikkel</CenterH2>
               <FormContainer>
                 <form onSubmit={handleSubmit}>
                   <Label>Tittel</Label>
                   <Input
                     onChange={updateValue}
                     name="title"
+                    value={state?.title}
                     placeholder="Skriv din tittel her"
                   />
                   <Label>Ingress</Label>
                   <Input
                     name="ingress"
                     onChange={updateValue}
+                    value={state?.ingress}
                     placeholder="Skriv ingressen her"
                   />
                   <Label>Innhold</Label>
@@ -122,10 +114,13 @@ const MiniCMS = () => {
                   </button>
                   <Label>Forfatter</Label>
                   <select
-                    defaultValue="Velg forfatter..."
                     onChange={updateValue}
+                    value={state?.author}
                     name="author"
                   >
+                    <option disabled selected value>
+                      Velg forfatter...
+                    </option>
                     <option value="Lars Larsen">Lars Larsen</option>
                     <option value="Gunn Gundersen">Gunn Gundersen</option>
                     <option value="Simen Simensen">Simen Simensen</option>
@@ -133,8 +128,8 @@ const MiniCMS = () => {
                   <Label>Kategori</Label>
                   <section>
                     <select
-                      defaultValue="Velg kategori..."
                       name="category"
+                      value={state?.category}
                       onChange={updateValue}
                     >
                       <option disabled selected value>
@@ -153,15 +148,15 @@ const MiniCMS = () => {
                       Legg til kategori
                     </button>
                   </section>
-                  <Label>Make public</Label>
-                  <input
-                    type="checkbox"
-                    name="public"
-                    onChange={handleCheckBox}
-                    checked={state?.public}
-                  />
                   {user.user.role === 'admin' && (
                     <>
+                      <Label>Make public</Label>
+                      <input
+                        type="checkbox"
+                        name="public"
+                        onChange={handleCheckBox}
+                        checked={state?.public}
+                      />
                       <Label>Publish</Label>
                       <input
                         type="checkbox"
@@ -194,11 +189,16 @@ const MiniCMS = () => {
           );
         }
         <ErrorMessage>
-          Du må være administrator eller forfatter for å skrive artikler. Du er
-          en {user?.user?.role}.
+          Du må være administrator eller forfatter for å redigere artikler. Du
+          er en {user?.user?.role}.
         </ErrorMessage>;
       })()}
     </>
   );
 };
-export default MiniCMS;
+
+EditArticle.propTypes = {
+  before: PropTypes.object,
+};
+
+export default EditArticle;

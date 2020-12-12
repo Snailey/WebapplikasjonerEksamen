@@ -12,10 +12,12 @@ import {
 import { Context } from '../contexts/GlobalStateContext';
 import { create } from '../utils/logService';
 import { get, remove } from '../utils/article';
+import EditArticle from '../components/EditArticle';
 
 function Article() {
   const [user] = useContext(Context);
   const [article, setArticle] = useState(null);
+  const [editArticle, setEditArticle] = useState(false);
   const { id } = useParams();
 
   const history = useHistory();
@@ -88,10 +90,12 @@ function Article() {
           {user?.user?.role === 'admin' && (
             <>
               <ArticleDeleteBtn onClick={removeArticle}>SLETT</ArticleDeleteBtn>
-              <ArticleEditBtn>REDIGER</ArticleEditBtn>
+              <ArticleEditBtn onClick={() => setEditArticle(!editArticle)}>
+                REDIGER
+              </ArticleEditBtn>
             </>
           )}
-
+          {editArticle && <EditArticle before={article} />}
           <ArticleReadTime>
             Lesetid ca. {avgReadTime(article?.content)} minutte(r)
           </ArticleReadTime>

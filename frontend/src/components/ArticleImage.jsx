@@ -19,9 +19,9 @@ const ArticleImage = ({ id }) => {
         setError('fetching image source failed');
       } else {
         console.log(JSON.stringify(data));
-        let path = data?.data?.data?.path;
-        path = path.substring(path.lastIndexOf('\\') + 1);
-        setSrc(`http://localhost:5000/images/${path}`);
+        const path = data?.data?.data?.path;
+        const path2 = path?.substring(path.lastIndexOf('\\') + 1);
+        setSrc(`http://localhost:5000/images/${path2}`);
       }
     };
     fetchData();
