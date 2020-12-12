@@ -11,10 +11,25 @@ export const create = async (data) => {
   }
 };
 
-export const getPublic = async () => {
+export const getPublic = async (search: String, filter: String) => {
   try {
     // await getCsrfToken();
-    return await http.get(`articles/public/`);
+    if (filter === 'Alle' || search === null) {
+      return await http.get(`articles/filter/?public=true&published=true`);
+    }
+    if (filter === 'Alle' || search === !null) {
+      return await http.get(
+        `articles/filter/?public=true&published=true&q=${search}`
+      );
+    }
+    if (filter !== 'Alle' || search === !null) {
+      return await http.get(
+        `articles/filter/?public=true&published=true&category=${filter}`
+      );
+    }
+    return await http.get(
+      `articles/filter/?public=true&published=true&category=${filter}&q=${search}`
+    );
   } catch (err) {
     return err.response.data;
   }
@@ -23,7 +38,7 @@ export const getPublic = async () => {
 export const getPublished = async () => {
   try {
     // await getCsrfToken();
-    return await http.get(`articles/published/`);
+    return await http.get(`articles/filter/?published=true`);
   } catch (err) {
     return err.response.data;
   }

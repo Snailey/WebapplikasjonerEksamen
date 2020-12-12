@@ -3,8 +3,8 @@ import catchAsyncErrors from '../middleware/catchAsync.js';
 
 // TestFilter
 export const listFilter = catchAsyncErrors(async (req, res, next) => {
-  const articles = await articleService.listArticlesFilter();
-  res.status(200).json({ success: true, data: articles });
+  const logs = await articleService.listArticlesFilter(req.query);
+  res.status(200).json({ success: true, data: logs });
 });
 
 // POST
