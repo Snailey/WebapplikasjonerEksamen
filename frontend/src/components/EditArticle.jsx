@@ -8,7 +8,6 @@ import CategoryModal from './CategoryModal';
 import { create } from '../utils/article';
 import ArticleImage from './ArticleImage';
 import {
-  StyledWelcome,
   Label,
   Input,
   FormContainer,
@@ -65,9 +64,10 @@ const EditArticle = ({ before }) => {
     console.log(JSON.stringify(state));
   };
   const handleCheckBox = (e) => {
+    const inputValue = { [e.target.name]: e.target.value };
     setState((prev) => ({
       ...prev,
-      [e.target.name]: e.target.checked,
+      ...inputValue,
     }));
   };
   return (

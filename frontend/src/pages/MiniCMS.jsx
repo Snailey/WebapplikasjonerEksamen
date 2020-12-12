@@ -62,9 +62,10 @@ const MiniCMS = () => {
     }
   };
   const handleCheckBox = (e) => {
+    const inputValue = { [e.target.name]: e.target.value };
     setState((prev) => ({
       ...prev,
-      [e.target.name]: e.target.checked,
+      ...inputValue,
     }));
   };
   const updateValue = (event) => {
