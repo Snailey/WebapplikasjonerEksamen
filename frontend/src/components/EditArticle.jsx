@@ -13,6 +13,7 @@ import {
   Input,
   FormContainer,
   ErrorMessage,
+  CenterH2,
 } from '../styles/StyledComponents';
 
 const EditArticle = ({ before }) => {
@@ -66,7 +67,7 @@ const EditArticle = ({ before }) => {
   const handleCheckBox = (e) => {
     setState((prev) => ({
       ...prev,
-      public: e.target.checked,
+      [e.target.name]: e.target.checked,
     }));
   };
   return (
@@ -75,7 +76,7 @@ const EditArticle = ({ before }) => {
         if (!user) {
           return (
             <ErrorMessage>
-              Vennligst logg inn for å skrive artikler.
+              Vennligst logg inn for å redigere artikler.
             </ErrorMessage>
           );
         }
@@ -87,9 +88,7 @@ const EditArticle = ({ before }) => {
           return (
             <>
               {error && <ErrorMessage>{error}</ErrorMessage>}
-              <StyledWelcome>
-                <p>Ny Artikkel</p>
-              </StyledWelcome>
+              <CenterH2>Rediger artikkel</CenterH2>
               <FormContainer>
                 <form onSubmit={handleSubmit}>
                   <Label>Tittel</Label>
@@ -154,8 +153,16 @@ const EditArticle = ({ before }) => {
                       <Label>Make public</Label>
                       <input
                         type="checkbox"
+                        name="public"
                         onChange={handleCheckBox}
                         checked={state?.public}
+                      />
+                      <Label>Publish</Label>
+                      <input
+                        type="checkbox"
+                        name="publish"
+                        onChange={handleCheckBox}
+                        checked={state?.published}
                       />
                     </>
                   )}

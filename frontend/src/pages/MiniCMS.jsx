@@ -61,7 +61,12 @@ const MiniCMS = () => {
       alert('sendt');
     }
   };
-
+  const handleCheckBox = (e) => {
+    setState((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.checked,
+    }));
+  };
   const updateValue = (event) => {
     const inputValue = { [event.target.name]: event.target.value };
     console.log(inputValue);
@@ -147,6 +152,24 @@ const MiniCMS = () => {
                       Legg til kategori
                     </button>
                   </section>
+                  <Label>Make public</Label>
+                  <input
+                    type="checkbox"
+                    name="public"
+                    onChange={handleCheckBox}
+                    checked={state?.public}
+                  />
+                  {user.user.role === 'admin' && (
+                    <>
+                      <Label>Publish</Label>
+                      <input
+                        type="checkbox"
+                        name="publish"
+                        onChange={handleCheckBox}
+                        checked={state?.published}
+                      />
+                    </>
+                  )}
                   <button type="submit">Send inn artikkel</button>
                 </form>
               </FormContainer>
