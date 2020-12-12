@@ -1,4 +1,23 @@
 import Article from '../models/article.js';
+import { Filter } from '../utils/filter.js';
+
+// Test med filter
+export const listArticlesFilter = async (queryString) => {
+  const { limit, page } = queryString;
+  const filter = new Filter(Article.find(), queryString)
+    .sort()
+    .filter()
+    .limit();
+  const article = await filter.query;
+  const paginate = await filter.paginate().query;
+
+  return {
+    results: article.length,
+    totalPages: Math.ceil(article.length / limit) || 1,
+    currentPage: page && page > 0 ? parseInt(page) : 1,
+    data: paginate,
+  };
+};
 
 // POST
 // create article

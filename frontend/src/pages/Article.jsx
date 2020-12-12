@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import {
   StyledWelcome,
   ArticleBodyContainer,
@@ -8,41 +9,41 @@ import {
   ArticleContainer,
   ArticleReadTime,
 } from '../styles/StyledComponents';
+import { Context } from '../contexts/GlobalStateContext';
 import { create } from '../utils/logService';
-
-const data = {
-  id: 2,
-  title: 'Artikkeltittel 2',
-  author: 'Forfatter',
-  date: '05.12.20',
-  category: 'Kategorinavn',
-  ingress:
-    'Dette er ingressen. Vi pusser opp små og mellomstore bad for privatkunder og ' +
-    'entreprenører. Vi er opptatt av god kvalitet og bruker kun de beste rørleggerne i alt vi ' +
-    'foretar oss. Vi hjelper deg med å planlegge drømmebadet ditt fra A til Å! Med hjertet for ' +
-    'faget yter vi kvalitet i alle ledd for at du skal være i trygge hender.',
-  content:
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod ' +
-    'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero ' +
-    'eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea ' +
-    'takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, ' +
-    'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et ' +
-    'dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo ' +
-    'dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ' +
-    'ipsum dolor sit amet. ' +
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod ' +
-    'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero ' +
-    'eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea ' +
-    'takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, ' +
-    'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et ' +
-    'dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo ' +
-    'dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ' +
-    'ipsum dolor sit amet.',
-  image: 'https://www.gamereactor.no/media/65/_1976583.jpg',
-  readTime: 350,
-};
+import { get, remove } from '../utils/article';
 
 function Article() {
+  const [user] = useContext(Context);
+  const [article, setArticle] = useState(null);
+  const { id } = useParams();
+
+  const history = useHistory();
+
+  function avgReadTime(str) {
+    const words = str?.split(' ').length;
+    const sec = Math.ceil((words / 200) * 0.6);
+    return sec;
+  }
+
+  const removeArticle = async () => {
+    const { data } = await remove(id);
+    if (!data.success) {
+      console.log('error getting data from db');
+    } else {
+      history.push('/articles');
+    }
+  };
+
+  const getArticle = async () => {
+    const { data } = await get(id);
+    if (!data.success) {
+      console.log('error getting data from db');
+    } else {
+      setArticle(data.data);
+    }
+  };
+
   const sendLog = async (time, url) => {
     const timeSinceLoad = (new Date().getTime() - time.getTime()) / 1000;
     const logData = {
@@ -53,6 +54,10 @@ function Article() {
   };
 
   useEffect(() => {
+    const fetchData = async () => {
+      getArticle();
+    };
+    fetchData();
     const time = new Date();
     const url = window.location.href;
     return () => {
@@ -61,28 +66,34 @@ function Article() {
       }
     };
   }, []);
+
   return (
     <>
       <StyledWelcome>
-        <p>{data?.title}</p>
+        <p>{article?.title}</p>
       </StyledWelcome>
       <ArticleBodyContainer>
         <ArticleContainer>
-          <p>Av {data?.author}</p>
+          <p>Av {article?.author}</p>
           <ArticleBoxContainer>
-            <p className="article_date">{data?.date}</p>
+            <p className="article_date">{article?.date}</p>
           </ArticleBoxContainer>
         </ArticleContainer>
-        <p>{data.ingress}</p>
-        <p>{data?.content}</p>
+        <p>{article?.ingress}</p>
+        <p>{article?.content}</p>
         <p>
-          <b>{data.category}</b>
+          <b>{article?.category}</b>
         </p>
         <div>
-          <ArticleDeleteBtn>SLETT</ArticleDeleteBtn>
-          <ArticleEditBtn>REDIGER</ArticleEditBtn>
+          {user?.user?.role === 'admin' && (
+            <>
+              <ArticleDeleteBtn onClick={removeArticle}>SLETT</ArticleDeleteBtn>
+              <ArticleEditBtn>REDIGER</ArticleEditBtn>
+            </>
+          )}
+
           <ArticleReadTime>
-            Lesetid ca. {Math.floor(data?.readTime / 60)} minutter.
+            Lesetid ca. {avgReadTime(article?.content)} minutte(r)
           </ArticleReadTime>
         </div>
       </ArticleBodyContainer>

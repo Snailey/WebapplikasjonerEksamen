@@ -63,7 +63,6 @@ function Offices() {
 
   const handleChange = (e) => {
     setSearch(e.value);
-    console.log(search);
   };
 
   return (

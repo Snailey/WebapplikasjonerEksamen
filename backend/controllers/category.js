@@ -8,7 +8,11 @@ export const create = catchAsyncErrors(async (req, res, next) => {
   if (!name) {
     res.status(400).json('Fyll ut kategorinavn');
   }
-  const cat = await categoryService.createCategory(req.body);
+  const cat = await categoryService.createCategory({
+    name: req.body.name,
+    value: req.body.name,
+    label: req.body.name,
+  });
   res.status(201).json({ success: true, data: cat });
 });
 
