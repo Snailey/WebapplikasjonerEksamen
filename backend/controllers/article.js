@@ -4,7 +4,7 @@ import catchAsyncErrors from '../middleware/catchAsync.js';
 // POST
 // create article
 export const create = catchAsyncErrors(async (req, res, next) => {
-  req.body.user = req.user.id;
+  req.body.user = req.author;
   const article = await articleService.createArticle(req.body);
   res.status(201).json(article);
 });
