@@ -8,6 +8,8 @@ const CategorySchema = new Schema(
       type: String,
       required: [true, 'Fyll ut kategori navn'],
     },
+    value: String,
+    label: String,
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );

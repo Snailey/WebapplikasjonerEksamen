@@ -1,6 +1,12 @@
 import { articleService } from '../services/index.js';
 import catchAsyncErrors from '../middleware/catchAsync.js';
 
+// TestFilter
+export const listFilter = catchAsyncErrors(async (req, res, next) => {
+  const logs = await articleService.listArticlesFilter(req.query);
+  res.status(200).json({ success: true, data: logs });
+});
+
 // POST
 // create article
 export const create = catchAsyncErrors(async (req, res, next) => {

@@ -4,6 +4,9 @@ import { isAuthenticated, isAuthorized } from '../middleware/auth.js';
 
 const router = express.Router();
 
+// Test filter
+router.get('/filter/', articleController.listFilter);
+
 // POST
 router.post('/', articleController.create); // add isAuticated
 

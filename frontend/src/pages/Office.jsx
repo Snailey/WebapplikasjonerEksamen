@@ -23,6 +23,7 @@ function Office() {
     };
     fetchData();
   }, []);
+
   return (
     <>
       <StyledWelcome>
